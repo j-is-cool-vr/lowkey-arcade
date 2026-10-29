@@ -1,12 +1,12 @@
 # Lowkey Arcade
 
-32 browser games in one page. No downloads, no accounts. Best scores and saves stay in your browser.
+36 browser games in one page. No downloads, no accounts. Best scores and saves stay in your browser.
 
 **Play:** open `index.html`, or the GitHub Pages link for this repo.
 
-New: Grave Rounds (round-based zombie survival), Cutline (android-slicing sword action), Iron Bout (giant robot fighting, 2 players on one keyboard), Saltfire (pirate ship battles), Hive Siege (build by day, defend by night) and Fathom Six (underwater stealth escape).
+New: Dead Highway (armored truck vs. zombie hordes), Long Shot (sniper missions against robot squads), Night Drift (midnight street drifting with tuning and paint) and Deep Hunter (submarine hunting with sonar and torpedoes).
 
-Also: Raw Feed (body-cam shooter, F to shoot), Mega Stomp, Treadfire, Storm Probe, Ore Drift, Deep Cast, Scrap Derby, Canyon Ace, Skyline Run, Reef Resort, Blockwild, Sky Circuit, Coaster Lab and more.
+Also: Grave Rounds, Cutline, Iron Bout (2 players on one keyboard), Saltfire, Hive Siege, Fathom Six, Raw Feed, Mega Stomp, Treadfire, Storm Probe, Ore Drift, Deep Cast, Scrap Derby, Canyon Ace, Skyline Run, Reef Resort, Blockwild, Sky Circuit, Coaster Lab and more.
 
 Built for school Chromebooks: keyboard and trackpad controls, with touch controls too.
 3D games use three.js r128 from cdnjs.

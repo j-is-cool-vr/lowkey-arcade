@@ -8,5 +8,7 @@ New: Ripsaw (chainsaw hack-and-slash through robot armies), Rail Gunner (zombie 
 
 Also: Vault Run, Trial Burn, Breach, Drop Zone, Scrapfist, Void Lancer, Hardpoint, Swarmbreaker, Span, Rocket Yard, Dead Highway, Long Shot, Night Drift, Deep Hunter, Coaster Lab, Blockwild and more.
 
+**Online play:** Night Rack, Junk Karts and Treadfire can be played with friends on different devices. One player hosts a room and shares its 5-character code. It connects browsers directly (PeerJS), so it may not work on networks that block it, such as some school Wi-Fi. Only play with people you know.
+
 Built for school Chromebooks: keyboard and trackpad controls, with touch controls too.
 3D games use three.js r128 from cdnjs. Game files ship without indentation to keep the page small; the readable sources live in the project's games folder.

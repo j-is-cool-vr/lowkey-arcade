@@ -445,15 +445,16 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>window.RECESS = window.RECESS || { games: [] };</script>
-<script src="games-1.js?v=48e25a2555"></script>
-<script src="games-2.js?v=75e3660737"></script>
-<script src="games-3.js?v=00b5b1423b"></script>
+<script src="games-1.js?v=68bf712af9"></script>
+<script src="games-2.js?v=2fd09a9adf"></script>
+<script src="games-3.js?v=ed86ee81ac"></script>
 <script>
 (function () {
   'use strict';
 
   // ---------- Catalog ----------
   const ORDER = [
+    'chassis', 'snowline', 'dead-signal', 'frontline', 'implode',
     'ripsaw', 'rail-gunner', 'purge-protocol', 'night-maw', 'junk-karts', 'cue-club', 'hoop-heat', 'knock-on',
     'assembly', 'fort-forge',
     'vault-run', 'trial-burn', 'breach', 'drop-zone', 'scrapfist', 'void-lancer', 'hardpoint', 'swarmbreaker',
@@ -471,16 +472,21 @@
   // Library shelves, top to bottom. A game sits on the first shelf that lists it; the last shelf takes the rest.
   // Column counts are picked so each shelf fills its rows.
   const SHELVES = [
-    { title: 'New', ids: ['ripsaw', 'rail-gunner', 'purge-protocol', 'night-maw', 'junk-karts', 'cue-club', 'hoop-heat', 'knock-on'], cols: 4 },
-    { title: 'Recently added', ids: ['vault-run', 'trial-burn', 'breach', 'drop-zone', 'scrapfist', 'void-lancer', 'hardpoint', 'swarmbreaker'], cols: 4 },
+    { title: 'New', ids: ['chassis', 'snowline', 'dead-signal', 'frontline', 'implode', 'ripsaw', 'rail-gunner', 'purge-protocol'], cols: 4 },
+    { title: 'Recently added', ids: ['night-maw', 'junk-karts', 'cue-club', 'hoop-heat', 'vault-run', 'trial-burn', 'breach', 'drop-zone', 'scrapfist', 'void-lancer', 'hardpoint', 'swarmbreaker'], cols: 4 },
     { title: 'Build & sim', ids: ['assembly', 'fort-forge', 'span', 'rocket-yard', 'coaster-lab', 'blockwild', 'reef-resort', 'ore-drift'], cols: 4 },
     { title: '3D', ids: ['dead-highway', 'long-shot', 'night-drift', 'deep-hunter', 'grave-rounds', 'cutline', 'iron-bout', 'saltfire', 'fathom-six', 'treadfire', 'mega-stomp', 'storm-probe', 'deep-cast', 'raw-feed', 'scrap-derby', 'canyon-ace', 'skyline-run', 'sky-circuit', 'hardlight', 'cloud-climb'], cols: 4 },
     { title: 'Arcade', ids: ['arena-blitz', 'orbit-hopper', 'midnight-lanes', 'comet-tail'], cols: 4 },
     { title: 'Sports & rhythm', ids: ['fourth-and-long', 'beatline', 'putt-planet', 'puck-rush'], cols: 4 },
-    { title: 'Puzzle & strategy', ids: null, cols: 4 },   // hive-siege, gem-shift, word-rain, crypt-crawler
+    { title: 'Puzzle & strategy', ids: null, cols: 4 },   // hive-siege, gem-shift, word-rain, crypt-crawler, knock-on
   ];
   // Typical length of one run, shown on each card so players can pick something that fits the time they have.
   const RUN_LENGTH = {
+    'chassis': '5–15 min',
+    'snowline': '3–8 min',
+    'dead-signal': '10–20 min',
+    'frontline': '15–30 min',
+    'implode': '2–5 min',
     'ripsaw': '10–20 min',
     'rail-gunner': '4–8 min',
     'purge-protocol': '5–10 min',

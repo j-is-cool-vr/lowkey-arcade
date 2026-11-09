@@ -15628,13 +15628,14 @@ for(let i=0;i<12;i++)u.uB.value.push(new T.Matrix4());
 FOGL.push(u);
 return own(new T.ShaderMaterial({uniforms:u,vertexShader:VS_RIDER,fragmentShader:FS_RIDER,transparent:true}));
 }
-const VS_PT=['attribute float ps;','attribute float pa;','attribute vec3 pc;','uniform float uS;','uniform float uFogN;','uniform float uFogF;','varying float vA;','varying vec3 vC;','varying float vF;',
-'void main() {',' vec4 mv = modelViewMatrix * vec4(position, 1.0);',' vA = pa; vC = pc;',' vF = smoothstep(uFogN, uFogF, -mv.z);',' gl_PointSize = clamp(ps * uS / max(-mv.z, 0.2), 0.0, 96.0);',' gl_Position = projectionMatrix * mv;','}'].join('\n');
+const VS_PT=['attribute float ps;','attribute float pa;','attribute vec3 pc;','uniform float uS;','uniform float uMax;','uniform float uFogN;','uniform float uFogF;','varying float vA;','varying vec3 vC;','varying float vF;',
+'void main() {',' vec4 mv = modelViewMatrix * vec4(position, 1.0);',' vA = pa; vC = pc;',' vF = smoothstep(uFogN, uFogF, -mv.z);',' gl_PointSize = clamp(ps * uS / max(-mv.z, 0.2), 0.0, uMax);',' gl_Position = projectionMatrix * mv;','}'].join('\n');
 const FS_PT=['uniform vec3 uFogC;','uniform float uAdd;','varying float vA;','varying vec3 vC;','varying float vF;',
 'void main() {',' float d = length(gl_PointCoord - vec2(0.5));',' float a = (1.0 - smoothstep(0.12, 0.5, d)) * vA;',' if (a < 0.01) discard;',
 ' vec3 c = mix(mix(vC, uFogC, vF), vC * (1.0 - vF), uAdd);',' gl_FragColor = vec4(c, a * (1.0 - vF * 0.6 * (1.0 - uAdd)));','}'].join('\n');
-function ptMat(add){
-const u=FOGU();u.uS={value:300};u.uAdd={value:add?1:0};u.uFogC.value=LIT.fog;
+const PTMATS=[];
+function ptMat(add,k){
+const u=FOGU();u.uS={value:1};u.uMax={value:96};u.uAdd={value:add?1:0};u.uFogC.value=LIT.fog;PTMATS.push([u,k]);
 return own(new T.ShaderMaterial({uniforms:u,vertexShader:VS_PT,fragmentShader:FS_PT,transparent:true,depthWrite:false,blending:add?T.AdditiveBlending:T.NormalBlending}));
 }
 const VS_TR=['attribute float ag;','attribute float sd;','attribute vec3 pc;','uniform float uT;','uniform float uLife;','uniform float uFogN;','uniform float uFogF;','varying float vA;','varying float vS;','varying vec3 vC;','varying float vF;',
@@ -16746,7 +16747,7 @@ if(c.ter)w.grp.add(c.ter);if(c.tf)w.grp.add(c.tf);if(c.rk)w.grp.add(c.rk);
 });
 w.grp.add(w.treeNear);
 }
-const mHalo=ptMat(true);
+const mHalo=ptMat(true,0.4);
 function setFlare(i,on){const w=W;if(!w||!w.flareP)return;w.flareP.geometry.attributes.pa.setX(i,on?0.9:0);w.flareP.geometry.attributes.pa.needsUpdate=true;const f=w.flares[i];if(on)trsM(M1,f.x,f.y-0.1,f.z,0,1);w.flareM.setMatrixAt(i,on?M1:ZERO_M);w.flareM.instanceMatrix.needsUpdate=true;}
 function treeLOD(force){
 const w=W;if(!w||!w.treeNear)return;
@@ -16890,7 +16891,7 @@ wall:{w:null,t:0,vt:0,vy:0},
 pipe:{sd:1,phi:0,vp:0,vs:0,pumped:false,hiS:0},
 bail:{t:0,max:1.5,rx:0,rz:0,wx:0,wz:0,v0:0,why:-1,mark:false},
 line:{t:0,mult:0,pts:0,n:0,names:[],refresh:0,elems:0,live:false},
-runN:{},score:0,rush:0,boost:false,boostT:0,fin:false,ft:0,cpIdx:0,place:1,flares:0,bails:0,ghostT:0,wob:0,slowT:0,stT:0,stX:0,stZ:0,ghost:0,
+runN:{},score:0,rush:0,boost:false,boostT:0,fin:false,ft:0,cpIdx:0,place:1,flares:0,bails:0,ghostT:0,wob:0,stpT:0,slowT:0,stT:0,stX:0,stZ:0,ghost:0,
 shv:[null,null,null,null],shvI:0,resetCD:0,resetT:0,top:0,trk:'',trkPts:0,trkT:0,gust:0,inPow:false,onIce:false,iceT:0,fallN:{},crevFall:0,lane:0,skill:1,tskill:0.6,rub:1,aiAir:false,aiV:6,aiU:0,swept:false,dnf:false,bailNo:0,perfN:0,cleanN:0,maxSpin:0,maxFlip:0,maxAir:0,maxH:0,roofT:0,shaves:0,logHop:0,gotKicks:{},splits:[],gates:0,gMiss:0,flipKs:{},kickG:{},topV:0,airNow:0,
 an:{cr:0.2,lf:0.1,tw:0,ls:0,hy:1,press:0,a:[0.3,0.35,0.5,0.3,0.35,0.5],gw:0,g:0,bob:0,roll:0,rollV:0,pitchO:0,yawO:0,t:0,tx:0,tz:0,fade:1,vic:0},
 mesh:null,mat:RMAT[slot]
@@ -17019,7 +17020,8 @@ let nx=Q.nx,ny=Q.ny,nz=Q.nz;
 if(Q.f&&Q.f.isPipe&&pipeRamp(r.s)>0.98&&Math.abs(r.u)>7.05&&Math.abs(r.u)<12.5){toPipe(r);return;}
 const vn=v.x*nx+v.y*ny+v.z*nz;
 if(p.y-h>0.35||vn>1.0){toAir(r,false);return;}
-if(ny<0.45){bump(r,nx,nz,4);}
+if(r.stpT>0)r.stpT-=dt;
+if(ny<0.45)steepHit(r,nx,ny,nz);
 p.y=h;v.x-=nx*vn;v.y-=ny*vn;v.z-=nz*vn;r.nrm.set(nx,ny,nz);
 let fx=Math.sin(r.hd),fz=Math.cos(r.hd),fy=-(fx*nx+fz*nz)/ny;let fl=Math.sqrt(fx*fx+fy*fy+fz*fz);fx/=fl;fy/=fl;fz/=fl;
 const lx=ny*fz-nz*fy,ly=nz*fx-nx*fz,lz=nx*fy-ny*fx;
@@ -17266,6 +17268,18 @@ function bump(r,nx,nz,vin){
 const v=r.vel,vn=v.x*nx+v.z*nz;
 if(vn<0){v.x-=nx*vn*1.3;v.z-=nz*vn*1.3;v.multiplyScalar(0.7);}
 r.wob=0.5;if(r.kind==='local'&&vin>2){snd('bump',0.5);addTrauma(0.15);stampT('Bump',UI.amb);}
+}
+function steepHit(r,nx,ny,nz){
+const v=r.vel;clAt(Math.max(0,r.s),CLO);const tx=CLO.tx,tz=CLO.tz;
+const gs=Math.tan(W.slopeAt(r.s))-(nx*tx+nz*tz)/ny,gu=(nx*tz-nz*tx)/ny;
+let gx=gs*tx-gu*tz,gz=gs*tz+gu*tx;const gl=Math.sqrt(gx*gx+gz*gz);if(gl<0.5)return;
+gx/=gl;gz/=gl;
+const vin=v.x*gx+v.z*gz;if(vin<=0)return;
+v.x-=gx*vin*1.3;v.z-=gz*vin*1.3;
+let fx=Math.sin(r.hd),fz=Math.cos(r.hd);const fin=fx*gx+fz*gz;
+if(fin>0&&fin<0.95){fx-=gx*fin;fz-=gz*fin;r.hd=Math.atan2(fx,fz);}
+if(!(r.stpT>0)){v.multiplyScalar(1-0.3*clamp(vin/3,0,1)-0.4*clamp((vin-6)/14,0,1));r.wob=0.5;if(r.kind==='local'&&vin>1){snd('bump',0.5);addTrauma(0.15);stampT('Bump',UI.amb);}}
+r.stpT=0.3;
 }
 function hitSolid(r,o){
 const v=r.vel,vin=-(v.x*HIT.nx+v.z*HIT.nz);
@@ -17626,7 +17640,7 @@ r.skid=false;r.brk=false;
 if(r.aiBoost){r.rush-=32*dt;if(r.rush<=0){r.rush=0;r.aiBoost=false;}}
 else if(r.rush>40&&W.slopeAt(r.s)>W.avgSlope&&EV&&EV.type==='race'&&r.place>1)r.aiBoost=true;
 r.stT+=dt;if(r.stT>2){if(r.s-r.stS<1&&EV&&EV.phase==='run')aiTeleport(r,6);r.stS=r.s;r.stT=0;}
-if(r.s>=W.fin&&!r.fin)evFinish(r);
+if(r.s>=W.fin&&!r.fin)evFinish(r,r.s>prevS?dt*(W.fin-prevS)/(r.s-prevS):0);
 }
 function nearFeature(s,d){for(let k=0;k<W.kick.length;k++)if(W.kick[k].s>s&&W.kick[k].s-s<d)return true;for(let k=0;k<W.rails.length;k++)if(W.rails[k].s>s&&W.rails[k].s-s<d)return true;return false;}
 function aiLaunch(r,k,hop){
@@ -17670,6 +17684,7 @@ r.s=Math.max(0,r.s+ds);r.aiU=aiU(r.s)+r.lane;wpos(r.s,r.aiU,V5);r.i=CLO2.i;r.pos
 }
 function distToCam(p){const dx=p.x-cam.position.x,dy=p.y-cam.position.y,dz=p.z-cam.position.z;return Math.sqrt(dx*dx+dy*dy+dz*dz);}
 function riderStep(r,inp,dt){
+const s0=r.s;
 r.modeT+=dt;
 if(r.grind.cd>0)r.grind.cd-=dt;
 switch(r.mode){
@@ -17687,7 +17702,7 @@ case'fin':finStep(r,dt);break;
 lineTick(r,dt);
 if(r.kind==='local'&&inp.rs&&r.resetCD<=0&&(r.mode==='ground'||r.mode==='air'||r.mode==='pipe'||r.mode==='grind'||r.mode==='wall')&&!r.fin){r.resetCD=2;doReset(r,'key');}
 if(r.resetCD>0)r.resetCD-=dt;
-if(r.mode!=='idle'&&!r.fin&&r.s>=W.fin&&r.kind==='local'&&EV&&EV.phase==='run'&&!EV.big)evFinish(r);
+if(r.mode!=='idle'&&!r.fin&&r.s>=W.fin&&r.kind==='local'&&EV&&EV.phase==='run'&&!EV.big)evFinish(r,r.s>s0&&s0<W.fin?dt*(W.fin-s0)/(r.s-s0):0);
 }
 function idleStep(r,inp,dt){
 const h=surf(r.pos.x,r.pos.z,r.i);r.i=Q.i;r.s=Q.s;r.u=Q.u;r.pos.y=h;r.nrm.set(Q.nx,Q.ny,Q.nz);r.vel.set(0,0,0);
@@ -17997,13 +18012,14 @@ if(key==='shave')n.shave=(n.shave||0)+1;
 if(key==='drop'&&ev.big&&ev.big.cur<0)ev.big.cur=0;
 }
 function evReset(r,why){const ev=EV;if(!ev)return;ev.resetN++;ev.n.resets=ev.resetN;if((ev.type==='tt'||ev.type==='slalom')&&why!=='tut'){ev.pen+=why==='crev'&&ev.type==='tt'?3:2;stampT(why==='crev'&&ev.type==='tt'?'RESET +3s':'RESET +2s',UI.amb);}else stampT('RESET',UI.amb);if(why==='key'&&!ev.n.resetHint)ev.n.resetHint=1;}
-function evFinish(r){
+function evFinish(r,o){
 const ev=EV;if(!ev||r.fin)return;
 if(ev.on){netFin(r);return;}
-r.fin=true;r.ft=ev.runT;ev.finN++;
+const t=ev.runT+(r!==riders[0]&&riders[0].fin?ev.finT||0:0)+clamp(o||0,0,0.05);
+r.fin=true;r.ft=t;ev.finN++;
 if(r.kind!=='local'){if(r.mode!=='fin')setMode(r,'fin');r.mode='fin';return;}
 setMode(r,'fin');r.fin=true;lineBank(r);
-ev.phase='fin';ev.finT=0;
+ev.phase='fin';ev.finT=ev.runT-t;ev.runT=t;
 if(!r.dnf){snd('crowd',0.7);musicStinger(true);fx('spark',r.pos.x,r.pos.y+2,r.pos.z,30,0,0);if(ev.e===6||ev.e===27||ev.type==='tut')ev.fw=4;}
 r.an.vic=r.dnf?0:1;
 }
@@ -18057,7 +18073,7 @@ let medal=0;
 if(type==='race'){
 const ais=riders.filter(function(r,i){return i>0&&r.mesh.visible&&r.kind==='ai';});
 if(me.dnf)medal=0;
-else if(ais.length===1){const o=ais[0];const ot=o.fin?o.ft:1e9;if(me.ft<ot){medal=3;ev.margin=(o.fin?o.ft:me.ft+9)-me.ft;}else{const d=me.ft-ot;medal=d<2?2:d<5?1:0;}res.place=me.ft<ot?1:2;}
+else if(ais.length===1){const o=ais[0];const ot=o.fin?o.ft:1e9;if(me.ft<=ot){medal=3;ev.margin=(o.fin?o.ft:me.ft+9)-me.ft;}else{const d=me.ft-ot;medal=d<2?2:d<5?1:0;}res.place=me.ft<=ot?1:2;}
 else{medal=me.place===1?3:me.place===2?2:me.place===3?1:0;let best=1e9;ais.forEach(function(o){if(o.fin)best=Math.min(best,o.ft);else best=Math.min(best,me.ft+9);});ev.margin=best-me.ft;}
 }else if(type==='tt'||type==='slalom'){if(!me.dnf)medal=t<=E[7]*sc?3:t<=E[6]*sc?2:t<=E[5]*sc?1:0;}
 else if(type==='aval'){if(!me.dnf&&!ev.n.caught)medal=t<=E[7]*sc?3:t<=E[6]*sc?2:1;}
@@ -18147,14 +18163,17 @@ const r=DEMO.r;DEMO.t+=dt;
 aiStep(r,dt);
 if(r.s>560||r.mode==='fin'){DEMO.t=(Math.floor(DEMO.t/6)+1)*6;aiInit(r,4,(hsh(DEMO.t|0,1,1)-0.5)*6,0.9,0.85);setMode(r,'ground');r.aiV=10;}
 }
-function mkPool(cap,add){
+function ptScale(){
+const h=ren.domElement.height,f=h/(2*Math.tan(cam.fov*Math.PI/360)),mx=Math.max(8,h*0.3);
+for(let i=0;i<PTMATS.length;i++){PTMATS[i][0].uS.value=PTMATS[i][1]*f;PTMATS[i][0].uMax.value=mx;}
+}
+function mkPool(cap,add,k){
 const g=own(new T.BufferGeometry()),P={cap:cap,n:0,pos:new Float32Array(cap*3),vel:new Float32Array(cap*3),life:new Float32Array(cap),max:new Float32Array(cap),sz:new Float32Array(cap),sz1:new Float32Array(cap),a0:new Float32Array(cap),col:new Float32Array(cap*3),drag:new Float32Array(cap),grav:new Float32Array(cap),ps:new Float32Array(cap),pa:new Float32Array(cap),pc:new Float32Array(cap*3),lim:cap};
 g.setAttribute('position',new T.BufferAttribute(P.pos,3));g.setAttribute('ps',new T.BufferAttribute(P.ps,1));g.setAttribute('pa',new T.BufferAttribute(P.pa,1));g.setAttribute('pc',new T.BufferAttribute(P.pc,3));
-g.setDrawRange(0,0);P.g=g;P.m=new T.Points(g,ptMat(add));P.m.frustumCulled=false;P.m.renderOrder=2;scene.add(P.m);
+g.setDrawRange(0,0);P.g=g;P.m=new T.Points(g,ptMat(add,k));P.m.frustumCulled=false;P.m.renderOrder=2;scene.add(P.m);
 return P;
 }
-const SNOW=mkPool(900,false),GLOW=mkPool(500,true),FALL=mkPool(1400,false);
-FALL.m.material.uniforms.uS.value=220;
+const SNOW=mkPool(900,false,0.03),GLOW=mkPool(500,true,0.05),FALL=mkPool(1400,false,0.025);
 function emit(P,x,y,z,vx,vy,vz,life,s0,s1,a,c,drag,grav){
 if(P.n>=P.lim)return;
 const i=P.n++,i3=i*3;
@@ -20247,7 +20266,7 @@ const sp=unitsV(me.topV)+' '+unitsN();
 if(t==='race'){
 const L=riders.filter(function(q){return q.mesh.visible&&(q.kind==='local'||q.kind==='ai');});
 const key=function(q){return q.fin&&!q.dnf?q.ft:1e6-q.s;};
-L.sort(function(a,b){return key(a)-key(b);});
+L.sort(function(a,b){return key(a)-key(b)||(a.kind==='local'?-1:b.kind==='local'?1:0);});
 L.forEach(function(q,i){R.push([ord(i+1).toLowerCase()+'  '+(q.kind==='local'?'You':RIVALS[q.ri][0]),q.fin&&!q.dnf?fmtT(q.ft):q.dnf?'DNF':'Still riding',q.kind==='local'?-2:q.ri]);});
 R.push(['Top speed',sp,-1]);
 }else if(t==='tt'||t==='slalom'||t==='aval'){
@@ -20381,7 +20400,7 @@ flashSky=Math.max(0,flashSky-dt*4);skyU.uFlash.value=flashSky;
 }
 treeLOD(false);chunkVis(sc==='rider'?14:camS,80);skyFollow(clk);
 trailFlush(TRAIL,clk);trailFlush(RTRAIL,clk);
-ren.render(scene,cam);
+ptScale();ren.render(scene,cam);
 }
 loopsTick(dt,playing);musicTick(playing);
 drawUI(dt);

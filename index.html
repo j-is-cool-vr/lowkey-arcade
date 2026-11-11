@@ -7,7 +7,7 @@
 <body>
 <title>Lowkey Arcade</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Original browser games: arcade, action, puzzle, strategy, sports and word games.">
+<meta name="description" content="Original browser games: arcade, action, horror, puzzle, strategy, sports and word games, plus a game maker.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=Unbounded:wght@500;700;900&family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
@@ -355,6 +355,104 @@
     .net-actions .btn { flex: 1 1 0; min-width: 0; }
   }
 
+  /* Public rooms */
+  .net-body.net-step>*{animation:net-rise .18s ease-out both}
+  .pub-li{animation:net-rise .2s ease-out both}
+  @keyframes net-rise{from{opacity:0;transform:translateY(6px)}}
+  .net-ov .net-actions{position:sticky;bottom:0;z-index:1;padding:10px 0 2px;background:linear-gradient(transparent,var(--surface) 10px)}
+  .net-coderow{display:flex;flex-wrap:wrap;gap:10px}
+  .net-coderow>*{flex:1 1 180px}
+  .net-coderow>.net-code{flex-basis:250px}
+  .net-radio{position:relative;display:grid;grid-template-columns:1fr 1fr;padding:3px;border-radius:12px;border:1px solid var(--line);background:var(--bg)}
+  .net-radio::before{content:"";position:absolute;top:3px;bottom:3px;left:3px;width:calc(50% - 3px);border-radius:9px;background:var(--accent);transition:transform .16s}
+  .net-r2::before{transform:translateX(100%)}
+  .net-seg{position:relative;display:grid;place-content:center;min-height:54px;border:0;background:none;color:var(--fg-soft);font:600 12px/1.3 var(--font-body);cursor:pointer}
+  .net-seg strong{color:var(--fg);font-size:14.5px}
+  .net-seg[aria-checked="true"],.net-seg[aria-checked="true"] strong{color:var(--accent-ink)}
+  .net-vis{display:flex;align-items:center;gap:10px;min-height:44px;padding:7px 8px 7px 12px;border-radius:10px;background:var(--surface-2)}
+  .net-vis p{flex:1}
+  .net-on{background:rgba(75,227,160,.08)}
+  .net-on p{color:var(--fg)}
+  .net-ind,.pub-live,.pub-banner .net-dot{position:relative;flex:none}
+  .net-ind{width:9px;height:9px;border-radius:50%;background:#39425E}
+  .net-wait .net-ind{width:16px;height:16px;background:none;border:2px solid rgba(182,156,255,.25);border-top-color:var(--accent);animation:net-spin .8s linear infinite}
+  .net-on .net-ind{background:#4BE3A0}
+  .net-on .net-ind::after,.pub-live::after,.pub-banner .net-dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:#4BE3A0;opacity:.5;animation:pub-pulse 1.6s ease-out infinite}
+  @keyframes pub-pulse{to{transform:scale(2.2);opacity:0}}
+  .net-act{min-height:36px;padding:8px 12px}
+  .net-move{display:flex;align-items:center;gap:10px;padding:8px 8px 8px 14px;border-radius:10px;background:rgba(182,156,255,.08);box-shadow:inset 3px 0 var(--accent);animation:net-rise .2s ease-out}
+  .net-move p{flex:1;margin:0}
+  .net-pub{margin:0 8px 0 auto;color:#4BE3A0}
+  .pub-area{display:grid;gap:10px}
+  .pub-bar{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .pub-stat,.pub-empty p{margin:0}
+  .pub-ago,.pub-sub,.pub-empty p{color:var(--fg-soft)}
+  .pub-refresh::before{content:"\21BB"}
+  .pub-prog{height:2px;background:var(--line);opacity:0;transition:opacity .25s}
+  .pub-prog.on{opacity:1}
+  .pub-prog span{display:block;width:0;height:100%;background:var(--accent);transition:width .25s linear}
+  .pub-list{list-style:none;margin:0;padding:2px;display:grid;gap:6px;max-height:236px;overflow:auto;overscroll-behavior:contain}
+  .net-fixed .pub-list{max-height:max(236px,calc(100dvh - 280px))}
+  .pub-row{display:flex;align-items:center;gap:12px;width:100%;min-height:56px;padding:8px 10px 8px 8px;border-radius:12px;border:1px solid var(--line);background:var(--surface-2);color:var(--fg);font:inherit;text-align:left;cursor:pointer;transition:background-color .12s,border-color .12s,opacity .2s}
+  .pub-row:hover,.pub-row:focus-visible{background:#20263B;border-color:rgba(182,156,255,.55)}
+  .pub-row:active{transform:scale(.99)}
+  .pub-stale{opacity:.55}
+  .pub-thumb{flex:none;width:96px;height:60px;border-radius:8px;background:var(--stage)}
+  .pub-main{flex:1;min-width:0;display:grid}
+  .pub-name,.pub-sub{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .pub-name{font-weight:700}
+  .pub-panel .pub-name{font:700 15px var(--font-display)}
+  .pub-stat,.pub-sub,.pub-empty p{font-size:13.5px}
+  .pub-right,.pub-pips,.top-actions{display:flex;align-items:center;gap:10px}
+  .pub-pips{gap:3px}
+  .pub-pips i{width:6px;height:6px;border-radius:50%;background:#39425E}
+  .pub-pips .on{background:#4BE3A0}
+  .pub-right .pub-n{color:var(--fg-soft);font:700 12.5px var(--font-mono)}
+  .pub-row .net-badge{width:40px;height:40px}
+  .pub-chip{min-width:56px;padding:7px 10px;border-radius:99px;background:var(--accent);color:var(--accent-ink);font:700 12.5px/1 var(--font-body);text-align:center}
+  .pub-off{background:none;box-shadow:inset 0 0 0 1px var(--line);color:var(--fg-soft)}
+  .pub-empty,.pub-err,.pub-offbox{display:grid;justify-items:center;gap:8px;text-align:center}
+  .pub-offbox{padding:14px;border-radius:12px;border:1px dashed var(--line)}
+  .pub-out{opacity:0;transition:opacity .15s}
+  .pub-panel{width:min(720px,100%);max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);display:flex;flex-direction:column;overflow:auto;overscroll-behavior:contain}
+  .pub-panel>*{flex:none}
+  .pub-panel>.pub-area{flex:1 1 auto;min-height:150px;display:flex;flex-direction:column}
+  .pub-panel .pub-list{flex:1 1 auto;min-height:0;max-height:none}
+  .pub-kick{display:inline-flex;align-items:center;gap:8px}
+  .pub-foot{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+  .pub-switch{display:inline-flex;align-items:center;gap:10px;min-height:44px;border:0;background:none;color:var(--fg);font:600 14px var(--font-body);cursor:pointer}
+  .pub-knob{position:relative;width:38px;height:22px;border-radius:99px;background:#39425E}
+  .pub-knob::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:var(--fg);transition:transform .16s}
+  .pub-switch.on .pub-knob{background:var(--accent)}
+  .pub-switch.on .pub-knob::after{transform:translateX(16px);background:var(--accent-ink)}
+  .pub-banner{display:flex;align-items:center;gap:12px;padding:6px 6px 6px 14px;border-radius:12px;border:1px solid rgba(75,227,160,.35);background:rgba(75,227,160,.07);animation:net-rise .22s ease-out}
+  .pub-banner p{flex:1;margin:0}
+  .pub-banner .net-x{margin:0}
+  .pub-new{padding:4px 6px;border-radius:99px;background:var(--hot);color:#fff;font:700 10px/1 var(--font-mono);text-transform:uppercase}
+  .library:not([hidden]),.player:not([hidden]){animation:net-in .16s ease-out}
+  @media (min-width:1101px){.grid-4>.feature{grid-column:span 2} .feature h3{font-size:22px}}
+  @media (max-width:479px){.pub-btn-text{display:none}}
+  @media (max-width: 440px) {
+    .pub-row{flex-wrap:wrap}
+    .pub-thumb{width:64px;height:40px}
+    .pub-right{margin-left:auto}
+  }
+
+  /* Wide game pages (wide: true) */
+  .app.app-wide { max-width: 1680px; padding-block: 8px; gap: 8px; }
+  .app.app-wide > .top { display: none; }
+  .player.wide { gap: 8px; }
+  .player.wide .player-bar { flex-wrap: nowrap; min-height: 40px; }
+  .player.wide .player-bar h2 { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .player.wide .player-body { grid-template-columns: minmax(0, 1fr); }
+  .player.wide .stage { width: 100%; aspect-ratio: auto; height: calc(100vh - 64px); height: calc(100dvh - 64px); min-height: min(420px, calc(100dvh - 16px)); max-height: 1100px; }
+  .player.wide .side { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); align-items: start; }
+  .player.wide .side > #p-blurb { grid-column: 1 / -1; }
+  .player-bar .bar-tools { margin-left: auto; display: flex; gap: 10px; }
+  .player.wide .stage:fullscreen { width: 100%; height: 100%; min-height: 0; max-height: none; }
+  .player.wide .stage.pseudo-fs { width: auto; height: auto; min-height: 0; max-height: none; }
+  .bar-tools .side-actions { display: flex; gap: 10px; }
+
   @media (max-width: 900px) {
     .player-body { grid-template-columns: minmax(0, 1fr); }
   }
@@ -367,17 +465,27 @@
     .card:hover .thumb canvas { transform: none; }
     .best-box .num.flash { animation: none; }
     .net-ov { animation: none; }
-    .net-spin { animation-duration: 2.4s; }
+    .net-spin,.net-wait .net-ind{animation-duration:2.4s}
+    .net-body.net-step>*,.pub-li,.pub-banner,.net-move,.library:not([hidden]),.player:not([hidden]),.net-on .net-ind::after,.pub-live::after,.pub-banner .net-dot::after{animation:none}
+    .net-radio::before,.pub-prog,.pub-prog span,.pub-row,.pub-knob::after,.pub-out{transition:none}
+    .pub-row:active{transform:none}
   }
 </style>
 
 <div class="app">
   <header class="top">
     <a class="logo" href="#" id="home-link" aria-label="Lowkey Arcade home">lowkey<span class="dot">.</span>arcade</a>
-    <button id="sound-btn" class="btn" type="button" aria-pressed="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5z" fill="currentColor"/><path class="wave" d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/><path class="cross" d="M16 9l6 6M22 9l-6 6" hidden/></svg>
-      <span id="sound-label">Sound on</span>
-    </button>
+    <div class="top-actions" id="top-actions">
+      <button id="pub-btn" class="btn pub-btn" type="button" aria-haspopup="dialog" aria-label="Public rooms" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="2" fill="currentColor"/><path d="M7.8 7.8a6 6 0 0 0 0 8.4M16.2 7.8a6 6 0 0 1 0 8.4M4.9 4.9a10 10 0 0 0 0 14.2M19.1 4.9a10 10 0 0 1 0 14.2"/></svg>
+        <span class="pub-btn-text">Public rooms</span>
+        <span id="pub-new" class="pub-new" hidden>New</span>
+      </button>
+      <button id="sound-btn" class="btn" type="button" aria-pressed="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5z" fill="currentColor"/><path class="wave" d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/><path class="cross" d="M16 9l6 6M22 9l-6 6" hidden/></svg>
+        <span id="sound-label">Sound on</span>
+      </button>
+    </div>
   </header>
 
   <main id="library" class="library">
@@ -411,6 +519,12 @@
       </button>
       <h2 id="p-title"></h2>
       <span class="tag" id="p-genre"></span>
+      <div class="bar-tools" id="bar-tools"></div>
+    </div>
+    <div class="pub-banner" id="pub-banner" role="status" hidden>
+      <span class="net-dot" aria-hidden="true"></span>
+      <p id="pub-banner-text"></p>
+      <button id="pub-banner-x" class="net-x" type="button" aria-label="Cancel joining this room">&times;</button>
     </div>
     <div class="player-body">
       <div class="stage" id="stage"></div>
@@ -421,11 +535,11 @@
           <span class="label" id="p-best-label">Your best</span>
           <span class="num" id="p-best">None yet</span>
         </div>
-        <div class="side-actions">
+        <div class="side-actions" id="side-actions">
           <button id="restart-btn" class="btn" type="button">Restart</button>
           <button id="fs-btn" class="btn" type="button">Fullscreen</button>
         </div>
-        <div>
+        <div id="p-controls-block">
           <h3>Controls</h3>
           <dl class="controls" id="p-controls"></dl>
         </div>
@@ -450,1476 +564,2472 @@
 <script src="games-3.js?v=e7343ce48a"></script>
 <script>
 (function () {
-  'use strict';
+'use strict';
 
-  // ---------- Catalog ----------
-  const ORDER = [
-    'chassis', 'snowline', 'dead-signal', 'frontline', 'implode',
-    'ripsaw', 'rail-gunner', 'purge-protocol', 'night-maw', 'junk-karts', 'cue-club', 'hoop-heat', 'knock-on',
-    'assembly', 'fort-forge',
-    'vault-run', 'trial-burn', 'breach', 'drop-zone', 'scrapfist', 'void-lancer', 'hardpoint', 'swarmbreaker',
-    'span', 'rocket-yard',
-    'dead-highway', 'long-shot', 'night-drift', 'deep-hunter',
-    'grave-rounds', 'cutline', 'iron-bout', 'saltfire', 'hive-siege', 'fathom-six',
-    'treadfire', 'mega-stomp', 'storm-probe', 'ore-drift', 'deep-cast',
-    'raw-feed', 'scrap-derby', 'canyon-ace', 'skyline-run', 'reef-resort',
-    'blockwild', 'fourth-and-long',
-    'sky-circuit', 'hardlight', 'coaster-lab', 'cloud-climb',
-    'arena-blitz', 'orbit-hopper', 'midnight-lanes', 'comet-tail',
-    'beatline', 'putt-planet', 'puck-rush',
-    'gem-shift', 'word-rain', 'crypt-crawler',
-  ];
-  // Library shelves, top to bottom. A game sits on the first shelf that lists it; the last shelf takes the rest.
-  // Column counts are picked so each shelf fills its rows.
-  const SHELVES = [
-    { title: 'New', ids: ['chassis', 'snowline', 'dead-signal', 'frontline', 'implode', 'ripsaw', 'rail-gunner', 'purge-protocol'], cols: 4 },
-    { title: 'Recently added', ids: ['night-maw', 'junk-karts', 'cue-club', 'hoop-heat', 'vault-run', 'trial-burn', 'breach', 'drop-zone', 'scrapfist', 'void-lancer', 'hardpoint', 'swarmbreaker'], cols: 4 },
-    { title: 'Build & sim', ids: ['assembly', 'fort-forge', 'span', 'rocket-yard', 'coaster-lab', 'blockwild', 'reef-resort', 'ore-drift'], cols: 4 },
-    { title: '3D', ids: ['dead-highway', 'long-shot', 'night-drift', 'deep-hunter', 'grave-rounds', 'cutline', 'iron-bout', 'saltfire', 'fathom-six', 'treadfire', 'mega-stomp', 'storm-probe', 'deep-cast', 'raw-feed', 'scrap-derby', 'canyon-ace', 'skyline-run', 'sky-circuit', 'hardlight', 'cloud-climb'], cols: 4 },
-    { title: 'Arcade', ids: ['arena-blitz', 'orbit-hopper', 'midnight-lanes', 'comet-tail'], cols: 4 },
-    { title: 'Sports & rhythm', ids: ['fourth-and-long', 'beatline', 'putt-planet', 'puck-rush'], cols: 4 },
-    { title: 'Puzzle & strategy', ids: null, cols: 4 },   // hive-siege, gem-shift, word-rain, crypt-crawler, knock-on
-  ];
-  // Typical length of one run, shown on each card so players can pick something that fits the time they have.
-  const RUN_LENGTH = {
-    'chassis': '5–15 min',
-    'snowline': '3–8 min',
-    'dead-signal': '10–20 min',
-    'frontline': '15–30 min',
-    'implode': '2–5 min',
-    'ripsaw': '10–20 min',
-    'rail-gunner': '4–8 min',
-    'purge-protocol': '5–10 min',
-    'night-maw': '10–20 min',
-    'junk-karts': '3–10 min',
-    'cue-club': '5–10 min',
-    'hoop-heat': '4–8 min',
-    'knock-on': '1–3 min',
-    'assembly': '15+ min',
-    'fort-forge': '3–6 min',
-    'vault-run': '3–8 min',
-    'trial-burn': '1–3 min',
-    'breach': '1–4 min',
-    'drop-zone': '5–10 min',
-    'scrapfist': '5–20 min',
-    'void-lancer': '3–8 min',
-    'hardpoint': '3–8 min',
-    'swarmbreaker': '5–20 min',
-    'span': '2–5 min',
-    'rocket-yard': '5–15 min',
-    'dead-highway': '2–8 min',
-    'long-shot': '3–5 min',
-    'night-drift': '2–4 min',
-    'deep-hunter': '5–10 min',
-    'grave-rounds': '10+ min',
-    'cutline': '4–6 min',
-    'iron-bout': '3–15 min',
-    'saltfire': '5–10 min',
-    'hive-siege': '15+ min',
-    'fathom-six': '15–25 min',
-    'treadfire': '5–15 min',
-    'mega-stomp': '3–6 min',
-    'storm-probe': '5–8 min',
-    'ore-drift': '10+ min',
-    'deep-cast': '10+ min',
-    'raw-feed': '4–8 min',
-    'scrap-derby': '3–5 min',
-    'canyon-ace': '2–5 min',
-    'skyline-run': '1–2 min',
-    'reef-resort': '15+ min',
-    'blockwild': '10+ min',
-    'fourth-and-long': '8–15 min',
-    'beatline': '1–2 min',
-    'sky-circuit': '1–2 min',
-    'hardlight': '4–10 min',
-    'coaster-lab': '5–20 min',
-    'cloud-climb': '8–15 min',
-    'orbit-hopper': '1–3 min',
-    'arena-blitz': '3–6 min',
-    'gem-shift': '90 sec',
-    'midnight-lanes': '1–3 min',
-    'crypt-crawler': '5–15 min',
-    'word-rain': '2–4 min',
-    'putt-planet': '6–10 min',
-    'comet-tail': '2–4 min',
-    'puck-rush': '3–8 min',
-  };
+// ---------- Catalog ----------
+const ORDER = [
+	'overtime', 'studio',
+	'chassis', 'snowline', 'dead-signal', 'frontline', 'implode',
+	'ripsaw', 'rail-gunner', 'purge-protocol', 'night-maw', 'junk-karts', 'cue-club', 'hoop-heat', 'knock-on',
+	'assembly', 'fort-forge',
+	'vault-run', 'trial-burn', 'breach', 'drop-zone', 'scrapfist', 'void-lancer', 'hardpoint', 'swarmbreaker',
+	'span', 'rocket-yard',
+	'dead-highway', 'long-shot', 'night-drift', 'deep-hunter',
+	'grave-rounds', 'cutline', 'iron-bout', 'saltfire', 'hive-siege', 'fathom-six',
+	'treadfire', 'mega-stomp', 'storm-probe', 'ore-drift', 'deep-cast',
+	'raw-feed', 'scrap-derby', 'canyon-ace', 'skyline-run', 'reef-resort',
+	'blockwild', 'fourth-and-long',
+	'sky-circuit', 'hardlight', 'coaster-lab', 'cloud-climb',
+	'arena-blitz', 'orbit-hopper', 'midnight-lanes', 'comet-tail',
+	'beatline', 'putt-planet', 'puck-rush',
+	'gem-shift', 'word-rain', 'crypt-crawler',
+];
+const SHELVES = [
+	{ title: 'New', ids: ['overtime', 'studio', 'chassis', 'snowline', 'dead-signal', 'frontline', 'implode', 'ripsaw', 'rail-gunner', 'purge-protocol'], cols: 4, feature: 2 },
+	{ title: 'Recently added', ids: ['night-maw', 'junk-karts', 'cue-club', 'hoop-heat', 'vault-run', 'trial-burn', 'breach', 'drop-zone', 'scrapfist', 'void-lancer', 'hardpoint', 'swarmbreaker'], cols: 4 },
+	{ title: 'Build & sim', ids: ['assembly', 'fort-forge', 'span', 'rocket-yard', 'coaster-lab', 'blockwild', 'reef-resort', 'ore-drift'], cols: 4 },
+	{ title: '3D', ids: ['dead-highway', 'long-shot', 'night-drift', 'deep-hunter', 'grave-rounds', 'cutline', 'iron-bout', 'saltfire', 'fathom-six', 'treadfire', 'mega-stomp', 'storm-probe', 'deep-cast', 'raw-feed', 'scrap-derby', 'canyon-ace', 'skyline-run', 'sky-circuit', 'hardlight', 'cloud-climb'], cols: 4 },
+	{ title: 'Arcade', ids: ['arena-blitz', 'orbit-hopper', 'midnight-lanes', 'comet-tail'], cols: 4 },
+	{ title: 'Sports & rhythm', ids: ['fourth-and-long', 'beatline', 'putt-planet', 'puck-rush'], cols: 4 },
+	{ title: 'Puzzle & strategy', ids: null, cols: 4 },
+];
+const RUN_LENGTH = {
+	'overtime': '10–25 min',
+	'studio': '10+ min',
+	'chassis': '5–15 min',
+	'snowline': '3–8 min',
+	'dead-signal': '10–20 min',
+	'frontline': '15–30 min',
+	'implode': '2–5 min',
+	'ripsaw': '10–20 min',
+	'rail-gunner': '4–8 min',
+	'purge-protocol': '5–10 min',
+	'night-maw': '10–20 min',
+	'junk-karts': '3–10 min',
+	'cue-club': '5–10 min',
+	'hoop-heat': '4–8 min',
+	'knock-on': '1–3 min',
+	'assembly': '15+ min',
+	'fort-forge': '3–6 min',
+	'vault-run': '3–8 min',
+	'trial-burn': '1–3 min',
+	'breach': '1–4 min',
+	'drop-zone': '5–10 min',
+	'scrapfist': '5–20 min',
+	'void-lancer': '3–8 min',
+	'hardpoint': '3–8 min',
+	'swarmbreaker': '5–20 min',
+	'span': '2–5 min',
+	'rocket-yard': '5–15 min',
+	'dead-highway': '2–8 min',
+	'long-shot': '3–5 min',
+	'night-drift': '2–4 min',
+	'deep-hunter': '5–10 min',
+	'grave-rounds': '10+ min',
+	'cutline': '4–6 min',
+	'iron-bout': '3–15 min',
+	'saltfire': '5–10 min',
+	'hive-siege': '15+ min',
+	'fathom-six': '15–25 min',
+	'treadfire': '5–15 min',
+	'mega-stomp': '3–6 min',
+	'storm-probe': '5–8 min',
+	'ore-drift': '10+ min',
+	'deep-cast': '10+ min',
+	'raw-feed': '4–8 min',
+	'scrap-derby': '3–5 min',
+	'canyon-ace': '2–5 min',
+	'skyline-run': '1–2 min',
+	'reef-resort': '15+ min',
+	'blockwild': '10+ min',
+	'fourth-and-long': '8–15 min',
+	'beatline': '1–2 min',
+	'sky-circuit': '1–2 min',
+	'hardlight': '4–10 min',
+	'coaster-lab': '5–20 min',
+	'cloud-climb': '8–15 min',
+	'orbit-hopper': '1–3 min',
+	'arena-blitz': '3–6 min',
+	'gem-shift': '90 sec',
+	'midnight-lanes': '1–3 min',
+	'crypt-crawler': '5–15 min',
+	'word-rain': '2–4 min',
+	'putt-planet': '6–10 min',
+	'comet-tail': '2–4 min',
+	'puck-rush': '3–8 min',
+};
+const RUN_NOUN = { studio: 'sessions' };
+const NEW_TOP = ['overtime', 'studio'];
 
-  const registry = (window.RECESS && Array.isArray(window.RECESS.games)) ? window.RECESS.games : [];
-  const games = registry
-    .filter((g) => g && typeof g.id === 'string' && typeof g.title === 'string' && typeof g.mount === 'function')
-    .sort((a, b) => rank(a.id) - rank(b.id));
-  const byId = new Map(games.map((g) => [g.id, g]));
+const registry = (window.RECESS && Array.isArray(window.RECESS.games)) ? window.RECESS.games : [];
+const games = registry
+	.filter((g) => g && typeof g.id === 'string' && typeof g.title === 'string' && typeof g.mount === 'function')
+	.sort((a, b) => rank(a.id) - rank(b.id));
+const byId = new Map(games.map((g) => [g.id, g]));
 
-  function rank(id) {
-    const i = ORDER.indexOf(id);
-    return i === -1 ? ORDER.length : i;
-  }
+function rank(id) {
+	const i = ORDER.indexOf(id);
+	return i === -1 ? ORDER.length : i;
+}
 
-  // ---------- Storage (per-viewer conveniences only) ----------
-  const store = {
-    get(key) { try { return window.localStorage.getItem(key); } catch (e) { return null; } },
-    set(key, value) { try { window.localStorage.setItem(key, value); } catch (e) { /* storage blocked */ } },
-  };
-  function getBest(id) {
-    const raw = store.get('recess:best:' + id);
-    if (raw === null) return null;
-    const v = parseFloat(raw);
-    return Number.isFinite(v) ? v : null;
-  }
-  function fmt(n) {
-    return Number(n).toLocaleString('en-US', { maximumFractionDigits: 0 });
-  }
+// ---------- Storage (per-viewer conveniences only) ----------
+const store = {
+	get(key) { try { return window.localStorage.getItem(key); } catch (e) { return null; } },
+	set(key, value) { try { window.localStorage.setItem(key, value); } catch (e) {} },
+	del(key) { try { window.localStorage.removeItem(key); } catch (e) {} },
+};
+function getBest(id) {
+	const raw = store.get('recess:best:' + id);
+	if (raw === null) return null;
+	const v = parseFloat(raw);
+	return Number.isFinite(v) ? v : null;
+}
+function fmt(n) {
+	return Number(n).toLocaleString('en-US', { maximumFractionDigits: 0 });
+}
 
-  // ---------- Sound ----------
-  let muted = store.get('recess:muted') === '1';
-  let actx = null;
-  let master = null;
-  let noiseBuffer = null;
-  let voices = 0;
+// ---------- Sound ----------
+let muted = store.get('recess:muted') === '1';
+let actx = null;
+let master = null;
+let noiseBuffer = null;
+let voices = 0;
 
-  function audio() {
-    if (muted) return null;
-    try {
-      if (!actx) {
-        const AC = window.AudioContext || window.webkitAudioContext;
-        if (!AC) return null;
-        actx = new AC();
-        master = actx.createGain();
-        master.gain.value = 0.55;
-        master.connect(actx.destination);
-      }
-      if (actx.state === 'suspended') actx.resume().catch(() => {});
-      return actx;
-    } catch (e) {
-      return null;
-    }
-  }
+function audio() {
+	if (muted) return null;
+	try {
+		if (!actx) {
+			const AC = window.AudioContext || window.webkitAudioContext;
+			if (!AC) return null;
+			actx = new AC();
+			master = actx.createGain();
+			master.gain.value = 0.55;
+			master.connect(actx.destination);
+		}
+		if (actx.state === 'suspended') actx.resume().catch(() => {});
+		return actx;
+	} catch (e) {
+		return null;
+	}
+}
 
-  function tone(freq, dur, opts) {
-    try {
-      const o = opts || {};
-      if (!(freq > 0) || !(dur > 0) || voices > 24) return;
-      const ctx = audio();
-      if (!ctx) return;
-      const t0 = ctx.currentTime + Math.max(0, o.delay || 0);
-      const vol = Math.min(1, Math.max(0, o.vol == null ? 0.15 : o.vol)) * 0.5;
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = o.type || 'square';
-      osc.frequency.setValueAtTime(freq, t0);
-      if (o.slide > 0) osc.frequency.exponentialRampToValueAtTime(o.slide, t0 + dur);
-      gain.gain.setValueAtTime(0.0001, t0);
-      gain.gain.exponentialRampToValueAtTime(Math.max(vol, 0.0002), t0 + Math.min(0.01, dur / 4));
-      gain.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
-      osc.connect(gain);
-      gain.connect(master);
-      voices++;
-      osc.onended = () => { voices--; try { gain.disconnect(); } catch (e) { /* already gone */ } };
-      osc.start(t0);
-      osc.stop(t0 + dur + 0.03);
-    } catch (e) { /* sound is optional */ }
-  }
+function tone(freq, dur, opts) {
+	try {
+		const o = opts || {};
+		if (!(freq > 0) || !(dur > 0) || voices > 24) return;
+		const ctx = audio();
+		if (!ctx) return;
+		const t0 = ctx.currentTime + Math.max(0, o.delay || 0);
+		const vol = Math.min(1, Math.max(0, o.vol == null ? 0.15 : o.vol)) * 0.5;
+		const osc = ctx.createOscillator();
+		const gain = ctx.createGain();
+		osc.type = o.type || 'square';
+		osc.frequency.setValueAtTime(freq, t0);
+		if (o.slide > 0) osc.frequency.exponentialRampToValueAtTime(o.slide, t0 + dur);
+		gain.gain.setValueAtTime(0.0001, t0);
+		gain.gain.exponentialRampToValueAtTime(Math.max(vol, 0.0002), t0 + Math.min(0.01, dur / 4));
+		gain.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+		osc.connect(gain);
+		gain.connect(master);
+		voices++;
+		osc.onended = () => { voices--; try { gain.disconnect(); } catch (e) {} };
+		osc.start(t0);
+		osc.stop(t0 + dur + 0.03);
+	} catch (e) {}
+}
+function tri(f, d, vol, delay, slide) { tone(f, d, { type: 'triangle', vol, delay, slide }); }
 
-  function noise(dur, opts) {
-    try {
-      const o = opts || {};
-      if (!(dur > 0) || voices > 24) return;
-      const ctx = audio();
-      if (!ctx) return;
-      if (!noiseBuffer) {
-        noiseBuffer = ctx.createBuffer(1, ctx.sampleRate, ctx.sampleRate);
-        const data = noiseBuffer.getChannelData(0);
-        for (let i = 0; i < data.length; i++) data[i] = Math.random() * 2 - 1;
-      }
-      const t0 = ctx.currentTime + Math.max(0, o.delay || 0);
-      const vol = Math.min(1, Math.max(0, o.vol == null ? 0.2 : o.vol)) * 0.6;
-      const src = ctx.createBufferSource();
-      src.buffer = noiseBuffer;
-      src.loop = true;
-      const filter = ctx.createBiquadFilter();
-      filter.type = 'lowpass';
-      filter.frequency.value = o.filter > 0 ? o.filter : 1800;
-      const gain = ctx.createGain();
-      gain.gain.setValueAtTime(Math.max(vol, 0.0002), t0);
-      gain.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
-      src.connect(filter);
-      filter.connect(gain);
-      gain.connect(master);
-      voices++;
-      src.onended = () => { voices--; try { gain.disconnect(); } catch (e) { /* already gone */ } };
-      src.start(t0, Math.random() * 0.5);
-      src.stop(t0 + dur + 0.03);
-    } catch (e) { /* sound is optional */ }
-  }
+function noise(dur, opts) {
+	try {
+		const o = opts || {};
+		if (!(dur > 0) || voices > 24) return;
+		const ctx = audio();
+		if (!ctx) return;
+		if (!noiseBuffer) {
+			noiseBuffer = ctx.createBuffer(1, ctx.sampleRate, ctx.sampleRate);
+			const data = noiseBuffer.getChannelData(0);
+			for (let i = 0; i < data.length; i++) data[i] = Math.random() * 2 - 1;
+		}
+		const t0 = ctx.currentTime + Math.max(0, o.delay || 0);
+		const vol = Math.min(1, Math.max(0, o.vol == null ? 0.2 : o.vol)) * 0.6;
+		const src = ctx.createBufferSource();
+		src.buffer = noiseBuffer;
+		src.loop = true;
+		const filter = ctx.createBiquadFilter();
+		filter.type = 'lowpass';
+		filter.frequency.value = o.filter > 0 ? o.filter : 1800;
+		const gain = ctx.createGain();
+		gain.gain.setValueAtTime(Math.max(vol, 0.0002), t0);
+		gain.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+		src.connect(filter);
+		filter.connect(gain);
+		gain.connect(master);
+		voices++;
+		src.onended = () => { voices--; try { gain.disconnect(); } catch (e) {} };
+		src.start(t0, Math.random() * 0.5);
+		src.stop(t0 + dur + 0.03);
+	} catch (e) {}
+}
 
-  const isTouch = (() => {
-    try { return window.matchMedia('(hover: none) and (pointer: coarse)').matches; } catch (e) { return false; }
-  })();
+const isTouch = (() => {
+	try { return window.matchMedia('(hover: none) and (pointer: coarse)').matches; } catch (e) { return false; }
+})();
 
-  // ---------- Elements ----------
-  const $ = (id) => document.getElementById(id);
-  const library = $('library');
-  const player = $('player');
-  const shelvesEl = $('shelves');
-  const chips = $('chips');
-  const search = $('search');
-  const empty = $('empty');
-  const stage = $('stage');
-  const soundBtn = $('sound-btn');
-  const fsBtn = $('fs-btn');
+// ---------- Elements ----------
+const $ = (id) => document.getElementById(id);
+const library = $('library');
+const player = $('player');
+const shelvesEl = $('shelves');
+const chips = $('chips');
+const search = $('search');
+const empty = $('empty');
+const stage = $('stage');
+const soundBtn = $('sound-btn');
+const fsBtn = $('fs-btn');
 
-  let current = null;     // the game object on stage
-  let instance = null;    // what its mount() returned
-  let genre = 'All';
-  let lastOpened = null;
-  let mountSeq = 0;       // bumps on every unmount so a destroyed game's api.net.open() gets null
+let current = null;
+let instance = null;
+let genre = 'All';
+let lastOpened = null;
+let mountSeq = 0;
 
-  // ---------- Library ----------
-  const introTitle = $('intro-title');
-  const em = document.createElement('em');
-  em.textContent = 'No downloads.';
-  introTitle.replaceChildren(games.length + ' games. ', em);
+// ---------- Library ----------
+const introTitle = $('intro-title');
+const em = document.createElement('em');
+em.textContent = 'No downloads.';
+introTitle.replaceChildren(games.length + ' games. ', em);
 
-  const genres = ['All'].concat(Array.from(new Set(games.map((g) => g.genre || 'Arcade'))));
-  genres.forEach((name) => {
-    const b = document.createElement('button');
-    b.type = 'button';
-    b.className = 'chip';
-    b.textContent = name;
-    b.setAttribute('aria-pressed', String(name === genre));
-    b.addEventListener('click', () => {
-      genre = name;
-      chips.querySelectorAll('.chip').forEach((c) => c.setAttribute('aria-pressed', String(c.textContent === name)));
-      applyFilter();
-    });
-    chips.appendChild(b);
-  });
+const gs = games.filter((g) => NEW_TOP.indexOf(g.id) < 0).concat(games.filter((g) => NEW_TOP.indexOf(g.id) >= 0));
+const genres = ['All'].concat(Array.from(new Set(gs.map((g) => g.genre || 'Arcade'))));
+genres.forEach((name) => {
+	const b = document.createElement('button');
+	b.type = 'button';
+	b.className = 'chip';
+	b.textContent = name;
+	b.setAttribute('aria-pressed', String(name === genre));
+	b.addEventListener('click', () => {
+		genre = name;
+		chips.querySelectorAll('.chip').forEach((c) => c.setAttribute('aria-pressed', String(c.textContent === name)));
+		applyFilter();
+	});
+	chips.appendChild(b);
+});
 
-  const shelves = SHELVES.map((s, i) => {
-    const sec = document.createElement('section');
-    sec.className = 'shelf';
-    const h = document.createElement('h2');
-    h.className = 'shelf-title';
-    h.id = 'shelf-title-' + i;
-    h.textContent = s.title;
-    sec.setAttribute('aria-labelledby', h.id);
-    const gridEl = document.createElement('div');
-    gridEl.className = s.cols === 4 ? 'grid grid-4' : 'grid';
-    sec.append(h, gridEl);
-    shelvesEl.appendChild(sec);
-    return { def: s, sec, grid: gridEl, ids: [] };
-  });
-  function shelfFor(id) {
-    return shelves.find((s) => s.def.ids && s.def.ids.includes(id)) || shelves[shelves.length - 1];
-  }
+const shelves = SHELVES.map((s, i) => {
+	const sec = mk('section', 'shelf'), h = mk('h2', 'shelf-title', s.title);
+	h.id = 'shelf-title-' + i;
+	sec.setAttribute('aria-labelledby', h.id);
+	const gridEl = mk('div', s.cols === 4 ? 'grid grid-4' : 'grid');
+	sec.append(h, gridEl);
+	shelvesEl.appendChild(sec);
+	return { def: s, sec, grid: gridEl, ids: [] };
+});
+function shelfFor(id) {
+	return shelves.find((s) => s.def.ids && s.def.ids.includes(id)) || shelves[shelves.length - 1];
+}
 
-  const cards = new Map();
-  games.forEach((g) => {
-    const a = document.createElement('a');
-    a.className = 'card';
-    a.href = '#' + g.id;
-    a.dataset.id = g.id;
+const cards = new Map();
+const feat = SHELVES[0].ids.slice(0, SHELVES[0].feature);
+const featured = feat.every((id) => byId.has(id)) ? feat : [];
+games.forEach((g) => {
+	const a = document.createElement('a');
+	a.className = featured.indexOf(g.id) >= 0 ? 'card feature' : 'card';
+	a.href = '#' + g.id;
+	a.dataset.id = g.id;
 
-    const thumb = document.createElement('div');
-    thumb.className = 'thumb';
-    const canvas = document.createElement('canvas');
-    canvas.setAttribute('aria-hidden', 'true');
-    thumb.appendChild(canvas);
-    const sticker = document.createElement('span');
-    sticker.className = 'sticker';
-    sticker.textContent = (g.genre || 'Arcade') + (g.is3D ? ' · 3D' : '');
-    thumb.appendChild(sticker);
-    if (isOnline(g)) {
-      const on = document.createElement('span');
-      on.className = 'sticker sticker-net';
-      on.textContent = 'Online';
-      thumb.appendChild(on);
-    }
+	const thumb = mk('div', 'thumb'), canvas = mk('canvas');
+	canvas.setAttribute('aria-hidden', 'true');
+	thumb.appendChild(canvas);
+	thumb.appendChild(mk('span', 'sticker', (g.genre || 'Arcade') + (g.is3D ? ' · 3D' : '')));
+	if (isOnline(g)) thumb.appendChild(mk('span', 'sticker sticker-net', 'Online'));
 
-    const body = document.createElement('div');
-    body.className = 'card-body';
-    const h = document.createElement('h3');
-    h.textContent = g.title;
-    const p = document.createElement('p');
-    p.textContent = g.blurb || '';
-    const meta = document.createElement('div');
-    meta.className = 'meta';
-    const run = document.createElement('span');
-    run.textContent = (RUN_LENGTH[g.id] || '2–5 min') + ' runs';
-    const best = document.createElement('span');
-    best.className = 'best-chip';
-    meta.append(run, best);
-    body.append(h, p, meta);
+	const body = mk('div', 'card-body'), meta = mk('div', 'meta'), best = mk('span', 'best-chip');
+	meta.append(mk('span', null, (RUN_LENGTH[g.id] || '2–5 min') + ' ' + (RUN_NOUN[g.id] || 'runs')), best);
+	body.append(mk('h3', null, g.title), mk('p', null, g.blurb || ''), meta);
 
-    a.append(thumb, body);
-    a.addEventListener('click', (e) => {
-      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-      e.preventDefault();
-      openGame(g.id);
-    });
-    const shelf = shelfFor(g.id);
-    shelf.grid.appendChild(a);
-    shelf.ids.push(g.id);
-    cards.set(g.id, { el: a, canvas, best });
-    updateCardBest(g);
-  });
+	a.append(thumb, body);
+	a.addEventListener('click', (e) => {
+		if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+		e.preventDefault();
+		openGame(g.id);
+	});
+	const shelf = shelfFor(g.id);
+	shelf.grid.appendChild(a);
+	shelf.ids.push(g.id);
+	cards.set(g.id, { el: a, canvas, best });
+	updateCardBest(g);
+});
 
-  function updateCardBest(g) {
-    const card = cards.get(g.id);
-    if (!card) return;
-    const b = getBest(g.id);
-    card.best.textContent = b === null ? 'Not played yet' : 'Best ' + fmt(b);
-    card.best.classList.toggle('has', b !== null);
-  }
+function updateCardBest(g) {
+	const card = cards.get(g.id);
+	if (!card) return;
+	const b = getBest(g.id);
+	card.best.textContent = b === null ? 'Not played yet' : 'Best ' + fmt(b);
+	card.best.classList.toggle('has', b !== null);
+}
 
-  function drawThumbs() {
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const queue = games.slice();
-    const step = () => {
-      const g = queue.shift();
-      if (!g) return;
-      const card = cards.get(g.id);
-      if (card && typeof g.thumb === 'function') {
-        const c = card.canvas;
-        c.width = Math.round(480 * dpr);
-        c.height = Math.round(300 * dpr);
-        const ctx = c.getContext('2d');
-        try {
-          ctx.save();
-          ctx.scale(dpr, dpr);
-          g.thumb(ctx, 480, 300);
-          ctx.restore();
-        } catch (err) {
-          console.error('[Recess] thumb failed for ' + g.id, err);
-        }
-      }
-      setTimeout(step, 0);
-    };
-    step();
-  }
+function drawThumbs() {
+	const dpr = Math.min(window.devicePixelRatio || 1, 2);
+	const queue = games.slice();
+	const step = () => {
+		const g = queue.shift();
+		if (!g) return;
+		const card = cards.get(g.id);
+		if (card && typeof g.thumb === 'function') {
+			const c = card.canvas, k = card.el.classList.contains('feature') ? 1.3 : 1;
+			c.width = Math.round(480 * dpr * k);
+			c.height = Math.round(300 * dpr * k);
+			const ctx = c.getContext('2d');
+			try {
+				ctx.save();
+				ctx.scale(dpr * k, dpr * k);
+				g.thumb(ctx, 480, 300);
+				ctx.restore();
+			} catch (err) {
+				console.error('[Recess] thumb failed for ' + g.id, err);
+			}
+		}
+		setTimeout(step, 0);
+	};
+	step();
+}
 
-  function applyFilter() {
-    const q = search.value.trim().toLowerCase();
-    let shown = 0;
-    games.forEach((g) => {
-      const hay = (g.title + ' ' + (g.blurb || '') + ' ' + (g.genre || '') + (g.is3D ? ' 3d' : '') + (isOnline(g) ? ' online multiplayer' : '')).toLowerCase();
-      const ok = (genre === 'All' || g.genre === genre) && (!q || hay.includes(q));
-      cards.get(g.id).el.hidden = !ok;
-      if (ok) shown++;
-    });
-    shelves.forEach((s) => { s.sec.hidden = !s.ids.some((id) => !cards.get(id).el.hidden); });
-    empty.hidden = shown > 0;
-    if (!shown) {
-      empty.textContent = q
-        ? 'No games match “' + search.value.trim() + '”. Try a shorter word or pick All.'
-        : 'No games in this genre yet.';
-    }
-  }
-  search.addEventListener('input', applyFilter);
+function applyFilter() {
+	const q = search.value.trim().toLowerCase();
+	let shown = 0;
+	games.forEach((g) => {
+		const hay = (g.title + ' ' + (g.blurb || '') + ' ' + (g.genre || '') + (g.is3D ? ' 3d' : '') + (isOnline(g) ? ' online multiplayer' : '')).toLowerCase();
+		const ok = (genre === 'All' || g.genre === genre) && (!q || hay.includes(q));
+		cards.get(g.id).el.hidden = !ok;
+		if (ok) shown++;
+	});
+	shelves.forEach((s) => { s.sec.hidden = !s.ids.some((id) => !cards.get(id).el.hidden); });
+	empty.hidden = shown > 0;
+	if (!shown) {
+		empty.textContent = q
+			? 'No games match “' + search.value.trim() + '”. Try a shorter word or pick All.'
+			: 'No games in this genre yet.';
+	}
+}
+search.addEventListener('input', applyFilter);
 
-  $('random-btn').addEventListener('click', () => {
-    const pool = games.filter((g) => !cards.get(g.id).el.hidden);
-    const list = pool.length ? pool : games;
-    if (!list.length) return;
-    openGame(list[Math.floor(Math.random() * list.length)].id);
-  });
+$('random-btn').addEventListener('click', () => {
+	const pool = games.filter((g) => !cards.get(g.id).el.hidden);
+	const list = pool.length ? pool : games;
+	if (!list.length) return;
+	openGame(list[Math.floor(Math.random() * list.length)].id);
+});
 
-  // ---------- Player ----------
-  function makeApi(g) {
-    const seq = mountSeq;
-    return {
-      isTouch,
-      best: () => getBest(g.id),
-      submit: (score) => {
-        const s = Number(score);
-        if (!Number.isFinite(s)) return false;
-        const prev = getBest(g.id);
-        // A first score of 0 is not worth celebrating; stroke counts are always above 0.
-        const better = prev === null ? s > 0 : (g.lowerIsBetter ? s < prev : s > prev);
-        if (better) {
-          store.set('recess:best:' + g.id, String(s));
-          updateCardBest(g);
-          if (current === g) showBest(g, true);
-        }
-        return better;
-      },
-      tone,
-      noise,
-      // Per-game saved data (designs, tracks, ghosts, settings). Values are strings, capped at 200 KB.
-      save: (key, value) => {
-        const s = String(value);
-        if (s.length > 200000) return false;
-        try { window.localStorage.setItem('lowkey:data:' + g.id + ':' + key, s); return true; } catch (e) { return false; }
-      },
-      load: (key) => store.get('lowkey:data:' + g.id + ':' + key),
-      // Shared audio context for music that must stay in time; null while sound is off.
-      audio: () => {
-        const ctx = audio();
-        return ctx && master ? { ctx, out: master } : null;
-      },
-      // Online play (CONTRACT-NET.md). A stale api (from an earlier mount) always gets null.
-      net: {
-        supported: netSupported,
-        open: (opts) => openNet(g, seq, opts),
-      },
-    };
-  }
+// ---------- Player ----------
+function makeApi(g) {
+	const seq = mountSeq;
+	return {
+		isTouch,
+		best: () => getBest(g.id),
+		submit: (score) => {
+			const s = Number(score);
+			if (!Number.isFinite(s)) return false;
+			const prev = getBest(g.id);
+			const better = prev === null ? s > 0 : (g.lowerIsBetter ? s < prev : s > prev);
+			if (better) {
+				store.set('recess:best:' + g.id, String(s));
+				updateCardBest(g);
+				if (current === g) showBest(g, true);
+			}
+			return better;
+		},
+		tone,
+		noise,
+		save: (key, value) => {
+			const s = String(value);
+			if (s.length > 200000) return false;
+			try { window.localStorage.setItem('lowkey:data:' + g.id + ':' + key, s); return true; } catch (e) { return false; }
+		},
+		load: (key) => store.get('lowkey:data:' + g.id + ':' + key),
+		audio: () => {
+			const ctx = audio();
+			return ctx && master ? { ctx, out: master } : null;
+		},
+		net: {
+			supported: netSupported,
+			open: (opts) => openNet(g, seq, opts),
+		},
+	};
+}
 
-  function showBest(g, flash) {
-    const el = $('p-best');
-    const b = getBest(g.id);
-    el.textContent = b === null ? 'None yet' : fmt(b);
-    $('p-best-label').textContent = 'Your best · ' + (g.scoreLabel || 'Score') + (g.lowerIsBetter ? ' (lower wins)' : '');
-    if (flash) {
-      el.classList.remove('flash');
-      void el.offsetWidth;
-      el.classList.add('flash');
-    }
-  }
+function showBest(g, flash) {
+	const el = $('p-best');
+	const b = getBest(g.id);
+	el.textContent = b === null ? 'None yet' : fmt(b);
+	$('p-best-label').textContent = 'Your best · ' + (g.scoreLabel || 'Score') + (g.lowerIsBetter ? ' (lower wins)' : '');
+	if (flash) {
+		el.classList.remove('flash');
+		void el.offsetWidth;
+		el.classList.add('flash');
+	}
+}
 
-  function fillSidebar(g) {
-    $('p-title').textContent = g.title;
-    $('p-genre').textContent = g.genre || 'Arcade';
-    $('p-blurb').textContent = g.blurb || '';
-    showBest(g, false);
-    const netLine = $('p-net');
-    if (netLine) {
-      netLine.hidden = !isOnline(g);
-      if (isOnline(g)) {
-        $('p-net-text').textContent = netSupported
-          ? 'Up to ' + netMax(g.online.maxPlayers) + ' players on different devices, with a room code.'
-          : 'Not available in this browser.';
-      }
-    }
+function fillSidebar(g) {
+	$('p-title').textContent = g.title;
+	$('p-genre').textContent = g.genre || 'Arcade';
+	$('p-blurb').textContent = g.blurb || '';
+	showBest(g, false);
+	const netLine = $('p-net');
+	if (netLine) {
+		netLine.hidden = !isOnline(g);
+		if (isOnline(g)) {
+			$('p-net-text').textContent = netSupported
+				? 'Up to ' + netMax(g.online.maxPlayers) + ' players on different devices' + (pubOff(g) ? ', with a room code.' : '. Public rooms or a room code.')
+				: 'Not available in this browser.';
+		}
+	}
 
-    const dl = $('p-controls');
-    dl.textContent = '';
-    (Array.isArray(g.controls) ? g.controls : []).forEach((row) => {
-      const dt = document.createElement('dt');
-      String(row[0] || '').split(' / ').forEach((key, i) => {
-        if (i) dt.append(' ');
-        const k = document.createElement('kbd');
-        k.textContent = key;
-        dt.appendChild(k);
-      });
-      const dd = document.createElement('dd');
-      dd.textContent = row[1] || '';
-      dl.append(dt, dd);
-    });
+	const dl = $('p-controls');
+	dl.textContent = '';
+	(Array.isArray(g.controls) ? g.controls : []).forEach((row) => {
+		const dt = document.createElement('dt');
+		String(row[0] || '').split(' / ').forEach((key, i) => {
+			if (i) dt.append(' ');
+			const k = document.createElement('kbd');
+			k.textContent = key;
+			dt.appendChild(k);
+		});
+		const dd = document.createElement('dd');
+		dd.textContent = row[1] || '';
+		dl.append(dt, dd);
+	});
 
-    const next = $('next-list');
-    next.textContent = '';
-    const start = games.indexOf(g);
-    for (let i = 1; i <= Math.min(3, games.length - 1); i++) {
-      const n = games[(start + i) % games.length];
-      const a = document.createElement('a');
-      a.className = 'next-link';
-      a.href = '#' + n.id;
-      a.textContent = n.title;
-      const tag = document.createElement('span');
-      tag.textContent = n.genre || '';
-      a.appendChild(tag);
-      a.addEventListener('click', (e) => {
-        if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-        e.preventDefault();
-        openGame(n.id);
-      });
-      next.appendChild(a);
-    }
-  }
+	const next = $('next-list');
+	next.textContent = '';
+	const start = games.indexOf(g);
+	for (let i = 1; i <= Math.min(3, games.length - 1); i++) {
+		const n = games[(start + i) % games.length];
+		const a = document.createElement('a');
+		a.className = 'next-link';
+		a.href = '#' + n.id;
+		a.textContent = n.title;
+		const tag = document.createElement('span');
+		tag.textContent = n.genre || '';
+		a.appendChild(tag);
+		a.addEventListener('click', (e) => {
+			if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+			e.preventDefault();
+			openGame(n.id);
+		});
+		next.appendChild(a);
+	}
+}
 
-  function focusGame() {
-    if (net && net.focus()) return;   // an open lobby keeps the keyboard (sound, fullscreen, first frame)
-    const c = stage.querySelector('canvas');
-    if (c) { try { c.focus({ preventScroll: true }); } catch (e) { /* focus is best effort */ } }
-  }
+function focusGame() {
+	if (net && net.focus()) return;
+	const c = stage.querySelector('canvas');
+	if (c) { try { c.focus({ preventScroll: true }); } catch (e) {} }
+}
 
-  function unmount() {
-    // A live lobby or session goes first, so the game still hears 'close' before destroy().
-    netTeardown();
-    mountSeq++;
-    if (instance && typeof instance.destroy === 'function') {
-      try { instance.destroy(); } catch (err) { console.error('[Recess] destroy failed for ' + (current && current.id), err); }
-    }
-    instance = null;
-    stage.textContent = '';
-  }
+function unmount() {
+	netTeardown();
+	mountSeq++;
+	if (instance && typeof instance.destroy === 'function') {
+		try { instance.destroy(); } catch (err) { console.error('[Recess] destroy failed for ' + (current && current.id), err); }
+	}
+	instance = null;
+	stage.textContent = '';
+}
 
-  function mountCurrent() {
-    unmount();
-    const g = current;
-    if (!g) return;
-    const root = document.createElement('div');
-    root.className = 'root';
-    stage.appendChild(root);
-    addFsExit();
-    try {
-      instance = g.mount(root, makeApi(g)) || null;
-    } catch (err) {
-      console.error('[Recess] mount failed for ' + g.id, err);
-      netTeardown();   // a lobby opened during the failed mount would otherwise keep swallowing keys
-      stage.textContent = '';
-      const box = document.createElement('div');
-      box.className = 'stage-error';
-      const strong = document.createElement('strong');
-      strong.textContent = g.title + ' could not start.';
-      const span = document.createElement('span');
-      span.textContent = 'Press Restart to try again, or pick another game.';
-      box.append(strong, span);
-      stage.appendChild(box);
-      addFsExit();
-    }
-    requestAnimationFrame(focusGame);
-  }
+function mountCurrent() {
+	unmount();
+	const g = current;
+	if (!g) return;
+	const root = document.createElement('div');
+	root.className = 'root';
+	stage.appendChild(root);
+	addFsExit();
+	try {
+		instance = g.mount(root, makeApi(g)) || null;
+	} catch (err) {
+		console.error('[Recess] mount failed for ' + g.id, err);
+		netTeardown();
+		stage.textContent = '';
+		const box = document.createElement('div');
+		box.className = 'stage-error';
+		const strong = document.createElement('strong');
+		strong.textContent = g.title + ' could not start.';
+		const span = document.createElement('span');
+		span.textContent = 'Press Restart to try again, or pick another game.';
+		box.append(strong, span);
+		stage.appendChild(box);
+		addFsExit();
+	}
+	requestAnimationFrame(focusGame);
+}
 
-  function openGame(id) {
-    const g = byId.get(id);
-    if (!g) return;
-    exitFullscreen();
-    current = g;
-    lastOpened = id;
-    fillSidebar(g);
-    library.hidden = true;
-    player.hidden = false;
-    setHash(id);
-    window.scrollTo(0, 0);
-    mountCurrent();
-  }
+function openGame(id) {
+	const g = byId.get(id);
+	if (!g) return;
+	closePanel(false);
+	if (pending && pending.game !== id) clearPending();
+	exitFullscreen();
+	current = g;
+	lastOpened = id;
+	fillSidebar(g);
+	applyWide(g);
+	library.hidden = true;
+	player.hidden = false;
+	pubBtnSync();
+	setHash(id);
+	window.scrollTo(0, 0);
+	mountCurrent();
+}
 
-  function showLibrary() {
-    exitFullscreen();
-    unmount();
-    current = null;
-    player.hidden = true;
-    library.hidden = false;
-    setHash('');
-    games.forEach(updateCardBest);
-    const card = lastOpened && cards.get(lastOpened);
-    if (card && !card.el.hidden) { try { card.el.focus({ preventScroll: false }); } catch (e) { /* best effort */ } }
-  }
+function showLibrary() {
+	exitFullscreen();
+	unmount();
+	clearPending();
+	current = null;
+	applyWide(null);
+	player.hidden = true;
+	library.hidden = false;
+	pubBtnSync();
+	setHash('');
+	games.forEach(updateCardBest);
+	const card = lastOpened && cards.get(lastOpened);
+	if (card && !card.el.hidden) { try { card.el.focus({ preventScroll: false }); } catch (e) {} }
+}
 
-  function setHash(id) {
-    try {
-      history.replaceState(null, '', id ? '#' + id : location.pathname + location.search);
-    } catch (e) { /* the viewer may not allow URL changes */ }
-  }
+function applyWide(g) {
+	const w = !!(g && g.wide === true), sa = $('side-actions'), tools = $('bar-tools'), top = $('top-actions'), pcb = $('p-controls-block');
+	player.classList.toggle('wide', w);
+	player.parentNode.classList.toggle('app-wide', w);
+	if (!sa || !tools || !top || !pcb) return;
+	if (w) { tools.appendChild(sa); tools.appendChild(soundBtn); return; }
+	if (sa.parentNode !== pcb.parentNode) pcb.parentNode.insertBefore(sa, pcb);
+	if (soundBtn.parentNode !== top) top.appendChild(soundBtn);
+}
 
-  $('back-btn').addEventListener('click', showLibrary);
-  $('home-link').addEventListener('click', (e) => { e.preventDefault(); showLibrary(); });
-  $('restart-btn').addEventListener('click', () => {
-    netTeardown(!!(instance && typeof instance.restart === 'function'));   // a remounted game is not woken
-    if (instance && typeof instance.restart === 'function') {
-      try { instance.restart(); } catch (err) { console.error('[Recess] restart failed', err); mountCurrent(); }
-    } else {
-      mountCurrent();
-    }
-    focusGame();
-  });
+function setHash(id) {
+	try {
+		history.replaceState(null, '', id ? '#' + id : location.pathname + location.search);
+	} catch (e) {}
+}
 
-  // ---------- Fullscreen ----------
-  function fsElement() { return document.fullscreenElement || document.webkitFullscreenElement || null; }
-  function inFullscreen() { return fsElement() === stage || stage.classList.contains('pseudo-fs'); }
-  function addFsExit() {
-    const b = document.createElement('button');
-    b.type = 'button';
-    b.className = 'fs-exit';
-    b.textContent = 'Exit fullscreen';
-    b.hidden = !stage.classList.contains('pseudo-fs');
-    b.addEventListener('click', () => { exitFullscreen(); focusGame(); });
-    stage.appendChild(b);
-  }
-  function syncFs() {
-    const on = inFullscreen();
-    fsBtn.textContent = on ? 'Exit fullscreen' : 'Fullscreen';
-    const b = stage.querySelector('.fs-exit');
-    if (b) b.hidden = !stage.classList.contains('pseudo-fs');
-    document.documentElement.style.overflow = stage.classList.contains('pseudo-fs') ? 'hidden' : '';
-  }
-  function enterPseudo() { stage.classList.add('pseudo-fs'); syncFs(); focusGame(); }
-  function exitFullscreen() {
-    stage.classList.remove('pseudo-fs');
-    if (fsElement()) {
-      try {
-        const p = (document.exitFullscreen || document.webkitExitFullscreen).call(document);
-        if (p && p.catch) p.catch(() => {});
-      } catch (e) { /* not in real fullscreen */ }
-    }
-    syncFs();
-  }
-  fsBtn.addEventListener('click', () => {
-    if (inFullscreen()) { exitFullscreen(); focusGame(); return; }
-    const req = stage.requestFullscreen || stage.webkitRequestFullscreen;
-    if (!req) { enterPseudo(); return; }
-    try {
-      const p = req.call(stage);
-      if (p && p.then) p.then(focusGame, enterPseudo);
-      else focusGame();
-    } catch (e) {
-      enterPseudo();
-    }
-  });
-  document.addEventListener('fullscreenchange', syncFs);
-  document.addEventListener('webkitfullscreenchange', syncFs);
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && stage.classList.contains('pseudo-fs')) exitFullscreen();
-  });
+$('back-btn').addEventListener('click', showLibrary);
+$('home-link').addEventListener('click', (e) => { e.preventDefault(); showLibrary(); });
+$('restart-btn').addEventListener('click', () => {
+	netTeardown(!!(instance && typeof instance.restart === 'function'));
+	if (instance && typeof instance.restart === 'function') {
+		try { instance.restart(); } catch (err) { console.error('[Recess] restart failed', err); mountCurrent(); }
+	} else {
+		mountCurrent();
+	}
+	focusGame();
+});
 
-  // ---------- Sound toggle ----------
-  function syncSound() {
-    soundBtn.setAttribute('aria-pressed', String(!muted));
-    $('sound-label').textContent = muted ? 'Sound off' : 'Sound on';
-    soundBtn.querySelector('.wave').toggleAttribute('hidden', muted);
-    soundBtn.querySelector('.cross').toggleAttribute('hidden', !muted);
-  }
-  soundBtn.addEventListener('click', () => {
-    muted = !muted;
-    store.set('recess:muted', muted ? '1' : '0');
-    if (muted && actx) { try { actx.suspend(); } catch (e) { /* ignore */ } }
-    syncSound();
-    if (!muted) tone(660, 0.08, { type: 'triangle', vol: 0.2 });
-    if (current) focusGame();
-  });
-  syncSound();
+// ---------- Fullscreen ----------
+function fsElement() { return document.fullscreenElement || document.webkitFullscreenElement || null; }
+function inFullscreen() { return fsElement() === stage || stage.classList.contains('pseudo-fs'); }
+function addFsExit() {
+	const b = document.createElement('button');
+	b.type = 'button';
+	b.className = 'fs-exit';
+	b.textContent = 'Exit fullscreen';
+	b.hidden = !stage.classList.contains('pseudo-fs');
+	b.addEventListener('click', () => { exitFullscreen(); focusGame(); });
+	stage.appendChild(b);
+}
+function syncFs() {
+	const on = inFullscreen();
+	fsBtn.textContent = on ? 'Exit fullscreen' : 'Fullscreen';
+	const b = stage.querySelector('.fs-exit');
+	if (b) b.hidden = !stage.classList.contains('pseudo-fs');
+	document.documentElement.style.overflow = stage.classList.contains('pseudo-fs') ? 'hidden' : '';
+}
+function enterPseudo() { stage.classList.add('pseudo-fs'); syncFs(); focusGame(); }
+function exitFullscreen() {
+	stage.classList.remove('pseudo-fs');
+	if (fsElement()) {
+		try {
+			const p = (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+			if (p && p.catch) p.catch(() => {});
+		} catch (e) {}
+	}
+	syncFs();
+}
+fsBtn.addEventListener('click', () => {
+	if (inFullscreen()) { exitFullscreen(); focusGame(); return; }
+	const req = stage.requestFullscreen || stage.webkitRequestFullscreen;
+	if (!req) { enterPseudo(); return; }
+	try {
+		const p = req.call(stage);
+		if (p && p.then) p.then(focusGame, enterPseudo);
+		else focusGame();
+	} catch (e) {
+		enterPseudo();
+	}
+});
+document.addEventListener('fullscreenchange', syncFs);
+document.addEventListener('webkitfullscreenchange', syncFs);
+window.addEventListener('keydown', (e) => {
+	if (e.key === 'Escape' && stage.classList.contains('pseudo-fs')) exitFullscreen();
+});
 
-  // "/" jumps to search while browsing.
-  window.addEventListener('keydown', (e) => {
-    if (e.key !== '/' || library.hidden) return;
-    const t = e.target;
-    if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
-    e.preventDefault();
-    search.focus();
-  });
+// ---------- Sound toggle ----------
+function syncSound() {
+	soundBtn.setAttribute('aria-pressed', String(!muted));
+	$('sound-label').textContent = muted ? 'Sound off' : 'Sound on';
+	soundBtn.querySelector('.wave').toggleAttribute('hidden', muted);
+	soundBtn.querySelector('.cross').toggleAttribute('hidden', !muted);
+}
+soundBtn.addEventListener('click', () => {
+	muted = !muted;
+	store.set('recess:muted', muted ? '1' : '0');
+	if (muted && actx) { try { actx.suspend(); } catch (e) {} }
+	syncSound();
+	if (!muted) tri(660, 0.08, 0.2);
+	if (current) focusGame();
+});
+syncSound();
 
-  window.addEventListener('hashchange', () => {
-    const id = decodeURIComponent(location.hash.slice(1));
-    if (byId.has(id)) { if (!current || current.id !== id) openGame(id); }
-    else if (current) showLibrary();
-  });
+window.addEventListener('keydown', (e) => {
+	if (e.key !== '/' || library.hidden || pnl) return;
+	const t = e.target;
+	if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+	e.preventDefault();
+	search.focus();
+});
 
-  // ---------- Online play (room codes; see CONTRACT-NET.md) ----------
-  // PeerJS (loaded on first use) only introduces the browsers. Each guest has a reliable PeerJS link to the
-  // host plus a negotiated unreliable channel on the same connection; fast messages use the reliable link
-  // until both ends have that channel open. Star topology: the host relays.
-  const NET_URL = 'https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.5.4/peerjs.min.js';
-  const NET_CHARS = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
-  const NET_WAIT = 10000;   // every wait gives up after this
-  const NET_PING = 2000;
-  const NET_LOST = 7000;    // this long without a word means the link is gone
-  const NET_FAST_ID = 64;   // stream id of the negotiated unreliable channel
-  const NET_MAX = 16000;    // JSON characters per message
-  const NET_SITE = 'j-is-cool-vr.github.io/lowkey-arcade';
-  const NET_MSG = {
-    network: "Online play can't connect on this network. It may be blocked here (school Wi-Fi often blocks it). It also may not work inside the Claude preview; try the GitHub version of the site: " + NET_SITE,
-    unsupported: "This browser can't do online play. Try an up-to-date Chrome, Edge, Firefox or Safari.",
-    noRoom: 'No room with that code. Check it with the host.',
-    full: 'That room is full.',
-    started: 'That match has already started.',
-    version: 'That room is on a different version of the arcade. Everyone should reload the page.',
-    noAnswer: "The room didn't answer. Check the code and try again.",
-    hostLeft: 'The host closed the room.',
-    kicked: 'The host removed you from the room.',
-    lost: 'The connection to the room was lost.',
-  };
-  const NET_KEYS = ['keydown', 'keyup', 'keypress'];
-  const NET_PTRS = ['pointerdown', 'pointerup', 'pointermove', 'mousedown', 'mouseup', 'click', 'dblclick', 'contextmenu', 'touchstart', 'touchmove', 'touchend', 'wheel'];
-  const netSupported = (() => { try { return !!(window.RTCPeerConnection || window.webkitRTCPeerConnection); } catch (e) { return false; } })();
-  const now = () => performance.now();
-  let net = null;          // the one live lobby or session: { teardown }
-  let peerLoading = null;  // pending PeerJS script load
-  let netNick = cleanNick(store.get('lowkey:net:name'), false);
+window.addEventListener('hashchange', () => {
+	const id = decodeURIComponent(location.hash.slice(1));
+	if (byId.has(id)) { if (!current || current.id !== id) openGame(id); }
+	else if (current) showLibrary();
+});
 
-  function isOnline(g) { return !!(g && g.online && typeof g.online === 'object'); }
-  function netMax(v) { return Math.max(2, Math.min(8, Math.floor(Number(v)) || 2)); }
-  function netInt(v, lo, hi) { const n = Math.floor(Number(v)); return n >= lo && n <= hi ? n : -1; }
-  // Nicknames: letters, digits and single spaces, at most 10 (`typing` keeps a trailing space).
-  function cleanNick(v, typing) {
-    const s = String(v == null ? '' : v).replace(/[^A-Za-z0-9 ]+/g, '').replace(/ {2,}/g, ' ').replace(/^ /, '').slice(0, 10);
-    return typing ? s : s.trim();
-  }
-  function cleanLabel(v) {
-    return typeof v === 'string' ? v.replace(/[^A-Za-z0-9 .,:'&+()\/\u00B7\u2013-]+/g, '').replace(/\s+/g, ' ').trim().slice(0, 28) : '';
-  }
-  function cleanCode(v) { return String(v == null ? '' : v).toUpperCase().replace(/[^A-HJKMNP-Z2-9]+/g, ''); }
-  function mk(tag, cls, text) {
-    const e = document.createElement(tag);
-    if (cls) e.className = cls;
-    if (text != null) e.textContent = text;
-    return e;
-  }
-  function mkBtn(label, primary, fn, cls) {
-    const b = mk('button', cls || (primary ? 'btn btn-primary' : 'btn'), label);
-    b.type = 'button';
-    b.addEventListener('click', fn);
-    return b;
-  }
-  function netParse(raw) {
-    try {
-      const d = typeof raw === 'string' && raw.length <= NET_MAX + 64 ? JSON.parse(raw) : null;
-      return d && typeof d === 'object' && typeof d.t === 'string' ? d : null;
-    } catch (e) { return null; }
-  }
-  function tx(conn, str) {   // one string down a PeerJS link, if it is open
-    try { if (conn && conn.open) { conn.send(str); return true; } } catch (e) { /* the link is going away */ }
-    return false;
-  }
-  function peerCtor() {
-    const P = window.Peer || (window.peerjs && window.peerjs.Peer);
-    return typeof P === 'function' ? P : null;
-  }
-  // PeerJS is fetched the first time someone hosts or joins, never at page load.
-  function loadPeer() {
-    if (peerCtor()) return Promise.resolve(true);
-    if (!peerLoading) {
-      peerLoading = new Promise((resolve) => {
-        let s = null, settled = false;
-        const done = () => {
-          if (settled) return;
-          settled = true;
-          clearTimeout(timer);
-          if (s) s.onload = s.onerror = null;
-          if (!peerCtor()) { peerLoading = null; if (s && s.parentNode) s.parentNode.removeChild(s); }   // a later try fetches it again
-          resolve(!!peerCtor());
-        };
-        const timer = setTimeout(done, NET_WAIT);
-        try {
-          s = document.createElement('script');
-          s.src = NET_URL;
-          s.async = true;
-          s.onload = s.onerror = done;
-          (document.head || document.documentElement).appendChild(s);
-        } catch (e) { done(); }
-      });
-    }
-    return peerLoading;
-  }
-  // alive: the game keeps running (Restart, page hidden), so an open lobby resolves null for it.
-  function netTeardown(alive) {
-    const n = net;
-    if (!n) return;
-    try { n.teardown(alive === true); } catch (err) { console.error('[Recess] online teardown failed', err); }
-    if (net === n) net = null;
-  }
-  window.addEventListener('pagehide', () => netTeardown(true));
+// ---------- Online play (room codes; see CONTRACT-NET.md) ----------
+const NET_URL = 'https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.5.4/peerjs.min.js';
+const NET_CHARS = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
+const NET_WAIT = 10000;
+const NET_PING = 2000;
+const NET_LOST = 7000;
+const NET_FAST_ID = 64;
+const NET_MAX = 16000;
+const NET_SITE = 'j-is-cool-vr.github.io/lowkey-arcade';
+const NET_MSG = {
+	network: "Online play can't connect on this network. It may be blocked here (school Wi-Fi often blocks it). It also may not work inside the Claude preview; try the GitHub version of the site: " + NET_SITE,
+	unsupported: "This browser can't do online play. Try an up-to-date Chrome, Edge, Firefox or Safari.",
+	noRoom: 'No room with that code. Check it with the host.',
+	full: 'That room is full.',
+	started: 'That match has already started.',
+	version: 'That room is on a different version of the arcade. Everyone should reload the page.',
+	noAnswer: "The room didn't answer. Check the code and try again.",
+	hostLeft: 'The host closed the room.',
+	kicked: 'The host removed you from the room.',
+	lost: 'The connection to the room was lost.',
+	pubBusy: 'The public room list is full right now. Your room is still open: friends can join with the code.',
+	pubNet: "Couldn't list your room publicly. It's still open: friends can join with the code.",
+	pubDead: "Public rooms can't be listed on this network right now. Room codes still work.",
+	pubExpired: 'Taken off the public list after 15 minutes. Friends can still join with the code.',
+	pubFull: '{host} room filled up before you got there.',
+	pubStarted: '{host} room started before you got there.',
+	pubGone: '{host} room closed before you got there.',
+	pubNoAnswer: "{host} room didn't answer. It may have just closed.",
+	pubTried: 'The open rooms filled up before you got in.',
+	pubNone: 'No one is waiting in a public {game} room right now.',
+	nickPublic: 'This name will show as Player N in public rooms.',
+};
+const NET_TXT = {
+	nickHint: "Up to 10 letters or numbers. Shown to everyone in public rooms, so don't use your real name.",
+	nickHintCode: 'Up to 10 letters, numbers or spaces. Leave it empty to show as Player 1, 2, 3...',
+	notePublic: 'Public rooms are open to anyone on Lowkey Arcade. No chat, only nicknames. Online play connects computers directly.',
+	noteCode: 'Only play with people you know. Online play connects your computer directly to theirs.',
+	noteOffDevice: 'Public rooms are turned off on this device. You can turn them on in Public rooms in the library.',
+	notePanel: "Public rooms are open to anyone on Lowkey Arcade. There's no chat, only nicknames. If someone bothers you, leave the room; hosts can remove players. Online play connects computers directly, so players in a room can see each other's internet address, as in most online games.",
+	bothers: 'If someone bothers you, leave. Hosts can remove players.',
+	away: 'The host is away from their screen right now.',
+	hostHint: 'Your nickname shows as Player 1 in public rooms.',
+	hostSub: 'Host one and it shows up for everyone on Lowkey Arcade.',
+};
+const NET_KEYS = ['keydown', 'keyup', 'keypress'];
+const NET_PTRS = ['pointerdown', 'pointerup', 'pointermove', 'mousedown', 'mouseup', 'click', 'dblclick', 'contextmenu', 'touchstart', 'touchmove', 'touchend', 'wheel'];
+const netSupported = (() => { try { return !!(window.RTCPeerConnection || window.webkitRTCPeerConnection); } catch (e) { return false; } })();
+const now = () => performance.now();
+let net = null;
+let peerLoading = null;
+let netNick = cleanNick(store.get('lowkey:net:name'), false);
 
-  function openNet(g, seq, opts) {
-    return new Promise((resolve) => {
-      if (net || seq !== mountSeq || current !== g) { resolve(null); return; }
-      try { net = netLobby(g, opts && typeof opts === 'object' ? opts : {}, resolve); }
-      catch (err) { console.error('[Recess] online lobby failed', err); net = null; resolve(null); }
-    });
-  }
+function isOnline(g) { return !!(g && g.online && typeof g.online === 'object'); }
+function netMax(v) { return Math.max(2, Math.min(8, Math.floor(Number(v)) || 2)); }
+function netInt(v, lo, hi) { const n = Math.floor(Number(v)); return n >= lo && n <= hi ? n : -1; }
+function cleanNick(v, typing) {
+	const s = String(v == null ? '' : v).replace(/[^A-Za-z0-9 ]+/g, '').replace(/ {2,}/g, ' ').replace(/^ /, '').slice(0, 10);
+	return typing ? s : s.trim();
+}
+function cleanLabel(v) {
+	return typeof v === 'string' ? v.replace(/[^A-Za-z0-9 .,:'&+()\/\u00B7\u2013-]+/g, '').replace(/\s+/g, ' ').trim().slice(0, 28) : '';
+}
+function cleanCode(v) { return String(v == null ? '' : v).toUpperCase().replace(/[^A-HJKMNP-Z2-9]+/g, ''); }
+function mk(tag, cls, text) {
+	const e = document.createElement(tag);
+	if (cls) e.className = cls;
+	if (text != null) e.textContent = text;
+	return e;
+}
+function mkBtn(label, primary, fn, cls) {
+	const b = mk('button', cls || (primary ? 'btn btn-primary' : 'btn'), label);
+	b.type = 'button';
+	b.addEventListener('click', fn);
+	return b;
+}
+function netParse(raw) {
+	try {
+		const d = typeof raw === 'string' && raw.length <= NET_MAX + 64 ? JSON.parse(raw) : null;
+		return d && typeof d === 'object' && typeof d.t === 'string' ? d : null;
+	} catch (e) { return null; }
+}
+function tx(conn, str) {
+	try { if (conn && conn.open) { conn.send(str); return true; } } catch (e) {}
+	return false;
+}
+function peerCtor() {
+	const P = window.Peer || (window.peerjs && window.peerjs.Peer);
+	return typeof P === 'function' ? P : null;
+}
+function loadPeer() {
+	if (peerCtor()) return Promise.resolve(true);
+	if (!peerLoading) {
+		peerLoading = new Promise((resolve) => {
+			let s = null, settled = false;
+			const done = () => {
+				if (settled) return;
+				settled = true;
+				clearTimeout(timer);
+				if (s) s.onload = s.onerror = null;
+				if (!peerCtor()) { peerLoading = null; if (s && s.parentNode) s.parentNode.removeChild(s); }
+				resolve(!!peerCtor());
+			};
+			const timer = setTimeout(done, NET_WAIT);
+			try {
+				s = document.createElement('script');
+				s.src = NET_URL;
+				s.async = true;
+				s.onload = s.onerror = done;
+				(document.head || document.documentElement).appendChild(s);
+			} catch (e) { done(); }
+		});
+	}
+	return peerLoading;
+}
+function netTeardown(alive) {
+	const n = net;
+	if (!n) return;
+	try { n.teardown(alive === true); } catch (err) { console.error('[Recess] online teardown failed', err); }
+	if (net === n) net = null;
+}
+window.addEventListener('pagehide', () => { netTeardown(true); closePanel(false, true); scanDestroy(); clearPending(); });
 
-  function netLobby(g, o, resolve) {
-    const max = netMax(o.maxPlayers || (isOnline(g) ? g.online.maxPlayers : 2));
-    const mode = cleanLabel(o.modeLabel);
-    const self = { teardown, focus: () => !!ov.parentNode && (focusFirst(), true) };
-    // A link (host: one per guest, guest: one to the host) is
-    // { conn, fast, fastOk, index, name, ping, seen, state: 'new'|'connecting'|'hello'|'in'|'gone', seq, err }.
-    const c = {
-      phase: 'lobby',   // 'lobby' -> 'session' -> 'dead'
-      gen: 0,           // bumps when an attempt is dropped, so its late callbacks bail out
-      role: '', code: '', nick: '', peer: null, tick: 0, timers: [],
-      guests: [], seq: 0, byIndex: [], link: null, list: [], hostMode: '', hostMax: max,
-      ping: 0, offset: 0, bestRtt: 1e9, samples: 0,
-      players: [], session: null, L: null, queue: [], flushT: 0, warned: false,
-    };
-    let screen = '';
-    let ui = {};
+// ---------- Public rooms ----------
+const PUB_ON = true;
+const PUB_ECHO = true;
+const PUB_HOLD = ['chassis'];
+const PUB_PREFIX = 'lowkey-pub1-', PUB_SLOTS = 32, PUB_V = 1, SCAN_PREFIX = 'lowkey-scan-';
+const ECHO_WAIT = 3000, PROBE_WAIT = 7000, LATE_OK = 10000, SWEEP_EVERY = 20000, SWEEP_GAP = 4000, SCAN_IDLE = 300000;
+const SCAN_RETRY = [2000, 6000], SCAN_KEEP = 20000, GATHER = 1200, QUICK_HINT = 4000, QUICK_TRIES = 3, MOVE_EVERY = 10000, MOVE_SHOW = 1500;
+const CLAIM_TRIES = 8, CLAIM_WAIT = 8000, CLAIM_BUDGET = 20000, RECENT_EMPTY = 60000, SWITCH_SETTLE = 700;
+const REPLY_RATE = 60, REPLY_GAP = 3000, FLOOD_MAX = 20, FLOOD_COOL = 60000, BEACON_RETRY = [3000, 10000];
+const PEER_ERR = /^(network|server-error|socket-error|socket-closed|disconnected|unavailable-id|browser-incompatible|invalid-id|invalid-key|ssl-unavailable)$/;
+const AWAY_AFTER = 30000, HIDDEN_WITHDRAW = 120000, LIST_MAX = 900000, PENDING_STALE = 180000, KICK_HIDE = 1800000;
+const INFO_MAX = 600, ROW_STAGGER = 30;
+const CODE_RX = /^[A-HJKMNP-Z2-9]{5}$/, SLOT_RX = /^lowkey-pub1-(\d{1,2})$/, SCAN_RX = /^lowkey-scan-[a-z0-9]{6,16}$/;
+const NET_ENTRY = {
+	'beatline': 'Online race', 'canyon-ace': 'Online', 'chassis': 'Online', 'comet-tail': ['press ', 'O', ' on the title screen'],
+	'cue-club': 'Online Match', 'dead-highway': 'Online', 'dead-signal': 'Online', 'drop-zone': 'Online', 'frontline': 'Online',
+	'gem-shift': 'Online battle', 'grave-rounds': 'Online co-op', 'hardlight': 'Online co-op', 'hoop-heat': 'Online 1-on-1',
+	'implode': 'Online Showdown', 'iron-bout': 'Online', 'junk-karts': 'Online Race', 'night-drift': 'Online race',
+	'puck-rush': 'Online match', 'putt-planet': 'Online', 'scrap-derby': 'Online derby', 'scrapfist': 'Online',
+	'sky-circuit': 'Online race', 'snowline': 'Online', 'swarmbreaker': 'Online', 'treadfire': 'Online battle',
+	'trial-burn': 'Online', 'void-lancer': 'Online', 'word-rain': 'Online battle', 'overtime': 'Online',
+};
+function entry(g) {
+	const e = NET_ENTRY[g.id] || 'Online';
+	return Array.isArray(e) ? { pre: e[0], bold: e[1], post: e[2], menu: e[2] } : { pre: 'choose ', bold: e, post: '', menu: ' in the menu' };
+}
 
-    // ----- overlay. Keys never reach the game: the overlay stops them after its controls saw them, and a
-    // window capture listener stops the ones aimed elsewhere.
-    const ov = mk('div', 'net-ov');
-    ov.setAttribute('role', 'dialog');
-    ov.setAttribute('aria-modal', 'true');
-    ov.setAttribute('aria-labelledby', 'net-title');
-    const panel = mk('div', 'net-panel'), head = mk('div', 'net-head'), headText = mk('div', 'net-head-text');
-    const title = mk('h2', 'net-title');
-    title.id = 'net-title';
-    headText.append(mk('span', 'net-kicker', g.title + (mode ? ' \u00B7 ' + mode : '')), title);
-    const xBtn = mkBtn('\u00D7', false, () => quit(), 'net-x');
-    xBtn.setAttribute('aria-label', 'Close online play');
-    const body = mk('div', 'net-body');
-    head.append(headText, xBtn);
-    panel.append(head, body);
-    ov.append(panel);
-    ov.addEventListener('keydown', onOvKey);
-    ['keyup', 'keypress'].concat(NET_PTRS).forEach((t) => ov.addEventListener(t, stopEv, { passive: true }));
-    // The tap that opened the lobby (games act on pointerdown) ends with a click on whatever control now
-    // lies under the finger: pointer clicks in the first 0.6 s are ignored. Keyboard clicks (detail 0) pass.
-    const born = now();
-    ['mousedown', 'click'].forEach((t) => ov.addEventListener(t, (e) => {
-      if (now() - born < 600 && (t === 'mousedown' || e.detail > 0)) { e.preventDefault(); e.stopPropagation(); }
-    }, true));
-    let armed = false;   // set by the first fresh keydown, so the opening key's keypress presses nothing
-    NET_KEYS.forEach((t) => window.addEventListener(t, onWinKey, true));
-    window.addEventListener('resize', fit);
-    stage.appendChild(ov);
-    fit();
-    try { if (document.pointerLockElement) document.exitPointerLock(); } catch (e) { /* not locked */ }
-    if (netSupported) showChoose();
-    else fail(NET_MSG.unsupported, 'Online play');
-    // The opening mousedown may still move focus to the game; bring it back once that is done.
-    later(() => { if (ov.parentNode && !ov.contains(document.activeElement)) focusFirst(); }, 0);
-    return self;
+const NICK_S = 'shpx sipx spx fuvg ovgpu ovngpu ovbgpu phag gjng onfgneq obyybpx cvff fyhg juber fxnax cbeauho cbeafgne cravf intvan chffl qvyqb wvmm betnfz oybjwbo unaqwbo pbpxfhpx qvpxurnq ohggubyr nffubyr nefrubyr nffung qhzonff wnpxnff grfgvpyr fpebghz pyvg zbyrfg crqbcuvyr crqbsvyr oryyraq avtt avte avoon avtabt xarrtebj sntbg jrgonpx ornare enturnq gbjryurnq genaal ergneq uvgyre xxx wvtnobb mvccreurnq tbyyvjbt puvatpubat xvyyhe xvyylb fcnmm';
+const NICK_W = 'nff nmm nefr qvpx pbpx phz frk frkl gvg gvggl gvggvrf obbo obbovr ahqr cbea cbeab nany nahf encr encvfg crqb cnrqb gubg ubr ubbxre funt cevpx frzra ubeal jnax jnaxre zvys shx shd xhag zbsb xlf xzf snt qlxr gneq fcvp fcvpx xvxr tbbx pbba puvax cnxv arteb ubaxl anmv urvy ubzb yrfob avtn fcnm';
+const NICK_P = 'ovt sng zl he h lbh ubg yvy fraq frkl obl obv tvey xvq xvat ybeq znfgre ybire fubg arb hc';
+const NICK_R = '1488';
+function rot13(s) { return s.replace(/[a-z]/g, (ch) => String.fromCharCode((ch.charCodeAt(0) - 84) % 26 + 97)); }
+let nickRx = null;
+function nickRules() {
+	if (nickRx) return nickRx;
+	const pat = (w) => w.split('').map((ch) => ch + '+').join('');
+	const patS = (w) => w.split('').map((ch) => (ch === 'i' ? '[il]+' : ch + '+')).join('');
+	const alt = (list, f) => rot13(list).split(' ').map(f).join('|');
+	const W = '(?:' + alt(NICK_W, pat) + ')', P = '(?:' + alt(NICK_P, pat) + ')', PL = '(?:e?s|z)?';
+	nickRx = {
+		s: new RegExp(alt(NICK_S, patS)),
+		w: new RegExp('^' + W + PL + '$'),
+		a: new RegExp('^' + P + W + PL + '$|^' + W + PL + P + '$'),
+		r: new RegExp(NICK_R.split(' ').join('|')),
+	};
+	return nickRx;
+}
+const LEET = { 0: 'o', 2: 'z', 3: 'e', 4: 'a', 5: 's', 6: 'g', 7: 't', 8: 'b', 9: 'g' };
+function textOk(s) {
+	const low = String(s == null ? '' : s).replace(/([a-z0-9])([A-Z])/g, '$1 $2').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+	if (!low) return true;
+	const rx = nickRules();
+	if (rx.r.test(low.replace(/ /g, ''))) return false;
+	for (let v = 0; v < 2; v++) {
+		const t = low.replace(/ph/g, 'f').replace(/[0-9]/g, (d) => (d === '1' ? (v ? 'l' : 'i') : LEET[d]));
+		const tokens = t.split(' '), joined = tokens.join(''), bare = joined.replace(/^x+|x+$/g, '');
+		if (rx.s.test(joined)) return false;
+		const whole = tokens.slice();
+		if (tokens.length > 1) whole.push(joined);
+		if (bare && bare !== joined) whole.push(bare);
+		for (let i = 0; i < whole.length; i++) if (rx.w.test(whole[i]) || rx.a.test(whole[i])) return false;
+	}
+	return true;
+}
+function nickOk(name) { return textOk(cleanNick(name, false)); }
+function own(name) { return name + (/s$/i.test(name) ? "'" : "'s"); }
 
-    function stopEv(e) { e.stopPropagation(); }
-    function onOvKey(e) {
-      e.stopPropagation();
-      if (e.key === 'Escape' || e.key === 'Esc') { e.preventDefault(); back(); return; }
-      if (e.key !== 'Tab') return;
-      const f = Array.prototype.filter.call(ov.querySelectorAll('button, input'), (n) => !n.disabled && n.offsetParent !== null);
-      const i = f.indexOf(document.activeElement);
-      if (!f.length) e.preventDefault();
-      else if (e.shiftKey ? i <= 0 : i < 0 || i === f.length - 1) { e.preventDefault(); focusEl(f[e.shiftKey ? f.length - 1 : 0]); }
-    }
-    function onWinKey(e) {
-      const t = e.target;
-      if (e.type === 'keydown' && !e.repeat) armed = true;
-      else if (!armed) { e.preventDefault(); e.stopPropagation(); return; }   // also a held opening key's repeats
-      else if (e.repeat && e.key === 'Enter') e.preventDefault();   // a held Enter presses one button, not each one it lands on
-      if (t && t.nodeType === 1 && ov.contains(t)) return;   // the overlay's own handler stops it
-      e.stopPropagation();
-      if (e.type !== 'keydown') return;
-      if (e.key === 'Escape' || e.key === 'Esc') { e.preventDefault(); back(); }
-      else if (e.key === 'Tab' && (!t || t.nodeType !== 1 || t === document.body || stage.contains(t))) { e.preventDefault(); focusFirst(); }
-    }
-    function focusEl(n) { try { if (n) n.focus({ preventScroll: true }); } catch (e) { /* best effort */ } }
-    function focusFirst() { focusEl(ui.focus && !ui.focus.disabled ? ui.focus : ui.alt || xBtn); }
-    // A small stage (phones, narrow windows) gets the lobby over the whole viewport instead.
-    function fit() { ov.classList.toggle('net-fixed', stage.clientWidth < 520 || stage.clientHeight < 380); }
-    function show(name, heading, nodes, focus, alt) {
-      screen = name;
-      title.textContent = heading;
-      body.replaceChildren.apply(body, nodes);
-      ui = { focus: focus || null, alt: alt || null };
-      focusFirst();
-    }
-    function closeOverlay(refocus) {
-      NET_KEYS.forEach((t) => window.removeEventListener(t, onWinKey, true));
-      window.removeEventListener('resize', fit);
-      const had = ov.contains(document.activeElement);
-      if (ov.parentNode) ov.parentNode.removeChild(ov);
-      const a = document.activeElement;
-      if (refocus && (had || !a || a === document.body)) focusGame();
-    }
-    function later(fn, ms) { c.timers.push(setTimeout(fn, ms)); }
-    function status(text) { const p = mk('p', 'net-sub', text); p.setAttribute('role', 'status'); return p; }
-    function label(text, extra) { const l = mk('div', 'net-label'); l.append(mk('span', null, text)); if (extra) l.append(extra); return l; }
-    function row() { const r = mk('div', 'net-actions'); r.append.apply(r, arguments); return r; }
-    function busyRow(text) { const r = mk('div', 'net-busy'); r.append(mk('span', 'net-spin'), status(text)); return r; }
+let devMem = '';
+const kicked = {};
+function p2(n) { return (n < 10 ? '0' : '') + n; }
+function devToken() {
+	const d = new Date(Date.now()), day = d.getFullYear() + p2(d.getMonth() + 1) + p2(d.getDate());
+	const m = /^([0-9a-f]{16})\|(\d{8})$/.exec(store.get('lowkey:net:dev') || devMem);
+	if (m && m[2] === day) return m[1];
+	const h8 = () => ('0000000' + Math.floor(Math.random() * 4294967296).toString(16)).slice(-8);
+	const t = h8() + h8();
+	devMem = t + '|' + day;
+	store.set('lowkey:net:dev', devMem);
+	return t;
+}
+function wasKicked(key) { const t = kicked[key]; if (t && now() - t < KICK_HIDE) return true; delete kicked[key]; return false; }
+function devHide() { return store.get('lowkey:net:pubhide') === '1'; }
+function pubOff(g) { return !PUB_ON || !netSupported || PUB_HOLD.indexOf(g.id) >= 0 || devHide(); }
+function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+function rand36(n) { let s = ''; while (s.length < n) s += Math.random().toString(36).slice(2); return s.slice(0, n); }
+function calm() { try { return window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { return false; } }
+function focusNode(n) { try { if (n) n.focus({ preventScroll: true }); } catch (e) {} }
+function setText(el, s) { if (el.textContent !== s) el.textContent = s; }
+function msgNodes(msg) {
+	const i = msg.indexOf(NET_SITE);
+	return i < 0 ? [msg] : [msg.slice(0, i), mk('span', 'net-url', NET_SITE), msg.slice(i + NET_SITE.length)];
+}
+function trap(e, root) {
+	const f = Array.prototype.filter.call(root.querySelectorAll('button, input'), (n) => !n.disabled && n.tabIndex >= 0 && n.offsetParent !== null);
+	const i = f.indexOf(document.activeElement);
+	if (!f.length) e.preventDefault();
+	else if (e.shiftKey ? i <= 0 : i < 0 || i === f.length - 1) { e.preventDefault(); focusNode(f[e.shiftKey ? f.length - 1 : 0]); }
+}
+function reveal(n, box) {
+	try {
+		const o = box.getBoundingClientRect(), r = n.getBoundingClientRect();
+		if (!o.height || !r.height) return;
+		const a = box.querySelector('.net-actions'), ar = a && !a.contains(n) ? a.getBoundingClientRect() : null;
+		const bottom = ar && ar.height && ar.top < o.bottom ? ar.top : o.bottom;
+		if (r.top < o.top + 8) box.scrollTop -= o.top + 8 - r.top;
+		else if (r.bottom > bottom - 8) box.scrollTop += r.bottom - bottom + 8;
+	} catch (e) {}
+}
 
-    // ----- screens. Esc, Cancel, Leave and Back step back one screen; X, OK and Esc on the first one close.
-    function back() {
-      if (c.phase !== 'lobby') return;
-      if (screen === 'choose' || screen === 'error') { quit(); return; }
-      const toJoin = screen === 'busy' && c.role === 'guest';
-      dropNet(true);
-      if (toJoin) showJoin(c.code, ''); else showChoose();
-    }
-    function showChoose() {
-      c.role = '';
-      const inp = Object.assign(mk('input', 'net-input'), { type: 'text', maxLength: 10, value: netNick, autocomplete: 'off', spellcheck: false });
-      inp.setAttribute('autocapitalize', 'words');
-      inp.setAttribute('aria-labelledby', 'net-nick');
-      inp.addEventListener('input', () => {
-        const v = cleanNick(inp.value, true);
-        if (v !== inp.value) inp.value = v;
-        netNick = v;
-      });
-      const lab = label('Nickname', mk('span', 'net-opt', 'optional'));
-      lab.id = 'net-nick';
-      const field = mk('div', 'net-field');
-      field.append(lab, inp, mk('span', 'net-hint', 'Up to 10 letters, numbers or spaces. Leave it empty to show as Player 1, 2, 3...'));
-      const hostB = choice('Host a room', 'Get a code to share', true, hostRoom);
-      const choices = mk('div', 'net-choices');
-      choices.append(hostB, choice('Join a room', "Type a friend's code", false, () => showJoin('', '')));
-      const note = mk('p', 'net-note', 'Only play with people you know. Online play connects your computer directly to theirs.');
-      show('choose', 'Play online', [field, choices, note, mk('p', 'net-sub', (mode ? mode + ' \u00B7 ' : '') + (max > 2 ? '2 to ' + max + ' players' : '2 players'))], hostB);
-    }
-    function choice(main, sub, primary, fn) {
-      const b = mkBtn('', false, fn, 'net-choice' + (primary ? ' net-primary' : ''));
-      b.append(mk('strong', null, main), mk('span', null, sub));
-      return b;
-    }
-    function showBusy(heading, text) {
-      const cancel = mkBtn('Cancel', false, back);
-      show('busy', heading, [busyRow(text), row(cancel)], cancel);
-    }
-    function fail(msg, heading) {
-      if (c.phase !== 'lobby') return;
-      dropNet(true);
-      const p = mk('p', 'net-msg'), i = msg.indexOf(NET_SITE), ok = mkBtn('OK', true, quit);
-      p.setAttribute('role', 'alert');
-      if (i < 0) p.textContent = msg;
-      else p.append(msg.slice(0, i), mk('span', 'net-url', NET_SITE), msg.slice(i + NET_SITE.length));
-      show('error', heading || "Can't connect", [p, row(ok)], ok);
-    }
-    function saveNick() {
-      netNick = c.nick = cleanNick(netNick, false);
-      store.set('lowkey:net:name', netNick);
-    }
-    // Player rows: badge, name, host/you tags, ping, and a Remove button for the host.
-    function setPing(el, ms) {
-      el.className = 'net-ping' + (ms > 160 ? ' net-bad' : ms > 80 ? ' net-mid' : '');
-      el.textContent = ms > 0 ? ms + ' ms' : '\u2014';
-      return el;
-    }
-    function fillList(list, me, cap, hostView) {
-      const sig = me + '|' + list.map((p) => p.index + ' ' + p.name).join('|');
-      ui.count.textContent = list.length + ' / ' + cap;
-      if (sig === ui.sig) {   // same players: only the pings change, in place, so a click on Remove is never lost
-        const els = ui.list.querySelectorAll('.net-ping');
-        list.filter((p) => p.index).forEach((p, i) => { if (els[i]) setPing(els[i], p.index === me ? c.ping : p.ping); });
-        return;
-      }
-      ui.sig = sig;
-      const a = document.activeElement;
-      const keep = a && ui.list.contains(a) ? a.getAttribute('data-k') : null;
-      const out = list.map((p) => {
-        const li = mk('li', 'net-p'), ms = p.index === me ? c.ping : p.ping;
-        li.append(mk('span', 'net-badge', 'P' + (p.index + 1)), mk('span', 'net-name', p.name));
-        if (!p.index) li.append(mk('span', 'net-tag', 'host'));
-        if (p.index === me) li.append(mk('span', 'net-tag net-you', 'you'));
-        if (p.index) li.append(setPing(mk('span'), ms));
-        if (hostView && p.index) {
-          const k = mkBtn('Remove', false, () => kickGuest(p.index), 'net-kick'), x = inGuests().filter((y) => y.index === p.index)[0];
-          k.setAttribute('data-k', 'k' + (x ? x.seq : 0));   // by guest, not by index: focus stays on the same player after reindexing
-          k.setAttribute('aria-label', 'Remove ' + p.name);
-          li.append(k);
-        }
-        return li;
-      });
-      ui.list.replaceChildren.apply(ui.list, out);
-      if (keep) focusEl(ui.list.querySelector('[data-k="' + keep + '"]') || ui.alt);
-    }
+function tasks() {
+	let t = [], l = [];
+	return {
+		later(fn, ms) { const id = setTimeout(() => { t = t.filter((x) => x !== id); fn(); }, ms); t.push(id); return id; },
+		cancel(id) { clearTimeout(id); t = t.filter((x) => x !== id); },
+		on(el, type, fn, opt) { el.addEventListener(type, fn, opt); l.push([el, type, fn, opt]); },
+		clear() { t.forEach(clearTimeout); l.forEach((a) => a[0].removeEventListener(a[1], a[2], a[3])); t = []; l = []; },
+		get size() { return t.length + l.length; },
+	};
+}
+function killPeer(p, onMsg) {
+	try { if (onMsg && p.socket) p.socket.off('message', onMsg); } catch (e) {}
+	try { p.destroy(); p.removeAllListeners(); } catch (e) {}
+}
 
-    // ----- host
-    function hostRoom() {
-      saveNick();
-      c.role = 'host';
-      const gen = ++c.gen;
-      showBusy('Creating a room', 'Setting up your room...');
-      loadPeer().then((ok) => {
-        if (gen !== c.gen || c.phase !== 'lobby') return;
-        if (ok) hostTry(gen, 0); else fail(NET_MSG.network);
-      });
-    }
-    function newPeer(id) {   // a PeerJS peer, or the network message when one cannot even be made
-      try {
-        const P = peerCtor(), p = new P(id, { debug: 0 });
-        if (typeof p.on !== 'function') throw new Error('not PeerJS');
-        return (c.peer = p);
-      } catch (e) { fail(NET_MSG.network); return null; }
-    }
-    function hostTry(gen, tries) {
-      let code = '', opened = false;
-      for (let i = 0; i < 5; i++) code += NET_CHARS.charAt(Math.floor(Math.random() * NET_CHARS.length));
-      const p = newPeer('lowkey-' + g.id + '-' + code);
-      if (!p) return;
-      const mine = () => gen === c.gen && c.peer === p;
-      later(() => { if (mine() && !opened) fail(NET_MSG.network); }, NET_WAIT);
-      p.on('open', () => {
-        if (!mine() || opened) return;
-        opened = true;
-        c.code = code;
-        c.tick = c.tick || setInterval(tick, NET_PING);
-        showHost();
-      });
-      // After Start, latecomers still connect, so they get a proper 'started' reject.
-      p.on('connection', (conn) => { if (mine() && opened) hostConn(conn); else { try { conn.close(); } catch (e) { /* closed */ } } });
-      p.on('error', (err) => {
-        const type = err && err.type;
-        if (!mine() || opened) return;   // once open, server hiccups do not matter to linked guests
-        if (type === 'unavailable-id' && tries < 5) { c.gen++; c.peer = null; killLater(p, []); hostTry(c.gen, tries + 1); }   // code taken: silently pick another
-        else fail(type === 'browser-incompatible' ? NET_MSG.unsupported : NET_MSG.network);
-      });
-      // Lost the PeerJS server while the room is open: nobody new could find it, so keep trying to get back.
-      p.on('disconnected', () => {
-        if (mine() && opened && c.phase === 'lobby') later(() => { try { if (mine() && p.disconnected && !p.destroyed) p.reconnect(); } catch (e) { /* still offline */ } }, 3000);
-      });
-    }
-    function showHost() {
-      const code = mk('div', 'net-code net-code-show');
-      code.setAttribute('role', 'img');
-      code.setAttribute('aria-label', 'Room code ' + c.code.split('').join(' '));
-      for (let i = 0; i < 5; i++) code.append(mk('span', 'net-cell', c.code.charAt(i)));
-      const count = mk('span', 'net-count'), list = mk('ul', 'net-list'), wait = status('');
-      const start = mkBtn('Start', true, hostGo), cancel = mkBtn('Cancel', false, back);
-      start.disabled = true;
-      show('host', 'Your room is open', [label('Room code'), code,
-        mk('p', 'net-sub', 'Friends open ' + g.title + ', choose online play, then Join a room with this code.'),
-        label('Players', count), list, wait, row(cancel, start)], start, cancel);
-      Object.assign(ui, { count, list, wait, start });
-      renderHost();
-    }
-    function renderHost() {
-      if (screen !== 'host') return;
-      const ps = lobbyPlayers(), a = document.activeElement, was = ui.start.disabled;
-      ui.start.disabled = ps.length < 2;
-      ui.wait.textContent = ps.length < 2 ? 'Waiting for at least one more player...'
-        : ps.length < max ? 'Press Start when everyone is in.' : 'The room is full. Press Start.';
-      fillList(ps, 0, max, true);
-      // Start just became possible: move focus there unless the host is busy elsewhere in the panel.
-      if (was && !ui.start.disabled && (!a || a === document.body || a === ui.alt)) focusEl(ui.start);
-      else if (!was && ui.start.disabled && a === ui.start) focusEl(ui.alt);
-    }
-    function inGuests() { return c.guests.filter((x) => x.state === 'in').sort((a, b) => a.seq - b.seq); }
-    function lobbyChanged() {   // guests keep join order and stay numbered 1..n-1
-      inGuests().forEach((x, i) => { x.index = i + 1; });
-      pushLobby();
-      renderHost();
-    }
-    function lobbyPlayers() {
-      const seen = [];
-      return [{ index: 0, name: c.nick || 'Player 1', ping: 0 }]
-        .concat(inGuests().map((x) => ({ index: x.index, name: x.name || 'Player ' + (x.index + 1), ping: x.ping })))
-        .map((p) => {   // the same nickname twice gets a number
-          let n = p.name;
-          for (let k = 2; seen.indexOf(n.toLowerCase()) >= 0; k++) n = p.name.slice(0, 9 - String(k).length).trim() + ' ' + k;
-          seen.push(n.toLowerCase());
-          p.name = n;
-          return p;
-        });
-    }
-    function pushLobby() {
-      const tail = ',"max":' + max + ',"mode":' + JSON.stringify(mode) + ',"players":' + JSON.stringify(lobbyPlayers()) + '}';
-      inGuests().forEach((x) => tx(x.conn, '{"t":"lobby","index":' + x.index + tail));
-    }
-    function hostConn(conn) {
-      if (!conn || typeof conn.on !== 'function' || c.guests.length >= 16) { try { conn.close(); } catch (e) { /* closed */ } return; }
-      const x = { conn, fast: null, fastOk: false, index: -1, name: '', ping: 0, seen: now(), state: 'new', seq: 0 };
-      c.guests.push(x);
-      later(() => { if (x.state === 'new') dropGuest(x); }, NET_WAIT);   // no hello in time
-      conn.on('open', () => { if (x.state !== 'gone') openFast(x); });
-      conn.on('data', (raw) => { if (x.state !== 'gone') hostData(x, raw); });
-      conn.on('close', () => dropGuest(x));
-    }
-    function hostData(x, raw) {
-      const d = netParse(raw);
-      if (!d) return;
-      x.seen = now();
-      if (d.t === 'm') {
-        if (x.state === 'in' && c.phase === 'session') emitMsg(d.d, x.index);
-      } else if (d.t === 'ping') {
-        const r = Number(d.r), t = Number(d.c);
-        if (r >= 0 && r < 60000) x.ping = Math.round(r);
-        tx(x.conn, '{"t":"pong","c":' + (isFinite(t) ? t : 0) + ',"h":' + now() + '}');
-      } else if (d.t === 'fast') {
-        x.fastOk = true;
-      } else if (d.t === 'bye') {
-        dropGuest(x);
-      } else if (d.t === 'hello' && x.state === 'new') {
-        const why = d.v !== 1 || d.game !== g.id ? 'version' : c.phase !== 'lobby' ? 'started' : inGuests().length + 1 >= max ? 'full' : '';
-        if (why) { reject(x, why); return; }
-        x.state = 'in';
-        x.seq = ++c.seq;
-        x.name = cleanNick(d.name, false);
-        inGuests().forEach((y, i) => { y.index = i + 1; });
-        tx(x.conn, JSON.stringify({ t: 'welcome', index: x.index, max, mode, players: lobbyPlayers() }));
-        lobbyChanged();
-        tone(880, 0.07, { type: 'triangle', vol: 0.12 });
-      }
-    }
-    function reject(x, why) { tx(x.conn, '{"t":"reject","reason":"' + why + '"}'); cutGuest(x); }
-    function kickGuest(index) {
-      const x = inGuests().filter((y) => y.index === index)[0];
-      if (c.phase !== 'lobby' || !x) return;
-      tx(x.conn, '{"t":"kick"}');
-      cutGuest(x);
-      lobbyChanged();
-    }
-    function cutGuest(x) {   // forget a guest now, close its link a moment later so the last message gets out
-      x.state = 'gone';
-      if (c.guests.indexOf(x) >= 0) c.guests.splice(c.guests.indexOf(x), 1);
-      killLater(null, [x]);
-    }
-    function dropGuest(x) {
-      const was = x.state;
-      if (was === 'gone') return;
-      cutGuest(x);
-      if (was !== 'in') return;
-      if (c.phase === 'lobby') lobbyChanged();
-      else if (c.phase === 'session') {
-        c.byIndex[x.index] = null;
-        c.players.forEach((p) => { if (p.index === x.index) p.connected = false; });
-        c.guests.forEach((y) => { if (y.state === 'in') tx(y.conn, '{"t":"left","index":' + x.index + '}'); });
-        emit('leave', x.index);
-      }
-    }
-    function hostGo() {
-      const ins = inGuests();
-      if (c.phase !== 'lobby' || screen !== 'host' || !ins.length) return;
-      // A link still opening is left alone: its hello gets the 'started' reject (cutting it now looks like a network error).
-      c.guests.slice().forEach((x) => { if (x.state !== 'in' && x.conn.open) reject(x, 'started'); });
-      c.players = lobbyPlayers().map((p) => ({ index: p.index, name: p.name, connected: true }));
-      const tail = ',"h":' + now() + ',"players":' + JSON.stringify(c.players.map((p) => ({ index: p.index, name: p.name }))) + '}';
-      ins.forEach((x) => { c.byIndex[x.index] = x; tx(x.conn, '{"t":"start","index":' + x.index + tail); });
-      begin('host', 0);
-    }
+// ----- discovery transport: raw signalling messages, an echo canary, storm and flood guards
+let pubRelay = '';
+const CAND = Object.freeze({ candidate: '', sdpMid: '0', sdpMLineIndex: 0 });
+function discPeer(id) {
+	try {
+		const P = peerCtor(), p = new P(id, { debug: 0 });
+		if (typeof p._storeMessage === 'function') p._storeMessage = () => {};
+		return typeof p.on === 'function' ? p : null;
+	} catch (e) { return null; }
+}
+function sig(p, dst, lk) {
+	try { if (p && p.open && !p.disconnected && p.socket) { p.socket.send({ type: 'CANDIDATE', dst, payload: { candidate: CAND, type: 'data', connectionId: 'lk', lk } }); return true; } } catch (e) {}
+	return false;
+}
+function sigIn(m) {
+	if (!m || typeof m !== 'object' || typeof m.src !== 'string') return null;
+	if (m.type === 'EXPIRE' || m.type === 'LEAVE') return { kind: m.type === 'EXPIRE' ? 'expire' : 'leave', src: m.src, lk: null };
+	const lk = m.type === 'CANDIDATE' && m.payload && m.payload.connectionId === 'lk' ? m.payload.lk : null;
+	return lk && typeof lk === 'object' && !Array.isArray(lk) && typeof lk.t === 'string' ? { kind: 'lk', src: m.src, lk } : null;
+}
+function slotOf(id) { const m = SLOT_RX.exec(id), n = m ? Number(m[1]) : -1; return n >= 0 && n < PUB_SLOTS && String(n) === m[1] ? n : -1; }
+function storm() { let at = -1e9, n = 0; return () => { const t = now(); if (t - at >= 1000) { at = t; n = 0; } return ++n > 64; }; }
+function flooded(a) { const t = now(); a.push(t); while (t - a[0] > 60000) a.shift(); return a.length > FLOOD_MAX; }
+function canary(T, p, alive, dead) {
+	const c = { n: rand36(8) };
+	sig(p, p.id, { t: 'echo', v: 1, n: c.n });
+	c.id = T.later(() => { c.id = 0; if (alive() && pubRelay !== 'ok') { pubRelay = 'dead'; dead(); } }, ECHO_WAIT);
+	return c;
+}
+function canLost(T, o) {
+	const c = o.can;
+	if (!c || !c.id) return false;
+	T.cancel(c.id);
+	c.id = 0;
+	if (pubRelay || ++o.drops < 2) return false;
+	pubRelay = 'dead';
+	return true;
+}
+function readRoom(lk, n) {
+	let size = INFO_MAX + 1;
+	try { size = JSON.stringify(lk).length; } catch (e) {}
+	if (size > INFO_MAX || lk.t !== 'room' || lk.v !== PUB_V || lk.s !== n) return null;
+	const g = typeof lk.g === 'string' ? byId.get(lk.g) : null, m = lk.m, p = lk.p;
+	if (!g || !isOnline(g) || PUB_HOLD.indexOf(g.id) >= 0 || typeof lk.c !== 'string' || !CODE_RX.test(lk.c)) return null;
+	if (netInt(m, 2, 8) !== m || netInt(p, 1, 8) !== p || p > m) return null;
+	const nick = typeof lk.n === 'string' ? cleanNick(lk.n, false) : '', md = cleanLabel(lk.md), host = textOk(nick) ? nick : '';
+	return { key: g.id + ':' + lk.c, slot: n, game: g.id, title: g.title, code: lk.c, host, label: own(host || 'Player 1') + ' room',
+		players: p, max: m, full: p >= m, mode: textOk(md) ? md : '', age0: Math.max(0, netInt(lk.a, 0, 86400)), seenAt: now(), sweep: 0, stale: false };
+}
+function ageOf(r) { return r.age0 + (now() - r.seenAt) / 1000; }
+function ageText(r) { const s = ageOf(r); return s < 60 ? 'just opened' : s < 3600 ? 'waiting ' + Math.floor(s / 60) + ' min' : 'waiting 1 h+'; }
+function rankRooms(list, panel) {
+	const open = (r) => (r.full || r.stale ? 0 : 1);
+	return list.slice().sort((a, b) => open(b) - open(a) || b.players - a.players || ageOf(b) - ageOf(a) ||
+		(panel && a.title !== b.title ? (a.title < b.title ? -1 : 1) : 0) || (a.code < b.code ? -1 : a.code > b.code ? 1 : 0));
+}
 
-    // ----- guest
-    function showJoin(code, err) {
-      dropNet(true);
-      c.role = '';
-      const box = mk('div', 'net-code'), cells = [];
-      for (let i = 0; i < 5; i++) {
-        const b = Object.assign(mk('input', 'net-cell'), { type: 'text', value: code.charAt(i), autocomplete: 'off', spellcheck: false });
-        b.setAttribute('autocapitalize', 'characters');
-        b.setAttribute('autocorrect', 'off');
-        b.setAttribute('aria-label', 'Room code, character ' + (i + 1) + ' of 5');
-        cells.push(b);
-        box.append(b);
-      }
-      const errP = mk('p', 'net-err'), join = mkBtn('Join', true, go), backB = mkBtn('Back', false, back);
-      errP.setAttribute('role', 'alert');
-      const empty = () => cells.filter((b) => !b.value)[0];
-      const sync = () => { join.disabled = !!empty(); };
-      const say = (t) => { errP.textContent = t; errP.hidden = !t; };
-      const odd = (t) => say(/[01OIL]/i.test(t) ? 'Room codes never use 0, O, 1, I or L.' : '');
-      const fill = (from, t) => {   // spread typed or pasted characters over the boxes
-        const v = cleanCode(t);
-        let i = from;
-        for (let k = 0; k < v.length && i < 5; k++) cells[i++].value = v.charAt(k);
-        if (v) focusEl(cells[Math.min(i, 4)]);
-        sync();
-      };
-      cells.forEach((b, i) => {
-        // Typing, pasting a whole code and phone autofill all arrive here (the boxes have no length limit).
-        b.addEventListener('input', () => { const t = b.value; odd(t); b.value = ''; fill(i, t); });
-        b.addEventListener('keydown', (e) => {
-          const k = e.key, j = (k === 'ArrowLeft' || (k === 'Backspace' && !b.value)) ? i - 1 : k === 'ArrowRight' ? i + 1 : -1;
-          if (k === 'Enter') { e.preventDefault(); go(); }
-          else if (j >= 0 && j < 5) {
-            e.preventDefault();
-            if (k === 'Backspace') cells[j].value = '';
-            focusEl(cells[j]);
-            sync();
-          }
-        });
-        b.addEventListener('focus', () => { try { b.select(); } catch (e) { /* not selectable */ } });
-      });
-      function go() {
-        if (empty()) focusEl(empty());
-        else joinRoom(cells.map((b) => b.value).join(''));
-      }
-      say(err);
-      sync();
-      show('join', 'Join a room', [label('Room code'), box, errP,
-        mk('p', 'net-sub', 'Ask the host for the 5-character code on their screen.'), row(backB, join)], empty() || join);
-    }
-    function joinRoom(code) {
-      saveNick();
-      c.role = 'guest';
-      // A new room has a new host clock: nothing measured against an earlier room may carry over.
-      Object.assign(c, { code, ping: 0, offset: 0, bestRtt: 1e9, samples: 0, list: [], hostMode: '', hostMax: max });
-      const gen = ++c.gen;
-      showBusy('Joining room ' + code, 'Looking for the room...');
-      loadPeer().then((ok) => {
-        if (gen !== c.gen || c.phase !== 'lobby') return;
-        if (ok) guestTry(gen, code, 0); else fail(NET_MSG.network);
-      });
-    }
-    function guestTry(gen, code, tries) {
-      const p = newPeer('lowkey-' + g.id + '-' + Math.random().toString(36).slice(2, 10) + Date.now().toString(36));
-      if (!p) return;
-      let opened = false;
-      const mine = () => gen === c.gen && c.peer === p;
-      later(() => { if (mine() && !opened) fail(NET_MSG.network); }, NET_WAIT);
-      p.on('open', () => {
-        if (!mine() || opened) return;
-        opened = true;
-        let conn = null;
-        try { conn = p.connect('lowkey-' + g.id + '-' + code, { label: 'lowkey', serialization: 'raw', reliable: true }); } catch (e) { conn = null; }
-        if (!conn || typeof conn.on !== 'function') { fail(NET_MSG.network); return; }
-        const x = c.link = { conn, fast: null, fastOk: false, index: 0, ping: 0, seen: now(), state: 'connecting', err: false };
-        // No 'open' in time: the room exists but WebRTC cannot get through this network.
-        later(() => { if (mine() && x.state === 'connecting') fail(NET_MSG.network); }, NET_WAIT);
-        conn.on('open', () => {
-          if (!mine() || c.link !== x || x.state !== 'connecting') return;
-          x.state = 'hello';
-          x.seen = now();
-          openFast(x);
-          tx(conn, JSON.stringify({ t: 'hello', v: 1, game: g.id, name: c.nick }));
-          later(() => { if (mine() && x.state === 'hello') showJoin(code, NET_MSG.noAnswer); }, NET_WAIT);
-        });
-        conn.on('data', (raw) => { if (mine() && c.link === x) guestData(x, raw); });
-        conn.on('close', () => { if (mine() && c.link === x) linkDown(x, false); });
-        conn.on('error', () => { x.err = true; });
-      });
-      p.on('error', (err) => {
-        const type = err && err.type, x = c.link;
-        if (!mine()) return;
-        if (type === 'unavailable-id' && !opened && tries < 3) { c.gen++; c.peer = null; killLater(p, []); guestTry(c.gen, code, tries + 1); }
-        else if (type === 'peer-unavailable') { if (!x || x.state === 'connecting') showJoin(code, NET_MSG.noRoom); }
-        else if (!x || x.state === 'connecting') fail(type === 'browser-incompatible' ? NET_MSG.unsupported : NET_MSG.network);
-        // once linked to the host, PeerJS server trouble does not matter
-      });
-    }
-    function guestData(x, raw) {
-      const d = netParse(raw), t = d && d.t;
-      if (!d) return;
-      x.seen = now();
-      if (t === 'm') {
-        if (c.phase === 'session') emitMsg(d.d, 0);
-      } else if (t === 'pong') {
-        pong(d);
-      } else if (t === 'fast') {
-        x.fastOk = true;
-      } else if (c.phase === 'lobby' && (t === 'welcome' ? x.state === 'hello' : t === 'lobby' && x.state === 'in')) {
-        const me = netInt(d.index, 1, 7);
-        if (me < 0) return;
-        x.index = me;
-        c.list = cleanList(d.players);
-        c.hostMax = netMax(d.max);
-        c.hostMode = cleanLabel(d.mode);
-        if (t === 'lobby') { renderWait(); return; }
-        x.state = 'in';
-        c.tick = c.tick || setInterval(tick, NET_PING);
-        tick();
-        showWait();
-      } else if (t === 'reject') {
-        if (c.phase === 'lobby' && x.state === 'hello') showJoin(c.code, NET_MSG[d.reason === 'full' || d.reason === 'started' ? d.reason : 'version']);
-      } else if (t === 'start') {
-        const me = netInt(d.index, 1, 7), list = cleanList(d.players), h = Number(d.h);
-        if (c.phase !== 'lobby' || x.state !== 'in') return;
-        if (!list.some((p) => p.index === me)) { fail(NET_MSG.lost, 'Connection lost'); return; }
-        x.index = me;
-        c.players = list.map((p) => ({ index: p.index, name: p.name, connected: true }));
-        if (!c.samples && isFinite(h)) c.offset = h - now();
-        begin('guest', me);
-      } else if (t === 'left') {
-        const i = netInt(d.index, 1, 7), pl = c.players.filter((p) => p.index === i)[0];
-        if (c.phase === 'session' && pl && pl.connected && i !== x.index) { pl.connected = false; emit('leave', i); }
-      } else if (t === 'kick' || t === 'bye') {
-        if (c.phase === 'session') end(t === 'kick' ? 'kicked' : 'host-left');
-        else if (t === 'kick') fail(NET_MSG.kicked, 'Removed from the room');
-        else fail(NET_MSG.hostLeft, 'Room closed');
-      }
-    }
-    function cleanList(arr) {
-      const out = [];
-      (Array.isArray(arr) ? arr.slice(0, 8) : []).forEach((p) => {
-        const i = p && typeof p === 'object' ? netInt(p.index, 0, 7) : -1, r = Number(i >= 0 && p.ping);
-        if (i >= 0 && !out.some((q) => q.index === i)) out.push({ index: i, name: cleanNick(p.name, false) || 'Player ' + (i + 1), ping: r >= 0 && r < 60000 ? Math.round(r) : 0 });
-      });
-      return out.sort((a, b) => a.index - b.index);
-    }
-    function pong(d) {
-      const t = now(), rtt = t - Number(d.c), h = Number(d.h);
-      if (!(rtt >= 0 && rtt < 30000) || !isFinite(h)) return;
-      c.ping = Math.round(rtt);
-      if (c.session) c.session.ping = c.ping;
-      // Host clock = local clock + offset, taken from the quickest round trips (the least queueing).
-      c.bestRtt += 2;
-      if (!c.samples || rtt <= c.bestRtt * 1.25 + 4) {
-        c.offset = c.samples ? c.offset + (h + rtt / 2 - t - c.offset) * 0.5 : h + rtt / 2 - t;
-        c.bestRtt = Math.min(c.bestRtt, rtt);
-      }
-      c.samples++;
-      renderWait();
-    }
-    function showWait() {
-      const count = mk('span', 'net-count'), list = mk('ul', 'net-list'), info = mk('p', 'net-sub'), leave = mkBtn('Leave', false, back);
-      show('wait', 'You are in room ' + c.code, [busyRow('Joined. Waiting for the host to start...'), label('Players', count), list, info, row(leave)], leave);
-      Object.assign(ui, { count, list, info });
-      renderWait();
-    }
-    function renderWait() {
-      if (screen !== 'wait' || !c.link) return;
-      ui.info.textContent = c.hostMode ? 'Mode: ' + c.hostMode : '';
-      ui.info.hidden = !c.hostMode;
-      fillList(c.list, c.link.index, c.hostMax, false);
-    }
-    function linkDown(x, timedOut) {
-      // A close right after missed pongs is a network problem, not the host leaving.
-      const lost = timedOut || x.err || now() - x.seen > NET_PING * 1.6;
-      if (c.phase === 'session') end(lost ? 'connection-lost' : 'host-left');
-      else if (x.state === 'hello') showJoin(c.code, NET_MSG.noAnswer);
-      else if (lost) fail(NET_MSG.lost, 'Connection lost');
-      else fail(NET_MSG.hostLeft, 'Room closed');
-    }
+// ----- scanner: one per page, shared by every list (in-game Browse and Quick join, a lonely host, the panel)
+const SC = { peer: null, gen: 0, onMsg: null, state: 'idle', err: '', recs: new Map(), hs: [], opened: false, can: null, sweeping: false, again: false,
+	queued: false, no: 0, at: 0, lastStart: 0, lastEnd: 0, doneStart: 0, probes: [], keys: [], probeT: 0, autoT: 0, keepT: 0, nT: 0,
+	emptySlots: [], emptyAt: -1e9, touched: 0, paused: false, tries: 0, drops: 0, armed: false, vis: false, flood: [], dings: 0, dingAt: -1e9 };
+const SCT = tasks();
+function scanAttach(fn, kind) {
+	const h = {
+		kind, live: true,
+		get state() { return SC.state; }, get err() { return SC.err; }, get lastDone() { return SC.lastEnd; },
+		get doneStart() { return SC.doneStart; }, get paused() { return SC.paused; }, get sweeping() { return SC.sweeping; },
+		rooms: () => Array.from(SC.recs.values()).filter((r) => !wasKicked(r.key)),
+		progress: () => (SC.sweeping ? Math.min(1, (now() - SC.at) / 6000) : 1),
+		refresh: () => { SC.paused = false; SC.touched = now(); scanSweep(); scanNote(); },
+		touch: () => { SC.touched = now(); if (SC.paused) { SC.paused = false; scanSweep(); scanNote(); } },
+		retry: () => { if (pubRelay === 'dead') pubRelay = ''; scanKill(); scanStart(); },
+		detach: () => {
+			if (!h.live) return;
+			h.live = false;
+			fn = null;
+			SC.hs.splice(SC.hs.indexOf(h), 1);
+			if (SC.hs.length) return;
+			SCT.cancel(SC.autoT);
+			if (document.hidden || !SC.peer || SC.state === 'error') scanKill();
+			else SC.keepT = SCT.later(scanKill, SCAN_KEEP);
+		},
+		ping: () => { if (fn) fn(h); },
+	};
+	SC.hs.push(h);
+	SCT.cancel(SC.keepT);
+	SC.touched = now();
+	SC.paused = false;
+	if (SC.state === 'error' || (!SC.peer && SC.state !== 'loading')) { scanKill(); scanStart(); }
+	else { scanWatch(); if (!SC.sweeping) scanSweep(); }
+	scanNote();
+	return h;
+}
+function scanWatch() { if (!SC.vis) { SC.vis = true; SCT.on(document, 'visibilitychange', scanVis); } }
+function scanNote() {
+	if (SC.nT || !SC.hs.length) return;
+	SC.nT = SCT.later(() => { SC.nT = 0; SC.hs.slice().forEach((h) => h.ping()); }, 0);
+}
+function scanKill() {
+	const p = SC.peer, f = SC.onMsg;
+	SC.gen++;
+	SCT.clear();
+	Object.assign(SC, { peer: null, onMsg: null, state: 'idle', err: '', opened: false, sweeping: false, again: false, queued: false, lastStart: 0, lastEnd: 0,
+		doneStart: 0, probeT: 0, autoT: 0, keepT: 0, nT: 0, tries: 0, drops: 0, armed: false, vis: false, flood: [], paused: false });
+	SC.recs.clear();
+	if (p) killPeer(p, f);
+}
+function scanDestroy() { SC.hs.forEach((h) => { h.live = false; }); SC.hs = []; scanKill(); }
+function scanFail(err) {
+	const p = SC.peer, f = SC.onMsg;
+	SC.gen++;
+	SCT.cancel(SC.probeT);
+	SCT.cancel(SC.autoT);
+	Object.assign(SC, { peer: null, onMsg: null, state: 'error', err, opened: false, sweeping: false, again: false, queued: false, armed: false });
+	if (p) killPeer(p, f);
+	if (SC.hs.length) scanNote(); else scanKill();
+}
+function scanStart() {
+	const gen = ++SC.gen;
+	scanWatch();
+	SC.state = 'loading';
+	SC.err = '';
+	if (!netSupported) { scanFail('unsupported'); return; }
+	loadPeer().then((ok) => { if (gen !== SC.gen) return; if (ok) scanOpen(gen, 0); else scanFail('network'); });
+}
+function scanOpen(gen, tries) {
+	const p = discPeer(SCAN_PREFIX + rand36(10));
+	if (!p) { scanFail('network'); return; }
+	SC.peer = p;
+	SC.state = 'opening';
+	SC.opened = false;
+	const mine = () => p === SC.peer && gen === SC.gen, cut = storm();
+	const onMsg = (m) => { if (mine() && !cut()) scanMsg(p, m); };
+	SCT.later(() => { if (mine() && !SC.opened) scanFail('network'); }, NET_WAIT);
+	p.on('open', () => {
+		if (!mine()) return;
+		if (!SC.opened) {
+			SC.opened = true;
+			SC.onMsg = onMsg;
+			p.socket.on('message', onMsg);
+		}
+		if (PUB_ECHO && pubRelay === 'dead') { scanFail('dead'); return; }
+		if (PUB_ECHO && !pubRelay) SC.can = canary(SCT, p, mine, () => scanFail('dead'));
+		SC.state = 'idle';
+		scanSweep();
+		scanNote();
+	});
+	p.on('error', (e) => {
+		const t = e && e.type;
+		if (!mine() || SC.opened) return;
+		if (t === 'unavailable-id' && tries < 2) { SC.peer = null; killPeer(p); scanOpen(gen, tries + 1); }
+		else if (t === 'browser-incompatible') scanFail('unsupported');
+		else if (PEER_ERR.test(t)) scanFail('network');
+	});
+	p.on('disconnected', () => { if (mine() && SC.opened) scanLost(p); });
+	p.on('close', () => { if (mine()) scanFail('network'); });
+	p.on('connection', (conn) => {
+		try { conn.close(); } catch (e) {}
+		if (mine() && flooded(SC.flood)) {
+			SC.flood = [];
+			SC.peer = null;
+			killPeer(p, SC.onMsg);
+			SC.onMsg = null;
+			SC.sweeping = false;
+			SCT.cancel(SC.probeT);
+			scanOpen(++SC.gen, 0);
+		}
+	});
+}
+function scanLost(p) {
+	if (canLost(SCT, SC)) { scanFail('dead'); return; }
+	SC.state = 'reconnecting';
+	SC.sweeping = false;
+	SCT.cancel(SC.probeT);
+	SCT.cancel(SC.autoT);
+	scanNote();
+	if (SC.armed) return;
+	if (SC.tries >= SCAN_RETRY.length) { scanFail('network'); return; }
+	SC.armed = true;
+	SCT.later(() => {
+		SC.armed = false;
+		if (p !== SC.peer) return;
+		const k = ++SC.tries;
+		try { p.reconnect(); } catch (e) { scanFail('network'); }
+		SCT.later(() => { if (p === SC.peer && SC.tries === k && !p.open) p.disconnect(); }, NET_WAIT);
+	}, SCAN_RETRY[SC.tries]);
+}
+function scanVis() {
+	if (document.hidden) { SCT.cancel(SC.autoT); if (!SC.hs.length) scanKill(); }
+	else if (SC.hs.length && now() - SC.lastStart >= SWEEP_EVERY) scanSweep();
+	else scanPlan();
+}
+function scanPlan() {
+	SCT.cancel(SC.autoT);
+	SC.autoT = 0;
+	if (!SC.hs.length || document.hidden || SC.paused || !SC.opened || SC.sweeping || SC.state !== 'idle') return;
+	const every = SC.hs.some((h) => h.kind === 'lonely') ? MOVE_EVERY : SWEEP_EVERY;
+	const at = SC.queued ? SC.lastEnd + SWEEP_GAP : Math.max(SC.lastStart + every, SC.lastEnd + SWEEP_GAP);
+	SC.autoT = SCT.later(SC.queued ? scanSweep : scanAuto, Math.max(0, at - now()));
+}
+function scanAuto() {
+	SC.autoT = 0;
+	if (SC.hs.every((h) => h.kind === 'list') && now() - SC.touched >= SCAN_IDLE) { SC.paused = true; scanNote(); return; }
+	scanSweep();
+}
+function scanSweep() {
+	const p = SC.peer;
+	if (!p || !SC.opened || SC.state === 'reconnecting' || SC.state === 'error' || !SC.hs.length) return;
+	if (SC.sweeping) { SC.again = true; return; }
+	const wait = SC.lastEnd ? SC.lastEnd + SWEEP_GAP - now() : 0;
+	if (wait > 0) { SC.queued = true; scanPlan(); return; }
+	SCT.cancel(SC.autoT);
+	Object.assign(SC, { queued: false, autoT: 0, sweeping: true, state: 'sweeping', at: now(), lastStart: now(), probes: [], keys: [], dings: 0 });
+	SC.no++;
+	for (let n = 0; n < PUB_SLOTS; n++) {
+		SC.probes[n] = 'wait';
+		if (!sig(p, PUB_PREFIX + n, { t: 'probe', v: PUB_V })) { SC.sweeping = false; SC.state = 'idle'; return; }
+	}
+	SC.probeT = SCT.later(scanEnd, PROBE_WAIT);
+	scanNote();
+}
+function scanMsg(p, m) {
+	const x = sigIn(m);
+	if (!x) return;
+	if (x.kind === 'lk' && x.lk.t === 'echo') { if (x.src === p.id && SC.can && x.lk.n === SC.can.n) { pubRelay = 'ok'; scanCheck(); } return; }
+	const n = slotOf(x.src);
+	if (n < 0) return;
+	if (x.kind !== 'lk') { if (SC.sweeping && SC.probes[n] === 'wait') { SC.probes[n] = 'empty'; scanCheck(); } return; }
+	if (x.lk.t !== 'room' || !SC.no || now() - SC.at > LATE_OK) return;
+	const r = readRoom(x.lk, n);
+	if (!r || (SC.keys[n] && SC.keys[n] !== r.key)) return;
+	pubRelay = 'ok';
+	r.sweep = SC.no;
+	SC.keys[n] = r.key;
+	if (SC.sweeping) SC.probes[n] = 'room';
+	const old = SC.recs.get(r.key);
+	if (old) Object.assign(old, r);
+	else {
+		SC.recs.set(r.key, r);
+		if (!wasKicked(r.key) && SC.hs.some((h) => h.kind === 'list') && SC.dings < 4 && now() - SC.dingAt >= 150) {
+			SC.dings++;
+			SC.dingAt = now();
+			tri(1320, 0.035, 0.04);
+		}
+	}
+	scanCheck();
+	scanNote();
+}
+function scanCheck() { if (SC.sweeping && SC.probes.indexOf('wait') < 0 && (pubRelay || !PUB_ECHO)) scanEnd(); }
+function scanEnd() {
+	if (!SC.sweeping) return;
+	SCT.cancel(SC.probeT);
+	SC.sweeping = false;
+	SC.tries = 0;
+	const pr = SC.probes, ks = SC.keys;
+	SC.recs.forEach((r, k) => {
+		if (pr[r.slot] === 'empty' || (pr[r.slot] === 'room' && ks[r.slot] !== k)) SC.recs.delete(k);
+		else if (r.sweep < SC.no) { if (r.stale) SC.recs.delete(k); else r.stale = true; }
+	});
+	SC.lastEnd = SC.emptyAt = now();
+	SC.doneStart = SC.at;
+	SC.emptySlots = [];
+	pr.forEach((s, n) => { if (s === 'empty') SC.emptySlots.push(n); });
+	SC.state = 'idle';
+	if (SC.again) { SC.again = false; scanSweep(); } else scanPlan();
+	scanNote();
+}
 
-    // ----- both ends
-    function openFast(x) {   // negotiated: both ends create it with the same id, no extra signalling
-      try {
-        const ch = x.conn.peerConnection.createDataChannel('lowkey-fast', { negotiated: true, id: NET_FAST_ID, ordered: false, maxRetransmits: 0 });
-        ch.onopen = () => { if (x.state !== 'gone') tx(x.conn, '{"t":"fast"}'); };
-        ch.onmessage = (e) => {
-          let m = null;
-          if (x.state !== 'in' || c.phase !== 'session' || typeof e.data !== 'string' || e.data.length > NET_MAX) return;
-          try { m = JSON.parse(e.data); } catch (err) { return; }
-          x.seen = now();
-          emitMsg(m, c.role === 'host' ? x.index : 0);
-        };
-        x.fast = ch;
-      } catch (e) { x.fast = null; }   // no negotiated channels here: the reliable link carries everything
-    }
-    function tick() {   // every 2 s: guests ping, quiet links are dropped, the host refreshes the lobby
-      const t = now();
-      if (c.role === 'host') {
-        c.guests.slice().forEach((x) => { if (x.state === 'in' && t - x.seen > NET_LOST) dropGuest(x); });
-        if (c.phase === 'lobby') { pushLobby(); renderHost(); }
-      } else if (c.link && c.link.state === 'in') {
-        if (t - c.link.seen > NET_LOST) linkDown(c.link, true);
-        else tx(c.link.conn, '{"t":"ping","c":' + t + ',"r":' + c.ping + '}');
-      }
-    }
-    // Close links and the peer: right away, or a moment later when a goodbye was just sent.
-    function killLater(p, links) {
-      setTimeout(() => {
-        links.forEach((x) => {
-          try { if (x.fast) { x.fast.onopen = x.fast.onmessage = null; x.fast.close(); } } catch (e) { /* gone */ }
-          try { x.conn.close(); x.conn.removeAllListeners(); } catch (e) { /* gone */ }
-        });
-        try { if (p) { p.destroy(); p.removeAllListeners(); } } catch (e) { /* gone */ }
-      }, links.length ? 250 : 0);
-    }
-    function dropNet(bye) {
-      const links = c.guests.concat(c.link ? [c.link] : []), p = c.peer;
-      c.gen++;
-      clearInterval(c.tick);
-      c.timers.forEach((id) => clearTimeout(id));
-      Object.assign(c, { tick: 0, timers: [], guests: [], link: null, byIndex: [], peer: null });
-      links.forEach((x) => {
-        if (bye && x.state !== 'gone') tx(x.conn, '{"t":"bye"}');
-        x.state = 'gone';
-      });
-      if (p || links.length) killLater(p, links);
-    }
-    function finish(refocus) {
-      dropNet(true);
-      c.phase = 'dead';
-      if (net === self) net = null;
-      closeOverlay(refocus);
-    }
-    function quit() {   // cancelled, or a failure was dismissed: resolve null
-      if (c.phase !== 'lobby') return;
-      finish(true);
-      const r = resolve;
-      resolve = null;
-      if (r) r(null);
-    }
-    function teardown(alive) {   // the hub is unmounting the game, or restarting it (alive)
-      if (c.phase === 'session') end('closed');
-      else if (c.phase === 'lobby') {
-        finish(false);
-        const r = resolve;
-        resolve = null;
-        if (alive && r) r(null);   // a destroyed game is left pending, so a late null cannot wake it
-      }
-    }
+// ----- room rows and list views (shared by the in-game Browse screen and the panel)
+function thumbOf(id) {
+	const cv = mk('canvas', 'pub-thumb'), g = byId.get(id), card = cards.get(id), dpr = Math.min(window.devicePixelRatio || 1, 2);
+	cv.setAttribute('aria-hidden', 'true');
+	cv.width = Math.round(96 * dpr);
+	cv.height = Math.round(60 * dpr);
+	try {
+		const ctx = cv.getContext('2d');
+		if (card && card.canvas.width) ctx.drawImage(card.canvas, 0, 0, cv.width, cv.height);
+		else if (g && typeof g.thumb === 'function') { ctx.save(); ctx.scale(0.2 * dpr, 0.2 * dpr); g.thumb(ctx, 480, 300); ctx.restore(); }
+	} catch (e) {}
+	return cv;
+}
+function rowMake(r, full) {
+	const li = mk('li', 'pub-li'), b = mk('button', 'pub-row'), main = mk('span', 'pub-main'), right = mk('span', 'pub-right');
+	const x = { li, b, a: mk('span', 'pub-name'), s: mk('span', 'pub-sub'), pips: mk('span', 'pub-pips'), n: mk('span', full ? 'pub-n' : 'net-badge pub-n'), chip: mk('span', 'pub-chip'), pn: '' };
+	b.type = 'button';
+	b.setAttribute('data-k', r.key);
+	main.append(x.a, x.s);
+	if (full) right.append(x.pips, x.n, x.chip); else right.append(x.pips, x.chip);
+	b.append(full ? thumbOf(r.game) : x.n, main, right);
+	li.append(b);
+	return x;
+}
+function rowSet(x, r, full) {
+	const where = r.label + ' in ' + r.title, age = ageText(r);
+	setText(x.a, full ? r.title : r.label);
+	setText(x.s, full ? r.label + (r.mode ? ' · ' + r.mode : '') : r.stale ? 'checking...' : age);
+	setText(x.n, r.players + '/' + r.max);
+	setText(x.chip, r.stale ? 'checking...' : r.full ? 'Full' : 'Join');
+	x.chip.className = 'pub-chip' + (r.stale || r.full ? ' pub-off' : '');
+	const lab = r.stale ? where + ', checking' : r.full ? where + ' is full' : 'Join ' + where + (r.mode ? ', ' + r.mode : '') + ', ' + r.players + ' of ' + r.max + ' players, ' + age;
+	if (x.b.getAttribute('aria-label') !== lab) x.b.setAttribute('aria-label', lab);
+	x.b.disabled = r.full || r.stale;
+	x.b.classList.toggle('pub-stale', r.stale);
+	const pn = r.players + '/' + r.max;
+	if (x.pn !== pn) {
+		x.pn = pn;
+		const dots = [];
+		for (let i = 0; i < r.max; i++) dots.push(mk('i', i < r.players ? 'on' : null));
+		x.pips.replaceChildren.apply(x.pips, dots);
+	}
+}
+const NO_RTC = { state: 'error', err: 'unsupported', lastDone: 0, paused: false, sweeping: false, rooms: () => [], progress: () => 1, refresh() {}, retry() {}, touch() {}, detach() {} };
+function listUI(g, join, emptyNodes) {
+	const L = { h: null, map: new Map(), done: -1, errKey: '', ever: false };
+	const stat = mk('p', 'pub-stat'), live = mk('span'), ago = mk('span', 'pub-ago'), bar = mk('div', 'pub-bar');
+	live.setAttribute('role', 'status');
+	stat.append(live, ago);
+	L.refresh = mkBtn('Refresh', false, () => { if (L.h) { tri(900, 0.03, 0.05); L.h.refresh(); } }, 'btn pub-refresh');
+	bar.append(stat, L.refresh);
+	const prog = mk('div', 'pub-prog'), fill = mk('span'), list = mk('ul', 'pub-list');
+	prog.setAttribute('aria-hidden', 'true');
+	prog.append(fill);
+	list.setAttribute('aria-label', g ? 'Public rooms for ' + g.title : 'Public rooms');
+	const empty = mk('div', 'pub-empty');
+	empty.append.apply(empty, emptyNodes);
+	const err = mk('div', 'pub-err'), errP = mk('p', 'net-err'), again = mkBtn('Try again', true, () => { if (L.h) L.h.retry(); });
+	errP.setAttribute('role', 'alert');
+	err.append(errP, again);
+	err.hidden = true;
+	L.el = mk('div', 'pub-area');
+	L.el.append(bar, prog, list, empty, err);
+	['keydown', 'pointerdown', 'wheel'].forEach((t) => L.el.addEventListener(t, () => { if (L.h) L.h.touch(); }, { passive: true }));
+	list.addEventListener('click', (e) => {
+		const b = e.target && e.target.closest ? e.target.closest('.pub-row') : null, k = b && !b.disabled ? b.getAttribute('data-k') : null;
+		const r = k && L.h ? L.h.rooms().filter((y) => y.key === k)[0] : null;
+		if (r && !r.full && !r.stale) join(r);
+	});
+	L.el.addEventListener('keydown', (e) => {
+		const k = e.key, t = e.target;
+		if ((k === 'r' || k === 'R') && t.tagName !== 'INPUT' && !e.ctrlKey && !e.metaKey && !e.altKey && !bar.hidden) { e.preventDefault(); L.refresh.click(); return; }
+		if (!/^(ArrowDown|ArrowUp|Home|End)$/.test(k)) return;
+		const rs = Array.prototype.filter.call(list.querySelectorAll('button'), (b) => !b.disabled), i = rs.indexOf(t);
+		if (!rs.length || (i < 0 && k === 'ArrowUp')) return;
+		e.preventDefault();
+		const j = k === 'Home' ? 0 : k === 'End' ? rs.length - 1 : i < 0 ? 0 : i + (k === 'ArrowDown' ? 1 : -1);
+		if (j < 0) { focusNode(L.refresh); return; }
+		const n = rs[Math.min(j, rs.length - 1)];
+		focusNode(n);
+		reveal(n, list);
+	});
+	L.render = () => {
+		const h = L.h;
+		if (!h) return;
+		const ek = h.state === 'error' ? h.err : '';
+		if (ek !== L.errKey) {
+			L.errKey = ek;
+			const had = L.el.contains(document.activeElement);
+			if (ek) errP.replaceChildren.apply(errP, msgNodes(NET_MSG[ek === 'dead' ? 'pubDead' : ek] || NET_MSG.network));
+			err.hidden = !ek;
+			again.hidden = ek === 'unsupported';
+			bar.hidden = list.hidden = prog.hidden = !!ek;
+			if (had) focusNode(ek ? again : L.refresh);
+		}
+		if (ek) { empty.hidden = true; return; }
+		if (h.state === 'idle' || h.state === 'sweeping') L.ever = true;
+		const rs = rankRooms(h.rooms().filter((r) => !g || r.game === g.id), !g), resort = h.lastDone !== L.done || !L.map.size;
+		const a = document.activeElement, fk = a && list.contains(a) ? a.getAttribute('data-k') : null;
+		const fi = fk ? Array.from(L.map.keys()).indexOf(fk) : -1, next = new Map();
+		let added = 0;
+		rs.forEach((r) => {
+			let x = L.map.get(r.key);
+			if (!x) {
+				x = rowMake(r, !g);
+				if (added < 10) x.li.style.animationDelay = (added * ROW_STAGGER) + 'ms';
+				added++;
+			}
+			rowSet(x, r, !g);
+			next.set(r.key, x);
+		});
+		if (resort) {
+			L.done = h.lastDone;
+			L.map.forEach((x, k) => { if (!next.has(k)) x.li.remove(); });
+			const order = Array.from(next.keys()), cur = Array.from(L.map.keys()).filter((k) => next.has(k));
+			if (cur.join(' ') !== order.join(' ')) next.forEach((x, k) => { if (L.map.has(k)) x.li.style.animation = 'none'; list.appendChild(x.li); });
+			L.map = next;
+			if (fk && !L.map.has(fk)) {
+				const rows = Array.prototype.filter.call(list.querySelectorAll('button'), (b) => !b.disabled);
+				focusNode(rows[Math.min(fi, rows.length - 1)] || L.refresh);
+			} else if (fk && document.activeElement !== L.map.get(fk).b) focusNode(L.map.get(fk).b);
+		} else next.forEach((x, k) => { if (!L.map.has(k)) { L.map.set(k, x); list.appendChild(x.li); } });
+		const fx = fk && L.map.get(fk);
+		if (fx && fx.b.disabled) {
+			const all = Array.from(list.querySelectorAll('button'));
+			focusNode(all.slice(all.indexOf(fx.b)).filter((b) => !b.disabled)[0] || all.filter((b) => !b.disabled).pop() || L.refresh);
+		}
+		empty.hidden = !(h.lastDone && !rs.length);
+		const st = h.state === 'loading' || h.state === 'opening' ? ['Connecting...', ''] : h.state === 'reconnecting' ? ['Reconnecting...', '']
+			: h.paused ? ['Auto-refresh paused. Press Refresh to look again.', ''] : !h.lastDone ? [rs.length ? 'Searching... ' + rs.length + ' found' : 'Searching for rooms...', '']
+				: [(rs.length ? rs.length + (rs.length > 1 ? ' rooms' : ' room') + ' waiting' : 'No rooms waiting'), ' · updated ' + agoText(h.lastDone)];
+		setText(live, st[0]);
+		setText(ago, st[1]);
+		fill.style.width = Math.round(h.progress() * 100) + '%';
+		prog.classList.toggle('on', !!h.sweeping);
+	};
+	L.loop = (T) => { const step = () => { L.render(); T.later(step, 1000); }; T.later(step, 1000); };
+	return L;
+}
+function agoText(t) { const s = (now() - t) / 1000; return s < 5 ? 'just now' : s < 60 ? Math.floor(s) + ' s ago' : Math.floor(s / 60) + ' min ago'; }
 
-    // ----- session
-    function begin(role, me) {
-      c.phase = 'session';
-      screen = '';
-      c.L = { message: [], leave: [], close: [] };
-      const s = c.session = {
-        role,
-        me,
-        players: c.players,
-        ping: role === 'host' ? 0 : c.ping,
-        hostTime: () => (role === 'host' ? now() : now() + c.offset),
-        send: (msg, opts) => {
-          const x = role === 'host' ? (opts ? c.byIndex[opts.to] : null) : c.link;
-          const str = c.phase === 'session' && x && x.state === 'in' ? enc(msg) : null;
-          return str !== null && put(x, str, !!(opts && opts.fast));
-        },
-        broadcast: (msg, opts) => bcast(msg, !!(opts && opts.fast), opts ? opts.except : -1),
-        relay: (msg, from, opts) => bcast(msg, !!(opts && opts.fast), from),   // host: pass a guest's message on to the others
-        on: (type, fn) => {
-          const a = c.L && c.L[type];
-          if (a && typeof fn === 'function' && a.indexOf(fn) < 0) {
-            c.L[type] = a.concat([fn]);   // copy on write, so emitting never allocates
-            if (type === 'message' && c.queue.length && !c.flushT) c.flushT = setTimeout(flush, 0);
-          }
-          return s;
-        },
-        off: (type, fn) => {
-          const a = c.L && c.L[type];
-          if (a && a.indexOf(fn) >= 0) c.L[type] = a.filter((f) => f !== fn);
-          return s;
-        },
-        close: () => { end('closed'); },
-      };
-      closeOverlay(true);
-      tone(660, 0.08, { type: 'triangle', vol: 0.14 });
-      tone(990, 0.1, { type: 'triangle', vol: 0.14, delay: 0.08 });
-      const r = resolve;
-      resolve = null;
-      if (r) r(s);
-    }
-    function enc(msg) {
-      let str = null;
-      try { str = JSON.stringify(msg); } catch (e) { /* cyclic */ }
-      if (typeof str === 'string' && str.length <= NET_MAX) return str;
-      if (!c.warned) { c.warned = true; console.warn('[Recess] online message dropped: not JSON or over 16 KB'); }
-      return null;
-    }
-    function put(x, str, fast) {
-      const ch = x.fast;
-      if (!fast || !x.fastOk || !ch || ch.readyState !== 'open') return tx(x.conn, '{"t":"m","d":' + str + '}');
-      try { if (ch.bufferedAmount < 65536) ch.send(str); } catch (e) { /* lost, like any fast message */ }
-      return true;
-    }
-    function bcast(msg, fast, except) {
-      const str = c.phase === 'session' && c.role === 'host' ? enc(msg) : null;
-      if (str === null) return false;
-      for (let i = 1; i < c.byIndex.length; i++) {
-        const x = c.byIndex[i];
-        if (x && x.state === 'in' && (Array.isArray(except) ? except.indexOf(i) < 0 : i !== except)) put(x, str, fast);
-      }
-      return true;
-    }
-    // Messages that arrive before the game listens are held, in order, until it does.
-    function emitMsg(msg, from) {
-      if (c.phase !== 'session' || !msg || typeof msg !== 'object') return;
-      if (c.L.message.length && !c.queue.length) { emit('message', msg, from); return; }
-      if (c.queue.length < 400) c.queue.push(msg, from);
-      if (c.L.message.length && !c.flushT) c.flushT = setTimeout(flush, 0);
-    }
-    function flush() {
-      const q = c.queue;
-      c.flushT = 0;
-      c.queue = [];
-      for (let i = 0; i < q.length && c.phase === 'session'; i += 2) {
-        if (!c.L.message.length) { c.queue = q.slice(i).concat(c.queue); return; }
-        emit('message', q[i], q[i + 1]);
-      }
-    }
-    function emit(type, a1, a2) {
-      const a = c.L[type];
-      for (let i = 0; i < a.length && c.phase === 'session'; i++) {
-        try { a[i](a1, a2); } catch (err) { console.error('[Recess] online ' + type + ' handler failed', err); }
-      }
-    }
-    function end(reason) {   // 'close' fires exactly once
-      if (c.phase !== 'session') return;
-      const a = c.L.close;
-      clearTimeout(c.flushT);
-      finish(false);
-      c.queue = [];
-      c.L = null;
-      a.forEach((fn) => { try { fn(reason); } catch (err) { console.error('[Recess] online close handler failed', err); } });
-    }
-  }
+// ----- the site panel "Public rooms" (library only)
+let pnl = null;
+const PT = tasks();
+const pubBtn = $('pub-btn');
+let nickSeq = 0;
+function pubBtnSync() {
+	if (!pubBtn) return;
+	pubBtn.hidden = !PUB_ON || !!current || !games.some(isOnline);
+	const nw = $('pub-new');
+	if (nw) nw.hidden = store.get('lowkey:net:pubnew') === '1';
+}
+function nickField(code, save) {
+	const id = 'net-nick' + (++nickSeq), lab = mk('div', 'net-label'), hint = mk('span', 'net-hint'), field = mk('div', 'net-field');
+	const inp = Object.assign(mk('input', 'net-input'), { type: 'text', maxLength: 10, value: netNick, autocomplete: 'off', spellcheck: false });
+	inp.setAttribute('autocapitalize', 'words');
+	inp.setAttribute('aria-labelledby', id);
+	lab.id = id;
+	lab.append(mk('span', null, 'Nickname'), mk('span', 'net-opt', 'optional'));
+	hint.setAttribute('role', 'status');
+	const sync = () => setText(hint, code ? NET_TXT.nickHintCode : nickOk(inp.value) ? NET_TXT.nickHint : NET_MSG.nickPublic);
+	inp.addEventListener('input', () => {
+		const v = cleanNick(inp.value, true);
+		if (v !== inp.value) inp.value = v;
+		netNick = v;
+		if (save) store.set('lowkey:net:name', cleanNick(v, false));
+		sync();
+	});
+	sync();
+	field.append(lab, inp, hint);
+	return field;
+}
+function openPanel() {
+	if (pnl || pubBtn.hidden) return;
+	store.set('lowkey:net:pubnew', '1');
+	pubBtnSync();
+	const ov = mk('div', 'net-ov net-fixed pub-ov'), box = mk('div', 'net-panel pub-panel'), head = mk('div', 'net-head'), ht = mk('div', 'net-head-text');
+	const kick = mk('span', 'net-kicker pub-kick'), title = mk('h2', 'net-title', 'Public rooms');
+	ov.setAttribute('role', 'dialog');
+	ov.setAttribute('aria-modal', 'true');
+	ov.setAttribute('aria-labelledby', 'pub-title');
+	title.id = 'pub-title';
+	kick.append(mk('span', 'net-dot pub-live'), 'Lowkey Arcade · Online');
+	const x = mkBtn('×', false, () => closePanel(true), 'net-x');
+	x.setAttribute('aria-label', 'Close public rooms');
+	ht.append(kick, title);
+	head.append(ht, x);
+	const showGames = mkBtn('Show online games', false, () => {
+		closePanel(false);
+		genre = 'All';
+		chips.querySelectorAll('.chip').forEach((c) => c.setAttribute('aria-pressed', String(c.textContent === 'All')));
+		search.value = 'online';
+		applyFilter();
+		focusNode(search);
+	});
+	const L = listUI(null, (r) => panelJoin(r), [mk('strong', null, 'No public rooms right now'),
+		mk('p', null, 'When someone hosts a public room in an online game, it shows up here. To host one, open an online game, choose its online menu, then Host a room and pick Public.'), showGames]);
+	const off = mk('div', 'pub-offbox'), on = mkBtn('Turn on', true, () => setDev(true));
+	off.append(mk('p', 'net-msg', 'Public rooms are turned off on this device. Room codes still work.'), on);
+	const sw = mkBtn('', false, () => setDev(devHide()), 'pub-switch');
+	sw.setAttribute('role', 'switch');
+	sw.append(mk('span', 'pub-knob'), mk('span', null, 'Public rooms on this device'));
+	const foot = mk('div', 'pub-foot'), T = tasks();
+	foot.append(sw, mkBtn('Close', false, () => closePanel(true)));
+	box.append(head, mk('p', 'net-sub', 'Rooms waiting for players right now, across every online game.'), nickField(false, true), L.el, off, mk('p', 'net-note', NET_TXT.notePanel), foot);
+	ov.append(box);
+	document.body.appendChild(ov);
+	const app = player.parentNode;
+	app.inert = true;
+	app.setAttribute('aria-hidden', 'true');
+	document.documentElement.style.overflow = 'hidden';
+	let down = null;
+	pnl = { ov, T, L, off, on, sw, x, h: null };
+	T.on(window, 'keydown', (e) => {
+		if (e.key === 'Escape' || e.key === 'Esc') { e.preventDefault(); closePanel(true); }
+		else if (e.key === 'Tab') trap(e, ov);
+	});
+	['pointerdown', 'wheel'].forEach((t) => T.on(ov, t, (e) => { down = e.target; if (pnl && pnl.h) pnl.h.touch(); }, { passive: true }));
+	T.on(ov, 'click', (e) => { if (e.target === ov && (!down || down === ov)) closePanel(true); down = null; });
+	panelSync();
+	L.loop(T);
+	tone(520, 0.06, { type: 'sine', vol: 0.06 });
+	tone(780, 0.06, { type: 'sine', vol: 0.05, delay: 0.05 });
+	pfocus(devHide() ? on : L.refresh);
+}
+function pfocus(n) {
+	focusNode(n);
+	const a = document.activeElement;
+	if (pnl && !(pnl.ov.contains(a) && a.offsetParent)) focusNode(pnl.x);
+}
+function panelSync() {
+	const p = pnl;
+	if (!p) return;
+	const hide = devHide();
+	p.sw.setAttribute('aria-checked', String(!hide));
+	p.sw.classList.toggle('on', !hide);
+	p.off.hidden = !hide;
+	p.L.el.hidden = hide;
+	if (hide) { if (p.h) p.h.detach(); p.h = p.L.h = null; return; }
+	if (!p.h) p.h = p.L.h = netSupported ? scanAttach(() => p.L.render(), 'list') : NO_RTC;
+	p.L.render();
+}
+function setDev(on) {
+	if (on) store.del('lowkey:net:pubhide'); else store.set('lowkey:net:pubhide', '1');
+	tri(700, 0.03, 0.06);
+	const was = pnl && pnl.h;
+	panelSync();
+	if (pnl && pnl.h && !was) { pnl.h.refresh(); pfocus(pnl.L.refresh); }
+	else if (pnl && !pnl.h) pfocus(pnl.on);
+}
+function closePanel(refocus, instant) {
+	const p = pnl;
+	if (!p) return;
+	pnl = null;
+	if (p.h && p.h.detach) p.h.detach();
+	p.T.clear();
+	const app = player.parentNode;
+	app.inert = false;
+	app.removeAttribute('aria-hidden');
+	document.documentElement.style.overflow = '';
+	const gone = () => { if (p.ov.parentNode) p.ov.parentNode.removeChild(p.ov); };
+	if (instant || calm()) gone();
+	else { p.ov.classList.add('pub-out'); PT.later(gone, 140); }
+	tone(440, 0.05, { type: 'sine', vol: 0.05 });
+	if (refocus) focusNode(pubBtn);
+}
+function panelJoin(r) {
+	if (!pnl) return;
+	pending = { game: r.game, code: r.code, host: r.host, at: now() };
+	closePanel(false);
+	openGame(r.game);
+	showBanner();
+}
+if (pubBtn) pubBtn.addEventListener('click', openPanel);
+pubBtnSync();
 
-  // ---------- Boot ----------
-  function start(data) {
-    drawThumbs();
-    applyFilter();
-    const fromHash = decodeURIComponent((location.hash || '').slice(1));
-    const id = (data && data.game && byId.has(data.game)) ? data.game : fromHash;
-    if (byId.has(id)) openGame(id);
-  }
+// ----- pending join from the panel, and the game-page banner that explains it
+let pending = null;
+const BT = tasks();
+function clearPending() { pending = null; hideBanner(); }
+function takePending(g) {
+	const pj = pending;
+	clearPending();
+	return pj && pj.game === g.id && netSupported && !pubOff(g) ? pj : null;
+}
+function bannerText(stale) {
+	const g = byId.get(pending.game), e = entry(g), room = own(pending.host || 'Player 1') + ' room', b = (s) => mk('strong', null, s), el = $('pub-banner-text');
+	el.replaceChildren.apply(el, stale
+		? [b(room), ' may have started by now. In ' + g.title + ', ' + e.pre, b(e.bold), e.post + ' to try it or find another room.']
+		: ['In ' + g.title + ', ' + e.pre, b(e.bold), e.menu + ". You'll go straight into ", b(room), ' (code ', b(pending.code), ').']);
+}
+function showBanner() {
+	const el = $('pub-banner'), pj = pending;
+	if (!el || !pj || !current || current.id !== pj.game) return;
+	BT.clear();
+	bannerText(false);
+	el.classList.remove('pub-out');
+	el.hidden = false;
+	tone(660, 0.05, { type: 'sine', vol: 0.06 });
+	BT.later(() => { if (pending === pj) bannerText(true); }, Math.max(0, PENDING_STALE - (now() - pj.at)));
+}
+function hideBanner() {
+	const el = $('pub-banner');
+	BT.clear();
+	if (!el || el.hidden) return;
+	if (calm()) { el.hidden = true; return; }
+	el.classList.add('pub-out');
+	BT.later(() => { el.hidden = true; el.classList.remove('pub-out'); }, 160);
+}
+if ($('pub-banner-x')) $('pub-banner-x').addEventListener('click', () => { clearPending(); focusGame(); });
 
-  const hot = window.claude && window.claude.hot;
-  if (hot && typeof hot.snapshot === 'function') {
-    try { hot.snapshot(() => ({ game: current ? current.id : null })); } catch (e) { /* optional */ }
-  }
-  if (hot && typeof hot.ready === 'function') hot.ready(start);
-  else start((hot && hot.data) || {});
+function openNet(g, seq, opts) {
+	return new Promise((resolve) => {
+		if (net || seq !== mountSeq || current !== g) { resolve(null); return; }
+		try { net = netLobby(g, opts && typeof opts === 'object' ? opts : {}, resolve); }
+		catch (err) { console.error('[Recess] online lobby failed', err); net = null; resolve(null); }
+	});
+}
+
+function netLobby(g, o, resolve) {
+	const max = netMax(o.maxPlayers || (isOnline(g) ? g.online.maxPlayers : 2));
+	const mode = cleanLabel(o.modeLabel);
+	const self = { teardown, focus: () => !!ov.parentNode && (focusFirst(), true) };
+	const c = {
+		phase: 'lobby',
+		gen: 0,
+		role: '', code: '', nick: '', peer: null, tick: 0, timers: [],
+		guests: [], seq: 0, byIndex: [], link: null, list: [], hostMode: '', hostMax: max,
+		ping: 0, offset: 0, bestRtt: 1e9, samples: 0,
+		players: [], session: null, L: null, queue: [], flushT: 0, warned: false,
+		pub: false, everPub: false, how: '', opened: 0, bans: {}, away: false, stay: false, lonely: null, move: null,
+		scan: null, origin: '', pubHost: '', hostAway: false, quick: null,
+	};
+	const T = tasks();
+	let screen = '', ui = {}, B = null, hidT = 0, wdT = 0;
+
+	// ----- overlay. Keys never reach the game: the overlay stops them after its controls saw them, and a
+	const ov = mk('div', 'net-ov');
+	ov.setAttribute('role', 'dialog');
+	ov.setAttribute('aria-modal', 'true');
+	ov.setAttribute('aria-labelledby', 'net-title');
+	const panel = mk('div', 'net-panel'), head = mk('div', 'net-head'), headText = mk('div', 'net-head-text');
+	const title = mk('h2', 'net-title');
+	title.id = 'net-title';
+	headText.append(mk('span', 'net-kicker', g.title + (mode ? ' · ' + mode : '') + ' · ' + (max > 2 ? '2–' + max + ' players' : '2 players')), title);
+	const xBtn = mkBtn('×', false, () => quit(), 'net-x');
+	xBtn.setAttribute('aria-label', 'Close online play');
+	const body = mk('div', 'net-body');
+	head.append(headText, xBtn);
+	panel.append(head, body);
+	ov.append(panel);
+	ov.addEventListener('keydown', onOvKey);
+	ov.addEventListener('focus', (e) => reveal(e.target, ov), true);
+	['keyup', 'keypress'].concat(NET_PTRS).forEach((t) => ov.addEventListener(t, stopEv, { passive: true }));
+	const born = now();
+	['mousedown', 'click'].forEach((t) => ov.addEventListener(t, (e) => {
+		if (now() - born < 600 && (t === 'mousedown' || e.detail > 0)) { e.preventDefault(); e.stopPropagation(); }
+	}, true));
+	let armed = false;
+	NET_KEYS.forEach((t) => window.addEventListener(t, onWinKey, true));
+	window.addEventListener('resize', fit);
+	stage.appendChild(ov);
+	fit();
+	try { if (document.pointerLockElement) document.exitPointerLock(); } catch (e) {}
+	const pj = takePending(g);
+	if (!netSupported) fail(NET_MSG.unsupported, 'Online play');
+	else if (pj) joinRoom(pj.code, 'pending', pj.host);
+	else showChoose();
+	later(() => { if (ov.parentNode && !ov.contains(document.activeElement)) focusFirst(); }, 0);
+	return self;
+
+	function stopEv(e) { e.stopPropagation(); }
+	function onOvKey(e) {
+		e.stopPropagation();
+		if (e.key === 'Escape' || e.key === 'Esc') { e.preventDefault(); back(); return; }
+		if (e.key === 'Tab') trap(e, ov);
+	}
+	function onWinKey(e) {
+		const t = e.target;
+		if (e.type === 'keydown' && !e.repeat) armed = true;
+		else if (!armed) { e.preventDefault(); e.stopPropagation(); return; }
+		else if (e.repeat && e.key === 'Enter') e.preventDefault();
+		if (t && t.nodeType === 1 && ov.contains(t)) return;
+		e.stopPropagation();
+		if (e.type !== 'keydown') return;
+		if (e.key === 'Escape' || e.key === 'Esc') { e.preventDefault(); back(); }
+		else if (e.key === 'Tab' && (!t || t.nodeType !== 1 || t === document.body || stage.contains(t))) { e.preventDefault(); focusFirst(); }
+	}
+	function focusEl(n) { focusNode(n); }
+	function focusFirst() { focusEl(ui.focus && !ui.focus.disabled ? ui.focus : ui.alt || xBtn); }
+	function fit() { ov.classList.toggle('net-fixed', stage.clientWidth < 520 || stage.clientHeight < 380); }
+	function show(name, heading, nodes, focus, alt) {
+		T.clear();
+		screen = name;
+		title.textContent = heading;
+		body.replaceChildren.apply(body, nodes);
+		body.classList.remove('net-step');
+		void body.offsetWidth;
+		body.classList.add('net-step');
+		ui = { focus: focus || null, alt: alt || null };
+		focusFirst();
+	}
+	function closeOverlay(refocus) {
+		NET_KEYS.forEach((t) => window.removeEventListener(t, onWinKey, true));
+		window.removeEventListener('resize', fit);
+		const had = ov.contains(document.activeElement);
+		if (ov.parentNode) ov.parentNode.removeChild(ov);
+		const a = document.activeElement;
+		if (refocus && (had || !a || a === document.body)) focusGame();
+	}
+	function later(fn, ms) { c.timers.push(setTimeout(fn, ms)); }
+	function status(text) { const p = mk('p', 'net-sub', text); p.setAttribute('role', 'status'); return p; }
+	function label(text, extra) { const l = mk('div', 'net-label'); l.append(mk('span', null, text)); if (extra) l.append(extra); return l; }
+	function row() { const r = mk('div', 'net-actions'); r.append.apply(r, arguments); return r; }
+	function busyRow(text) { const r = mk('div', 'net-busy'); r.s = status(text); r.append(mk('span', 'net-spin'), r.s); return r; }
+	function prog() { const p = mk('div', 'pub-prog'); p.f = mk('span'); p.append(p.f); p.setAttribute('aria-hidden', 'true'); return p; }
+
+	// ----- screens. Esc, Cancel, Leave and Back step back one screen; X, OK and Esc on the first one close.
+	function back() {
+		if (c.phase !== 'lobby') return;
+		if (screen === 'choose' || screen === 'error') { quit(); return; }
+		const to = screen === 'busy' && c.role === 'guest' ? c.origin : '';
+		dropNet(true);
+		if (to === 'code') showJoin(c.code, ''); else if (to === 'browse') showBrowse(); else showChoose();
+	}
+	function showChoose() {
+		c.role = c.origin = '';
+		c.quick = null;
+		const off = pubOff(g), host = choice('Host a room', off ? 'Get a code to share' : 'Private with a code, or public', off, () => hostRoom(false));
+		const join = choice('Join with a code', "Type a friend's code", false, () => showJoin('', ''));
+		const first = off ? host : choice('Quick join', 'Jump into an open public room', true, showQuick);
+		const choices = mk('div', 'net-choices');
+		choices.append.apply(choices, off ? [host, join] : [first, choice('Browse rooms', 'See public rooms waiting now', false, showBrowse), host, join]);
+		const note = off ? NET_TXT.noteCode + (PUB_ON && PUB_HOLD.indexOf(g.id) < 0 && devHide() ? ' ' + NET_TXT.noteOffDevice : '') : NET_TXT.notePublic;
+		show('choose', 'Play online', [nickField(off, false), choices, mk('p', 'net-note', note)], first);
+	}
+	function choice(main, sub, primary, fn) {
+		const b = mkBtn('', false, () => fn(), 'net-choice' + (primary ? ' net-primary' : ''));
+		b.append(mk('strong', null, main), mk('span', null, sub));
+		return b;
+	}
+	function showBusy(heading, text) {
+		const cancel = mkBtn('Cancel', false, back);
+		show('busy', heading, [busyRow(text), row(cancel)], cancel);
+	}
+	function fail(msg, heading) {
+		if (c.phase !== 'lobby') return;
+		dropNet(true);
+		const p = mk('p', 'net-msg'), ok = mkBtn('OK', true, quit);
+		p.setAttribute('role', 'alert');
+		p.append.apply(p, msgNodes(msg));
+		show('error', heading || "Can't connect", [p, row(ok)], ok);
+	}
+	function saveNick() {
+		netNick = c.nick = cleanNick(netNick, false);
+		store.set('lowkey:net:name', netNick);
+	}
+	function scanOff() { if (c.scan) { c.scan.detach(); c.scan = null; } }
+	function setPing(el, ms) {
+		el.className = 'net-ping' + (ms > 160 ? ' net-bad' : ms > 80 ? ' net-mid' : '');
+		el.textContent = ms > 0 ? ms + ' ms' : '—';
+		return el;
+	}
+	function fillList(list, me, cap, hostView) {
+		const sig = me + '|' + list.map((p) => p.index + ' ' + p.name).join('|');
+		ui.count.textContent = list.length + ' / ' + cap;
+		if (sig === ui.sig) {
+			const els = ui.list.querySelectorAll('.net-ping');
+			list.filter((p) => p.index).forEach((p, i) => { if (els[i]) setPing(els[i], p.index === me ? c.ping : p.ping); });
+			return;
+		}
+		ui.sig = sig;
+		const a = document.activeElement;
+		const keep = a && ui.list.contains(a) ? a.getAttribute('data-k') : null;
+		const out = list.map((p) => {
+			const li = mk('li', 'net-p'), ms = p.index === me ? c.ping : p.ping;
+			li.append(mk('span', 'net-badge', 'P' + (p.index + 1)), mk('span', 'net-name', p.name));
+			if (!p.index) li.append(mk('span', 'net-tag', 'host'));
+			if (p.index === me) li.append(mk('span', 'net-tag net-you', 'you'));
+			if (p.index) li.append(setPing(mk('span'), ms));
+			if (hostView && p.index) {
+				const k = mkBtn('Remove', false, () => kickGuest(p.index), 'net-kick'), x = inGuests().filter((y) => y.index === p.index)[0];
+				k.setAttribute('data-k', 'k' + (x ? x.seq : 0));
+				k.setAttribute('aria-label', 'Remove ' + p.name);
+				li.append(k);
+			}
+			return li;
+		});
+		ui.list.replaceChildren.apply(ui.list, out);
+		if (keep) focusEl(ui.list.querySelector('[data-k="' + keep + '"]') || ui.alt);
+	}
+
+	// ----- public lists: Browse, Quick join and their endings
+	function showBrowse() {
+		saveNick();
+		c.role = c.origin = '';
+		const L = listUI(g, (r) => joinRoom(r.code, 'browse', r.host), [mk('strong', null, 'No public ' + g.title + ' rooms right now.'), mk('p', null, NET_TXT.hostSub)]);
+		show('browse', 'Public rooms', [L.el, row(mkBtn('Back', false, back), mkBtn('Host a public room', false, () => hostRoom(true)))], L.refresh);
+		c.scan = L.h = scanAttach((h) => {
+			if (screen !== 'browse') return;
+			if (h.state === 'error' && !L.ever && h.err !== 'dead') fail(NET_MSG[h.err] || NET_MSG.network);
+			else L.render();
+		}, 'list');
+		L.render();
+		L.loop(T);
+	}
+	function showQuick() {
+		saveNick();
+		c.role = c.origin = '';
+		const busy = busyRow('Looking for an open ' + g.title + ' room...'), bar = prog(), hint = mk('p', 'net-sub', 'Still looking. You can host a public room instead.');
+		const hostB = mkBtn('Host a public room', false, () => hostRoom(true, 'quick')), cancel = mkBtn('Cancel', false, back), q = c.quick = { cands: [], tried: {}, tries: 0, t0: now(), gather: 0 };
+		hint.hidden = hostB.hidden = true;
+		show('quick', 'Quick join', [busy, bar, hint, hostB, row(cancel)], cancel);
+		c.scan = scanAttach((h) => {
+			if (screen !== 'quick' || c.quick !== q) return;
+			if (h.state === 'error') { if (h.err === 'dead') pubFail('dead'); else fail(NET_MSG[h.err] || NET_MSG.network); return; }
+			bar.f.style.width = Math.round(h.progress() * 100) + '%';
+			bar.classList.toggle('on', !!h.sweeping);
+			const warm = h.lastDone && now() - h.lastDone < 10000, ended = h.doneStart >= q.t0;
+			q.cands = rankRooms(h.rooms().filter((r) => r.game === g.id && !r.full && !r.stale && !q.tried[r.key] && (warm || r.seenAt >= q.t0)), false);
+			if (q.cands.length) { if (ended) pick(); else if (!q.gather) q.gather = T.later(pick, GATHER); }
+			else if (ended) showQuickNone();
+		}, 'quick');
+		c.scan.refresh();
+		T.later(() => { if (!q.cands.length) hint.hidden = hostB.hidden = false; }, QUICK_HINT);
+		function pick() {
+			const r = q.cands[0];
+			if (screen !== 'quick' || !r) return;
+			tri(740, 0.07, 0.1);
+			tri(988, 0.09, 0.1, 0.07);
+			joinRoom(r.code, 'quick', r.host);
+		}
+	}
+	function showQuickNone() {
+		scanOff();
+		const hostB = mkBtn('Host a public room', true, () => hostRoom(true, 'quick'));
+		show('quicknone', 'No open rooms', [mk('p', 'net-msg', NET_MSG.pubNone.replace('{game}', g.title)),
+			mk('p', 'net-sub', NET_TXT.hostSub + " You'll also join the next player who looks."), row(mkBtn('Back', false, back), hostB)], hostB);
+	}
+	function pubFail(kind) {
+		if (c.phase !== 'lobby') return;
+		dropNet(true);
+		const m = { full: ['Room filled up', 'pubFull'], started: ['Match already started', 'pubStarted'], gone: ['Room closed', 'pubGone'], noAnswer: ['No answer', 'pubNoAnswer'],
+			version: ['Different version', 'version'], kicked: ['Removed from the room', 'kicked'], tried: ['Rooms filled up', 'pubTried'], dead: ["Can't connect", 'pubDead'] }[kind];
+		const p = mk('p', 'net-msg', NET_MSG[m[1]].replace('{host}', own(c.pubHost || 'Player 1'))), quiet = kind === 'version' || kind === 'kicked', bk = mkBtn('Back', false, back);
+		const browse = mkBtn('Browse rooms', quiet, showBrowse);
+		const first = quiet ? browse : kind === 'tried' ? mkBtn('Host a public room', true, () => hostRoom(true, 'quick'))
+			: kind === 'dead' ? mkBtn('Try again', true, () => { pubRelay = ''; showQuick(); }) : mkBtn('Quick join', true, showQuick);
+		p.setAttribute('role', 'alert');
+		show('pubfail', m[0], [p, quiet ? row(bk, browse) : kind === 'dead' ? row(bk, first) : row(bk, browse, first)], first);
+		tri(330, 0.16, 0.1, 0, 220);
+	}
+	function joinFailed(kind) {
+		const key = g.id + ':' + c.code, q = c.quick;
+		if (kind === 'kicked') kicked[key] = now();
+		if (c.origin === 'code') { showJoin(c.code, NET_MSG[kind === 'gone' ? 'noRoom' : kind]); return; }
+		if (c.origin === 'quick' && q && /^(full|started|gone|noAnswer)$/.test(kind)) {
+			q.tried[key] = 1;
+			const r = ++q.tries < QUICK_TRIES ? q.cands.filter((y) => !q.tried[y.key] && !wasKicked(y.key) && now() - y.seenAt <= 20000)[0] : null;
+			if (r) { dropNet(true); joinRoom(r.code, 'quick', r.host, true); return; }
+			kind = 'tried';
+		}
+		pubFail(kind);
+	}
+
+	// ----- host
+	function hostRoom(pub, how) {
+		saveNick();
+		scanOff();
+		c.role = 'host';
+		c.pub = c.everPub = pub === true && !pubOff(g);
+		c.how = how || 'menu';
+		c.stay = c.away = false;
+		if (how !== 'renew') c.bans = {};
+		const gen = ++c.gen;
+		showBusy('Creating a room', 'Setting up your room...');
+		loadPeer().then((ok) => {
+			if (gen !== c.gen || c.phase !== 'lobby') return;
+			if (ok) hostTry(gen, 0); else fail(NET_MSG.network);
+		});
+	}
+	function newPeer(id) {
+		try {
+			const P = peerCtor(), p = new P(id, { debug: 0 });
+			if (typeof p.on !== 'function') throw new Error('not PeerJS');
+			return (c.peer = p);
+		} catch (e) { fail(NET_MSG.network); return null; }
+	}
+	function hostTry(gen, tries) {
+		let code = '', opened = false;
+		for (let i = 0; i < 5; i++) code += NET_CHARS.charAt(Math.floor(Math.random() * NET_CHARS.length));
+		const p = newPeer('lowkey-' + g.id + '-' + code);
+		if (!p) return;
+		const mine = () => gen === c.gen && c.peer === p;
+		later(() => { if (mine() && !opened) fail(NET_MSG.network); }, NET_WAIT);
+		p.on('open', () => {
+			if (!mine() || opened) return;
+			opened = true;
+			c.code = code;
+			c.opened = now();
+			c.tick = c.tick || setInterval(tick, NET_PING);
+			showHost();
+			if (c.pub) bClaim();
+		});
+		p.on('connection', (conn) => { if (mine() && opened) hostConn(conn); else { try { conn.close(); } catch (e) {} } });
+		p.on('error', (err) => {
+			const type = err && err.type;
+			if (!mine() || opened) return;
+			if (type === 'unavailable-id' && tries < 5) { c.gen++; c.peer = null; killLater(p, []); hostTry(c.gen, tries + 1); }
+			else fail(type === 'browser-incompatible' ? NET_MSG.unsupported : NET_MSG.network);
+		});
+		p.on('disconnected', () => {
+			if (mine() && opened && c.phase === 'lobby') later(() => { try { if (mine() && p.disconnected && !p.destroyed) p.reconnect(); } catch (e) {} }, 3000);
+		});
+	}
+	function showHost() {
+		const code = mk('div', 'net-code net-code-show'), count = mk('span', 'net-count'), list = mk('ul', 'net-list'), wait = status('');
+		code.setAttribute('role', 'img');
+		code.setAttribute('aria-label', 'Room code ' + c.code.split('').join(' '));
+		for (let i = 0; i < 5; i++) code.append(mk('span', 'net-cell', c.code.charAt(i)));
+		const start = mkBtn('Start', true, hostGo), cancel = mkBtn('Cancel', false, back), top = mk('div', 'net-coderow');
+		const visP = status(''), vis = mk('div', 'net-vis'), move = mk('div', 'net-move'), moveP = mk('p'), hint = mk('p', 'net-sub', NET_TXT.hostHint);
+		let radio = null;
+		top.append(code);
+		if (!pubOff(g)) {
+			radio = mk('div', 'net-radio');
+			radio.setAttribute('role', 'radiogroup');
+			radio.setAttribute('aria-label', 'Who can join');
+			[['Private', 'Code only'], ['Public', 'Listed for everyone']].forEach((x, i) => {
+				const b = mkBtn('', false, () => setPub(i === 1), 'net-seg');
+				b.setAttribute('role', 'radio');
+				b.append(mk('strong', null, x[0]), mk('span', null, x[1]));
+				radio.append(b);
+			});
+			radio.addEventListener('keydown', (e) => {
+				if (!/^Arrow(Left|Right|Up|Down)$/.test(e.key)) return;
+				e.preventDefault();
+				setPub(!c.pub);
+				focusEl(radio.children[c.pub ? 1 : 0]);
+			});
+			top.append(radio);
+		}
+		vis.append(mk('span', 'net-ind'), visP);
+		move.append(moveP, mkBtn('Stay here', false, () => { c.stay = true; lonelyStop(); renderHost(); focusEl(radio && radio.children[c.pub ? 1 : 0]); }));
+		move.hidden = hint.hidden = start.disabled = true;
+		show('host', 'Your room is open', [label('Room code'), top, vis, move, hint, label('Players', count), list, wait, row(cancel, start)], start, cancel);
+		Object.assign(ui, { count, list, wait, start, radio, vis, visP, move, moveP, hint, act: null, actK: '' });
+		T.on(document, 'visibilitychange', hostVis);
+		syncRadio();
+		renderHost();
+	}
+	function renderHost() {
+		if (screen !== 'host') return;
+		const ps = lobbyPlayers(), a = document.activeElement, was = ui.start.disabled;
+		ui.start.disabled = ps.length < 2;
+		ui.wait.textContent = ps.length < 2 ? 'Waiting for at least one more player...'
+			: ps.length < max ? 'Press Start when everyone is in.' : 'The room is full. Press Start.';
+		fillList(ps, 0, max, true);
+		if (was && !ui.start.disabled && (!a || a === document.body || a === ui.alt)) focusEl(ui.start);
+		else if (!was && ui.start.disabled && a === ui.start) focusEl(ui.alt);
+		lonelyCheck();
+		renderVis();
+	}
+	function renderVis() {
+		const st = B ? B.st : '', me = own(c.nick && nickOk(c.nick) ? c.nick : 'Player 1') + ' room', e = entry(g);
+		let t = 'Listing your room...', act = '', fn = null;
+		if (!c.pub) {
+			if (c.everPub) { t = 'Off the public list. People who saw it listed can still join with the code.'; act = 'New private room'; fn = renewRoom; }
+			else t = 'Only people with the code can join. Friends open ' + g.title + ', ' + e.pre + e.bold + e.post + ', then Join with a code.';
+		} else if (st === 'live') t = c.lonely ? 'Listed for everyone as ' + me + '. Still looking for other open rooms...' : 'Listed for everyone on Lowkey Arcade as ' + me + '. Anyone can join. If someone bothers you, remove them.';
+		else if (st === 'reconnecting') t = 'Lost the room list. Reconnecting...';
+		else if (st === 'paused-flood') t = 'Re-listing your room in a moment. Friends can still join with the code.';
+		else if (st === 'expired') { t = NET_MSG.pubExpired; act = 'List again'; fn = bClaim; }
+		else if (/^failed/.test(st)) { t = NET_MSG[st === 'failed-busy' ? 'pubBusy' : st === 'failed-net' ? 'pubNet' : 'pubDead']; act = 'Try again'; fn = () => { if (pubRelay === 'dead') pubRelay = ''; bClaim(); }; }
+		ui.vis.className = 'net-vis' + (st === 'live' && c.pub ? ' net-on' : c.pub && !act && st !== 'paused-flood' ? ' net-wait' : '');
+		setText(ui.visP, t);
+		if (act !== ui.actK) {
+			const had = ui.act && ui.act === document.activeElement;
+			if (ui.act) ui.vis.removeChild(ui.act);
+			ui.actK = act;
+			ui.act = act ? mkBtn(act, false, fn, 'btn net-act') : null;
+			if (ui.act) ui.vis.append(ui.act);
+			if (had) focusEl(ui.act || (ui.radio ? ui.radio.children[c.pub ? 1 : 0] : ui.alt));
+		}
+		ui.hint.hidden = !(c.everPub && c.nick && !nickOk(c.nick));
+	}
+	function syncRadio() {
+		if (!ui.radio) return;
+		Array.prototype.forEach.call(ui.radio.children, (b, i) => {
+			const on = (i === 1) === c.pub;
+			b.setAttribute('aria-checked', String(on));
+			b.tabIndex = on ? 0 : -1;
+		});
+		ui.radio.classList.toggle('net-r2', c.pub);
+	}
+	function setPub(v) {
+		if (c.role !== 'host' || c.phase !== 'lobby' || screen !== 'host' || v === c.pub) return;
+		c.pub = v;
+		bStop();
+		if (v) { c.everPub = true; B = bNew('waiting'); B.T.later(bClaim, SWITCH_SETTLE); }
+		tri(700, 0.03, 0.06);
+		pushLobby();
+		syncRadio();
+		renderHost();
+	}
+	function renewRoom() { const bans = c.bans; dropNet(true); hostRoom(false, 'renew'); c.bans = bans; }
+	function hostVis() {
+		if (c.role !== 'host' || c.phase !== 'lobby') return;
+		T.cancel(hidT);
+		T.cancel(wdT);
+		if (document.hidden) {
+			hidT = T.later(() => { c.away = true; pushLobby(); }, AWAY_AFTER);
+			wdT = T.later(() => { if (B && /^(waiting|claiming|checking|live|reconnecting|paused-flood)$/.test(B.st)) { bKill(); B.st = 'paused-hidden'; renderHost(); } }, HIDDEN_WITHDRAW);
+			return;
+		}
+		if (c.away) { c.away = false; pushLobby(); }
+		if (c.pub && B && B.st === 'paused-hidden') bClaim();
+	}
+
+	// ----- beacon: holds one pool slot while the room is public and waiting, and answers probes
+	function bNew(st) { return { st, peer: null, onMsg: null, gen: 0, T: tasks(), slot: -1, avoid: [], rep: [], seen: {}, fl: [], armed: false, rt: 0, can: null, live: false, t0: 0, tries: 0, drops: 0 }; }
+	function bKill() {
+		const p = B.peer, f = B.onMsg;
+		B.gen++;
+		B.T.clear();
+		B.peer = B.onMsg = null;
+		B.armed = false;
+		if (p) killPeer(p, f);
+	}
+	function bStop() { if (B) { bKill(); B = null; } }
+	function bClaim() {
+		if (!c.pub || c.phase !== 'lobby' || c.role !== 'host' || !c.code) return;
+		B = B || bNew('claiming');
+		bKill();
+		const av = B.avoid, all = [], first = now() - SC.emptyAt <= RECENT_EMPTY ? shuffle(SC.emptySlots.filter((n) => av.indexOf(n) < 0)) : [];
+		for (let n = 0; n < PUB_SLOTS; n++) if (first.indexOf(n) < 0 && av.indexOf(n) < 0) all.push(n);
+		Object.assign(B, { st: 'claiming', t0: now(), tries: 0, live: false, drops: 0 });
+		bTry(first.concat(shuffle(all), shuffle(av.slice())), B.gen);
+		renderHost();
+	}
+	function bTry(order, gen) {
+		const b = B;
+		if (!b || gen !== b.gen) return;
+		if (b.tries >= CLAIM_TRIES || now() - b.t0 > CLAIM_BUDGET || !order.length) { bFail('failed-busy'); return; }
+		const n = order.shift(), p = discPeer(PUB_PREFIX + n);
+		b.tries++;
+		if (!p) { bFail('failed-net'); return; }
+		b.peer = p;
+		b.slot = n;
+		let opened = false;
+		const mine = () => B === b && p === b.peer && gen === b.gen, cut = storm();
+		const onMsg = (m) => { if (mine() && !cut()) bMsg(p, m); };
+		b.T.later(() => { if (mine() && !opened) bFail('failed-net'); }, CLAIM_WAIT);
+		p.on('open', () => {
+			if (!mine()) return;
+			b.rt = 0;
+			if (!opened) { opened = true; b.onMsg = onMsg; p.socket.on('message', onMsg); }
+			if (b.live) { b.st = 'live'; renderHost(); }
+			else if (!PUB_ECHO || pubRelay === 'ok') bLive();
+			else if (pubRelay === 'dead') bFail('failed-dead');
+			else { b.st = 'checking'; b.can = canary(b.T, p, mine, () => bFail('failed-dead')); renderHost(); }
+		});
+		p.on('error', (e) => {
+			const t = e && e.type;
+			if (!mine()) return;
+			if (t === 'unavailable-id') { b.peer = null; killPeer(p, opened ? onMsg : null); if (opened) bClaim(); else bTry(order, gen); }
+			else if (!opened && PEER_ERR.test(t)) bFail('failed-net');
+		});
+		p.on('disconnected', () => { if (mine() && opened) bLost(p); });
+		p.on('close', () => { if (mine()) { b.peer = null; bClaim(); } });
+		p.on('connection', (conn) => {
+			try { conn.close(); } catch (e) {}
+			if (mine() && flooded(b.fl)) { bKill(); b.fl = []; b.st = 'paused-flood'; b.avoid.push(b.slot); b.T.later(bClaim, FLOOD_COOL); renderHost(); }
+		});
+	}
+	function bLost(p) {
+		const b = B;
+		if (canLost(b.T, b)) { bFail('failed-dead'); return; }
+		b.st = 'reconnecting';
+		renderHost();
+		if (b.armed) return;
+		b.armed = true;
+		b.T.later(() => { b.armed = false; if (B !== b || b.peer !== p) return; const k = b.rt; try { p.reconnect(); } catch (e) { b.peer = null; bClaim(); } b.T.later(() => { if (b.peer === p && b.rt === k && !p.open) p.disconnect(); }, CLAIM_WAIT); }, BEACON_RETRY[b.rt++ ? 1 : 0]);
+	}
+	function bLive() {
+		B.st = 'live';
+		B.live = true;
+		B.T.later(() => { bKill(); B.st = 'expired'; renderHost(); }, LIST_MAX);
+		tri(587, 0.06, 0.09);
+		tri(880, 0.08, 0.09, 0.06);
+		renderHost();
+	}
+	function bFail(st) {
+		bKill();
+		B.st = st;
+		tri(220, 0.14, 0.1, 0, 180);
+		renderHost();
+	}
+	function bMsg(p, m) {
+		const x = sigIn(m), lk = x && x.lk, t = now();
+		if (!lk) return;
+		if (lk.t === 'echo') { if (x.src === p.id && B.can && lk.n === B.can.n) { pubRelay = 'ok'; if (B.st === 'checking') bLive(); } return; }
+		if (lk.t !== 'probe' || lk.v !== 1 || !SCAN_RX.test(x.src) || (B.st !== 'live' && B.st !== 'checking') || !c.peer || c.peer.disconnected || !c.peer.open) return;
+		B.rep = B.rep.filter((r) => t - r < 10000);
+		if (B.rep.length >= REPLY_RATE || t - (B.seen[x.src] || -1e9) < REPLY_GAP) return;
+		const ks = Object.keys(B.seen);
+		if (ks.length > 64) ks.forEach((k) => { if (t - B.seen[k] >= REPLY_GAP) delete B.seen[k]; });
+		B.rep.push(t);
+		B.seen[x.src] = t;
+		sig(p, x.src, { t: 'room', v: PUB_V, s: B.slot, g: g.id, c: c.code, n: nickOk(c.nick) ? c.nick : '', p: lobbyPlayers().length, m: max,
+			md: textOk(mode) ? mode : '', a: Math.min(86400, Math.round((now() - c.opened) / 1000)) });
+	}
+	// ----- a lonely room from Quick join keeps looking, and the higher code moves into the other room
+	function lonelyCheck() {
+		const on = c.role === 'host' && c.phase === 'lobby' && screen === 'host' && c.how === 'quick' && c.pub && B && B.st === 'live' && !inGuests().length && !c.stay;
+		if (on && !c.lonely) { c.lonely = scanAttach(onLonely, 'lonely'); c.lonely.refresh(); }
+		else if (!on && c.lonely) lonelyStop();
+	}
+	function lonelyStop() {
+		if (c.lonely) { c.lonely.detach(); c.lonely = null; }
+		if (c.move) { T.cancel(c.move); c.move = null; ui.move.hidden = true; }
+	}
+	function onLonely(h) {
+		if (!c.lonely || c.move) return;
+		if (h.state === 'error') { T.later(() => { if (c.lonely === h && h.state === 'error') { lonelyStop(); lonelyCheck(); } }, MOVE_EVERY); return; }
+		const me = g.id + ':' + c.code, r = rankRooms(h.rooms().filter((y) => y.game === g.id && y.key !== me && !y.full && !y.stale && (y.players > 1 || y.code < c.code)), false)[0];
+		if (!r) return;
+		c.move = T.later(() => { lonelyStop(); dropNet(true); joinRoom(r.code, 'move', r.host); }, MOVE_SHOW);
+		setText(ui.moveP, 'Joining ' + own(r.host || 'Player 1') + ' room, who is also waiting...');
+		ui.move.hidden = false;
+		tri(784, 0.06, 0.08);
+		tri(1047, 0.07, 0.08, 0.06);
+	}
+	function inGuests() { return c.guests.filter((x) => x.state === 'in').sort((a, b) => a.seq - b.seq); }
+	function lobbyChanged() {
+		inGuests().forEach((x, i) => { x.index = i + 1; });
+		pushLobby();
+		renderHost();
+	}
+	function lobbyPlayers() {
+		const seen = [], ok = (n) => (c.everPub && !nickOk(n) ? '' : n);
+		return [{ index: 0, name: ok(c.nick) || 'Player 1', ping: 0 }]
+			.concat(inGuests().map((x) => ({ index: x.index, name: ok(x.name) || 'Player ' + (x.index + 1), ping: x.ping })))
+			.map((p) => {
+				let n = p.name;
+				for (let k = 2; seen.indexOf(n.toLowerCase()) >= 0; k++) n = p.name.slice(0, 9 - String(k).length).trim() + ' ' + k;
+				seen.push(n.toLowerCase());
+				p.name = n;
+				return p;
+			});
+	}
+	function pushLobby() {
+		const tail = ',"max":' + max + ',"mode":' + JSON.stringify(mode) + ',"players":' + JSON.stringify(lobbyPlayers()) + (c.everPub ? ',"pub":1' : '') + (c.away ? ',"away":1' : '') + '}';
+		inGuests().forEach((x) => tx(x.conn, '{"t":"lobby","index":' + x.index + tail));
+	}
+	function hostConn(conn) {
+		if (!conn || typeof conn.on !== 'function' || c.guests.length >= 16) { try { conn.close(); } catch (e) {} return; }
+		const x = { conn, fast: null, fastOk: false, index: -1, name: '', ping: 0, seen: now(), state: 'new', seq: 0, dev: '' };
+		c.guests.push(x);
+		later(() => { if (x.state === 'new') dropGuest(x); }, NET_WAIT);
+		conn.on('open', () => { if (x.state !== 'gone') openFast(x); });
+		conn.on('data', (raw) => { if (x.state !== 'gone') hostData(x, raw); });
+		conn.on('close', () => dropGuest(x));
+	}
+	function hostData(x, raw) {
+		const d = netParse(raw);
+		if (!d) return;
+		x.seen = now();
+		if (d.t === 'm') {
+			if (x.state === 'in' && c.phase === 'session') emitMsg(d.d, x.index);
+		} else if (d.t === 'ping') {
+			const r = Number(d.r), t = Number(d.c);
+			if (r >= 0 && r < 60000) x.ping = Math.round(r);
+			tx(x.conn, '{"t":"pong","c":' + (isFinite(t) ? t : 0) + ',"h":' + now() + '}');
+		} else if (d.t === 'fast') {
+			x.fastOk = true;
+		} else if (d.t === 'bye') {
+			dropGuest(x);
+		} else if (d.t === 'hello' && x.state === 'new') {
+			x.dev = /^[0-9a-f]{16}$/.test(d.d) ? d.d : '';
+			const why = d.v !== 1 || d.game !== g.id ? 'version' : x.dev && c.bans[x.dev] ? 'kicked' : c.phase !== 'lobby' ? 'started' : inGuests().length + 1 >= max ? 'full' : '';
+			if (why) { reject(x, why); return; }
+			x.state = 'in';
+			x.seq = ++c.seq;
+			x.name = cleanNick(d.name, false);
+			inGuests().forEach((y, i) => { y.index = i + 1; });
+			tx(x.conn, JSON.stringify({ t: 'welcome', index: x.index, max, mode, players: lobbyPlayers(), pub: c.everPub ? 1 : undefined }));
+			lobbyChanged();
+			tri(880, 0.07, 0.12);
+		}
+	}
+	function reject(x, why) { tx(x.conn, '{"t":"reject","reason":"' + why + '"}'); cutGuest(x); }
+	function kickGuest(index) {
+		const x = inGuests().filter((y) => y.index === index)[0];
+		if (c.phase !== 'lobby' || !x) return;
+		if (x.dev) c.bans[x.dev] = 1;
+		tx(x.conn, '{"t":"kick"}');
+		cutGuest(x);
+		lobbyChanged();
+	}
+	function cutGuest(x) {
+		x.state = 'gone';
+		if (c.guests.indexOf(x) >= 0) c.guests.splice(c.guests.indexOf(x), 1);
+		killLater(null, [x]);
+	}
+	function dropGuest(x) {
+		const was = x.state;
+		if (was === 'gone') return;
+		cutGuest(x);
+		if (was !== 'in') return;
+		if (c.phase === 'lobby') lobbyChanged();
+		else if (c.phase === 'session') {
+			c.byIndex[x.index] = null;
+			c.players.forEach((p) => { if (p.index === x.index) p.connected = false; });
+			c.guests.forEach((y) => { if (y.state === 'in') tx(y.conn, '{"t":"left","index":' + x.index + '}'); });
+			emit('leave', x.index);
+		}
+	}
+	function hostGo() {
+		const ins = inGuests();
+		if (c.phase !== 'lobby' || screen !== 'host' || !ins.length) return;
+		bStop();
+		lonelyStop();
+		c.guests.slice().forEach((x) => { if (x.state !== 'in' && x.conn.open) reject(x, 'started'); });
+		c.players = lobbyPlayers().map((p) => ({ index: p.index, name: p.name, connected: true }));
+		const tail = ',"h":' + now() + (c.everPub ? ',"pub":1' : '') + ',"players":' + JSON.stringify(c.players.map((p) => ({ index: p.index, name: p.name }))) + '}';
+		ins.forEach((x) => { c.byIndex[x.index] = x; tx(x.conn, '{"t":"start","index":' + x.index + tail); });
+		begin('host', 0);
+	}
+
+	// ----- guest
+	function showJoin(code, err) {
+		dropNet(true);
+		c.role = '';
+		const box = mk('div', 'net-code'), cells = [];
+		for (let i = 0; i < 5; i++) {
+			const b = Object.assign(mk('input', 'net-cell'), { type: 'text', value: code.charAt(i), autocomplete: 'off', spellcheck: false });
+			b.setAttribute('autocapitalize', 'characters');
+			b.setAttribute('autocorrect', 'off');
+			b.setAttribute('aria-label', 'Room code, character ' + (i + 1) + ' of 5');
+			cells.push(b);
+			box.append(b);
+		}
+		const errP = mk('p', 'net-err'), join = mkBtn('Join', true, go), backB = mkBtn('Back', false, back);
+		errP.setAttribute('role', 'alert');
+		const empty = () => cells.filter((b) => !b.value)[0];
+		const sync = () => { join.disabled = !!empty(); };
+		const say = (t) => { errP.textContent = t; errP.hidden = !t; };
+		const odd = (t) => say(/[01OIL]/i.test(t) ? 'Room codes never use 0, O, 1, I or L.' : '');
+		const fill = (from, t) => {
+			const v = cleanCode(t);
+			let i = from;
+			for (let k = 0; k < v.length && i < 5; k++) cells[i++].value = v.charAt(k);
+			if (v) focusEl(cells[Math.min(i, 4)]);
+			sync();
+		};
+		cells.forEach((b, i) => {
+			b.addEventListener('input', () => { const t = b.value; odd(t); b.value = ''; fill(i, t); });
+			b.addEventListener('keydown', (e) => {
+				const k = e.key, j = (k === 'ArrowLeft' || (k === 'Backspace' && !b.value)) ? i - 1 : k === 'ArrowRight' ? i + 1 : -1;
+				if (k === 'Enter') { e.preventDefault(); go(); }
+				else if (j >= 0 && j < 5) {
+					e.preventDefault();
+					if (k === 'Backspace') cells[j].value = '';
+					focusEl(cells[j]);
+					sync();
+				}
+			});
+			b.addEventListener('focus', () => { try { b.select(); } catch (e) {} });
+		});
+		function go() {
+			if (empty()) focusEl(empty());
+			else joinRoom(cells.map((b) => b.value).join(''));
+		}
+		say(err);
+		sync();
+		show('join', 'Join with a code', [label('Room code'), box, errP,
+			mk('p', 'net-sub', 'Ask the host for the 5-character code on their screen. Codes are for friends you know.'), row(backB, join)], empty() || join);
+	}
+	function joinRoom(code, origin, host, retry) {
+		saveNick();
+		scanOff();
+		c.role = 'guest';
+		c.origin = origin || 'code';
+		c.pubHost = host || '';
+		c.pub = c.origin !== 'code';
+		c.hostAway = false;
+		Object.assign(c, { code, ping: 0, offset: 0, bestRtt: 1e9, samples: 0, list: [], hostMode: '', hostMax: max });
+		const gen = ++c.gen;
+		if (c.pub) showBusy('Joining ' + own(c.pubHost || 'Player 1') + ' room', retry ? 'That room filled up. Trying another...' : 'Connecting to the room...');
+		else showBusy('Joining room ' + code, 'Looking for the room...');
+		loadPeer().then((ok) => {
+			if (gen !== c.gen || c.phase !== 'lobby') return;
+			if (ok) guestTry(gen, code, 0); else fail(NET_MSG.network);
+		});
+	}
+	function guestTry(gen, code, tries) {
+		const p = newPeer('lowkey-' + g.id + '-' + Math.random().toString(36).slice(2, 10) + Date.now().toString(36));
+		if (!p) return;
+		let opened = false;
+		const mine = () => gen === c.gen && c.peer === p;
+		later(() => { if (mine() && !opened) fail(NET_MSG.network); }, NET_WAIT);
+		p.on('open', () => {
+			if (!mine() || opened) return;
+			opened = true;
+			let conn = null;
+			try { conn = p.connect('lowkey-' + g.id + '-' + code, { label: 'lowkey', serialization: 'raw', reliable: true }); } catch (e) { conn = null; }
+			if (!conn || typeof conn.on !== 'function') { fail(NET_MSG.network); return; }
+			const x = c.link = { conn, fast: null, fastOk: false, index: 0, ping: 0, seen: now(), state: 'connecting', err: false };
+			later(() => { if (mine() && x.state === 'connecting') fail(NET_MSG.network); }, NET_WAIT);
+			conn.on('open', () => {
+				if (!mine() || c.link !== x || x.state !== 'connecting') return;
+				x.state = 'hello';
+				x.seen = now();
+				openFast(x);
+				tx(conn, JSON.stringify({ t: 'hello', v: 1, game: g.id, name: c.nick, d: devToken() }));
+				later(() => { if (mine() && x.state === 'hello') joinFailed('noAnswer'); }, NET_WAIT);
+			});
+			conn.on('data', (raw) => { if (mine() && c.link === x) guestData(x, raw); });
+			conn.on('close', () => { if (mine() && c.link === x) linkDown(x, false); });
+			conn.on('error', () => { x.err = true; });
+		});
+		p.on('error', (err) => {
+			const type = err && err.type, x = c.link;
+			if (!mine()) return;
+			if (type === 'unavailable-id' && !opened && tries < 3) { c.gen++; c.peer = null; killLater(p, []); guestTry(c.gen, code, tries + 1); }
+			else if (type === 'peer-unavailable') { if (!x || x.state === 'connecting') joinFailed('gone'); }
+			else if (!x || x.state === 'connecting') fail(type === 'browser-incompatible' ? NET_MSG.unsupported : NET_MSG.network);
+		});
+	}
+	function guestData(x, raw) {
+		const d = netParse(raw), t = d && d.t;
+		if (!d) return;
+		x.seen = now();
+		if (d.pub === 1 && (t === 'welcome' || t === 'lobby' || t === 'start')) c.pub = true;
+		if (t === 'm') {
+			if (c.phase === 'session') emitMsg(d.d, 0);
+		} else if (t === 'pong') {
+			pong(d);
+		} else if (t === 'fast') {
+			x.fastOk = true;
+		} else if (c.phase === 'lobby' && (t === 'welcome' ? x.state === 'hello' : t === 'lobby' && x.state === 'in')) {
+			const me = netInt(d.index, 1, 7);
+			if (me < 0) return;
+			x.index = me;
+			c.list = cleanList(d.players);
+			c.hostMax = netMax(d.max);
+			c.hostMode = cleanLabel(d.mode);
+			if (c.pub && !textOk(c.hostMode)) c.hostMode = '';
+			if (t === 'lobby') { c.hostAway = d.away === 1; renderWait(); return; }
+			x.state = 'in';
+			c.tick = c.tick || setInterval(tick, NET_PING);
+			tick();
+			showWait();
+			tri(660, 0.06, 0.1);
+			tri(880, 0.08, 0.1, 0.06);
+		} else if (t === 'reject') {
+			if (c.phase === 'lobby' && x.state === 'hello') joinFailed(/^(full|started|kicked)$/.test(d.reason) ? d.reason : 'version');
+		} else if (t === 'start') {
+			const me = netInt(d.index, 1, 7), list = cleanList(d.players), h = Number(d.h);
+			if (c.phase !== 'lobby' || x.state !== 'in') return;
+			if (!list.some((p) => p.index === me)) { fail(NET_MSG.lost, 'Connection lost'); return; }
+			x.index = me;
+			c.players = list.map((p) => ({ index: p.index, name: p.name, connected: true }));
+			if (!c.samples && isFinite(h)) c.offset = h - now();
+			begin('guest', me);
+		} else if (t === 'left') {
+			const i = netInt(d.index, 1, 7), pl = c.players.filter((p) => p.index === i)[0];
+			if (c.phase === 'session' && pl && pl.connected && i !== x.index) { pl.connected = false; emit('leave', i); }
+		} else if (t === 'kick' || t === 'bye') {
+			if (t === 'kick') kicked[g.id + ':' + c.code] = now();
+			if (c.phase === 'session') end(t === 'kick' ? 'kicked' : 'host-left');
+			else if (t === 'kick') fail(NET_MSG.kicked, 'Removed from the room');
+			else fail(NET_MSG.hostLeft, 'Room closed');
+		}
+	}
+	function cleanList(arr) {
+		const out = [];
+		(Array.isArray(arr) ? arr.slice(0, 8) : []).forEach((p) => {
+			const i = p && typeof p === 'object' ? netInt(p.index, 0, 7) : -1, r = Number(i >= 0 && p.ping);
+			let n = i >= 0 ? cleanNick(p.name, false) : '';
+			if (c.pub && !nickOk(n)) n = '';
+			if (i >= 0 && !out.some((q) => q.index === i)) out.push({ index: i, name: n || 'Player ' + (i + 1), ping: r >= 0 && r < 60000 ? Math.round(r) : 0 });
+		});
+		return out.sort((a, b) => a.index - b.index);
+	}
+	function pong(d) {
+		const t = now(), rtt = t - Number(d.c), h = Number(d.h);
+		if (!(rtt >= 0 && rtt < 30000) || !isFinite(h)) return;
+		c.ping = Math.round(rtt);
+		if (c.session) c.session.ping = c.ping;
+		c.bestRtt += 2;
+		if (!c.samples || rtt <= c.bestRtt * 1.25 + 4) {
+			c.offset = c.samples ? c.offset + (h + rtt / 2 - t - c.offset) * 0.5 : h + rtt / 2 - t;
+			c.bestRtt = Math.min(c.bestRtt, rtt);
+		}
+		c.samples++;
+		renderWait();
+	}
+	function showWait() {
+		const count = mk('span', 'net-count'), list = mk('ul', 'net-list'), info = mk('p', 'net-sub'), leave = mkBtn('Leave', false, back);
+		const busy = busyRow('Joined. Waiting for the host to start...'), players = label('Players', count), pill = mk('span', 'net-pub', 'Public room'), safe = mk('p', 'net-sub', NET_TXT.bothers);
+		players.insertBefore(pill, count);
+		show('wait', 'You are in room ' + c.code, [busy, players, list, info, safe, row(leave)], leave);
+		Object.assign(ui, { count, list, info, busy: busy.s, pill, safe });
+		renderWait();
+	}
+	function renderWait() {
+		if (screen !== 'wait' || !c.link) return;
+		ui.info.textContent = c.hostMode ? 'Mode: ' + c.hostMode : '';
+		ui.info.hidden = !c.hostMode;
+		ui.pill.hidden = ui.safe.hidden = !c.pub;
+		setText(ui.busy, c.hostAway ? NET_TXT.away : 'Joined. Waiting for the host to start...');
+		fillList(c.list, c.link.index, c.hostMax, false);
+	}
+	function linkDown(x, timedOut) {
+		const lost = timedOut || x.err || now() - x.seen > NET_PING * 1.6;
+		if (c.phase === 'session') end(lost ? 'connection-lost' : 'host-left');
+		else if (x.state === 'hello') joinFailed('noAnswer');
+		else if (lost) fail(NET_MSG.lost, 'Connection lost');
+		else fail(NET_MSG.hostLeft, 'Room closed');
+	}
+
+	// ----- both ends
+	function openFast(x) {
+		try {
+			const ch = x.conn.peerConnection.createDataChannel('lowkey-fast', { negotiated: true, id: NET_FAST_ID, ordered: false, maxRetransmits: 0 });
+			ch.onopen = () => { if (x.state !== 'gone') tx(x.conn, '{"t":"fast"}'); };
+			ch.onmessage = (e) => {
+				let m = null;
+				if (x.state !== 'in' || c.phase !== 'session' || typeof e.data !== 'string' || e.data.length > NET_MAX) return;
+				try { m = JSON.parse(e.data); } catch (err) { return; }
+				x.seen = now();
+				emitMsg(m, c.role === 'host' ? x.index : 0);
+			};
+			x.fast = ch;
+		} catch (e) { x.fast = null; }
+	}
+	function tick() {
+		const t = now();
+		if (c.role === 'host') {
+			c.guests.slice().forEach((x) => { if (x.state === 'in' && t - x.seen > NET_LOST) dropGuest(x); });
+			if (c.phase === 'lobby') { pushLobby(); renderHost(); }
+		} else if (c.link && c.link.state === 'in') {
+			if (t - c.link.seen > NET_LOST) linkDown(c.link, true);
+			else tx(c.link.conn, '{"t":"ping","c":' + t + ',"r":' + c.ping + '}');
+		}
+	}
+	function killLater(p, links) {
+		setTimeout(() => {
+			links.forEach((x) => {
+				try { if (x.fast) { x.fast.onopen = x.fast.onmessage = null; x.fast.close(); } } catch (e) {}
+				try { x.conn.close(); x.conn.removeAllListeners(); } catch (e) {}
+			});
+			try { if (p) { p.destroy(); p.removeAllListeners(); } } catch (e) {}
+		}, links.length ? 250 : 0);
+	}
+	function dropNet(bye) {
+		const links = c.guests.concat(c.link ? [c.link] : []), p = c.peer;
+		bStop();
+		lonelyStop();
+		scanOff();
+		T.clear();
+		c.gen++;
+		clearInterval(c.tick);
+		c.timers.forEach((id) => clearTimeout(id));
+		Object.assign(c, { tick: 0, timers: [], guests: [], link: null, byIndex: [], peer: null });
+		links.forEach((x) => {
+			if (bye && x.state !== 'gone') tx(x.conn, '{"t":"bye"}');
+			x.state = 'gone';
+		});
+		if (p || links.length) killLater(p, links);
+	}
+	function finish(refocus) {
+		dropNet(true);
+		c.phase = 'dead';
+		if (net === self) net = null;
+		closeOverlay(refocus);
+	}
+	function quit() {
+		if (c.phase !== 'lobby') return;
+		finish(true);
+		const r = resolve;
+		resolve = null;
+		if (r) r(null);
+	}
+	function teardown(alive) {
+		if (c.phase === 'session') end('closed');
+		else if (c.phase === 'lobby') {
+			finish(false);
+			const r = resolve;
+			resolve = null;
+			if (alive && r) r(null);
+		}
+	}
+
+	// ----- session
+	function begin(role, me) {
+		bStop();
+		lonelyStop();
+		scanOff();
+		if (!SC.hs.length) scanKill();
+		T.clear();
+		c.phase = 'session';
+		screen = '';
+		c.L = { message: [], leave: [], close: [] };
+		const pub = role === 'host' ? c.everPub : c.pub;
+		const s = c.session = {
+			role,
+			me,
+			players: c.players,
+			isPublic: pub,
+			cleanText: (t) => (typeof t !== 'string' ? '' : !pub || textOk(t) ? t : ''),
+			ping: role === 'host' ? 0 : c.ping,
+			hostTime: () => (role === 'host' ? now() : now() + c.offset),
+			send: (msg, opts) => {
+				const x = role === 'host' ? (opts ? c.byIndex[opts.to] : null) : c.link;
+				const str = c.phase === 'session' && x && x.state === 'in' ? enc(msg) : null;
+				return str !== null && put(x, str, !!(opts && opts.fast));
+			},
+			broadcast: (msg, opts) => bcast(msg, !!(opts && opts.fast), opts ? opts.except : -1),
+			relay: (msg, from, opts) => bcast(msg, !!(opts && opts.fast), from),
+			on: (type, fn) => {
+				const a = c.L && c.L[type];
+				if (a && typeof fn === 'function' && a.indexOf(fn) < 0) {
+					c.L[type] = a.concat([fn]);
+					if (type === 'message' && c.queue.length && !c.flushT) c.flushT = setTimeout(flush, 0);
+				}
+				return s;
+			},
+			off: (type, fn) => {
+				const a = c.L && c.L[type];
+				if (a && a.indexOf(fn) >= 0) c.L[type] = a.filter((f) => f !== fn);
+				return s;
+			},
+			close: () => { end('closed'); },
+		};
+		closeOverlay(true);
+		tri(660, 0.08, 0.14);
+		tri(990, 0.1, 0.14, 0.08);
+		const r = resolve;
+		resolve = null;
+		if (r) r(s);
+	}
+	function enc(msg) {
+		let str = null;
+		try { str = JSON.stringify(msg); } catch (e) {}
+		if (typeof str === 'string' && str.length <= NET_MAX) return str;
+		if (!c.warned) { c.warned = true; console.warn('[Recess] online message dropped: not JSON or over 16 KB'); }
+		return null;
+	}
+	function put(x, str, fast) {
+		const ch = x.fast;
+		if (!fast || !x.fastOk || !ch || ch.readyState !== 'open') return tx(x.conn, '{"t":"m","d":' + str + '}');
+		try { if (ch.bufferedAmount < 65536) ch.send(str); } catch (e) {}
+		return true;
+	}
+	function bcast(msg, fast, except) {
+		const str = c.phase === 'session' && c.role === 'host' ? enc(msg) : null;
+		if (str === null) return false;
+		for (let i = 1; i < c.byIndex.length; i++) {
+			const x = c.byIndex[i];
+			if (x && x.state === 'in' && (Array.isArray(except) ? except.indexOf(i) < 0 : i !== except)) put(x, str, fast);
+		}
+		return true;
+	}
+	function emitMsg(msg, from) {
+		if (c.phase !== 'session' || !msg || typeof msg !== 'object') return;
+		if (c.L.message.length && !c.queue.length) { emit('message', msg, from); return; }
+		if (c.queue.length < 400) c.queue.push(msg, from);
+		if (c.L.message.length && !c.flushT) c.flushT = setTimeout(flush, 0);
+	}
+	function flush() {
+		const q = c.queue;
+		c.flushT = 0;
+		c.queue = [];
+		for (let i = 0; i < q.length && c.phase === 'session'; i += 2) {
+			if (!c.L.message.length) { c.queue = q.slice(i).concat(c.queue); return; }
+			emit('message', q[i], q[i + 1]);
+		}
+	}
+	function emit(type, a1, a2) {
+		const a = c.L[type];
+		for (let i = 0; i < a.length && c.phase === 'session'; i++) {
+			try { a[i](a1, a2); } catch (err) { console.error('[Recess] online ' + type + ' handler failed', err); }
+		}
+	}
+	function end(reason) {
+		if (c.phase !== 'session') return;
+		const a = c.L.close;
+		clearTimeout(c.flushT);
+		finish(false);
+		c.queue = [];
+		c.L = null;
+		a.forEach((fn) => { try { fn(reason); } catch (err) { console.error('[Recess] online close handler failed', err); } });
+	}
+}
+
+// ---------- Boot ----------
+function start(data) {
+	drawThumbs();
+	applyFilter();
+	const fromHash = decodeURIComponent((location.hash || '').slice(1));
+	const id = (data && data.game && byId.has(data.game)) ? data.game : fromHash;
+	if (byId.has(id)) openGame(id);
+}
+
+const hot = window.claude && window.claude.hot;
+if (hot && typeof hot.snapshot === 'function') {
+	try { hot.snapshot(() => ({ game: current ? current.id : null })); } catch (e) {}
+}
+if (hot && typeof hot.ready === 'function') hot.ready(start);
+else start((hot && hot.data) || {});
 })();
 
 </script>

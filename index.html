@@ -559,17 +559,17 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>window.RECESS = window.RECESS || { games: [] };</script>
-<script src="games-1.js?v=9ba61c3c06"></script>
-<script src="games-2.js?v=a1a4b50d48"></script>
-<script src="games-3.js?v=e0a1e6b7b2"></script>
-<script src="games-4.js?v=be9b424105"></script>
+<script src="games-1.js?v=f02729e665"></script>
+<script src="games-2.js?v=af7551dbc0"></script>
+<script src="games-3.js?v=87bf50f2b8"></script>
+<script src="games-4.js?v=00b5b1423b"></script>
 <script>
 (function () {
 'use strict';
 
 // ---------- Catalog ----------
 const ORDER = [
-	'switchback', 'mimic', 'overtime', 'studio',
+	'clearance', 'switchback', 'mimic', 'overtime', 'studio',
 	'blockwild',
 	'chassis', 'snowline', 'dead-signal', 'frontline', 'implode',
 	'ripsaw', 'rail-gunner', 'purge-protocol', 'night-maw', 'junk-karts', 'cue-club', 'hoop-heat', 'knock-on',
@@ -587,8 +587,8 @@ const ORDER = [
 	'gem-shift', 'word-rain', 'crypt-crawler',
 ];
 const SHELVES = [
-	{ title: 'New', ids: ['switchback', 'mimic', 'overtime', 'studio', 'blockwild', 'chassis', 'snowline', 'dead-signal', 'frontline', 'implode'], cols: 4, feature: 2 },
-	{ title: 'Recently added', ids: ['ripsaw', 'rail-gunner', 'purge-protocol', 'night-maw', 'junk-karts', 'cue-club', 'hoop-heat', 'vault-run', 'trial-burn', 'breach', 'drop-zone', 'scrapfist', 'void-lancer', 'hardpoint', 'swarmbreaker'], cols: 4 },
+	{ title: 'New', ids: ['clearance', 'switchback', 'mimic', 'overtime', 'studio', 'blockwild', 'chassis', 'snowline', 'dead-signal', 'frontline'], cols: 4, feature: 2 },
+	{ title: 'Recently added', ids: ['implode', 'ripsaw', 'rail-gunner', 'purge-protocol', 'night-maw', 'junk-karts', 'cue-club', 'hoop-heat', 'vault-run', 'trial-burn', 'breach', 'drop-zone', 'scrapfist', 'void-lancer', 'hardpoint', 'swarmbreaker'], cols: 4 },
 	{ title: 'Build & sim', ids: ['assembly', 'fort-forge', 'span', 'rocket-yard', 'coaster-lab', 'reef-resort', 'ore-drift'], cols: 4 },
 	{ title: '3D', ids: ['dead-highway', 'long-shot', 'night-drift', 'deep-hunter', 'grave-rounds', 'cutline', 'iron-bout', 'saltfire', 'fathom-six', 'treadfire', 'mega-stomp', 'storm-probe', 'deep-cast', 'raw-feed', 'scrap-derby', 'canyon-ace', 'skyline-run', 'sky-circuit', 'hardlight', 'cloud-climb'], cols: 4 },
 	{ title: 'Arcade', ids: ['arena-blitz', 'orbit-hopper', 'midnight-lanes', 'comet-tail'], cols: 4 },
@@ -596,6 +596,7 @@ const SHELVES = [
 	{ title: 'Puzzle & strategy', ids: null, cols: 4 },
 ];
 const RUN_LENGTH = {
+	'clearance': '60–90 min',
 	'switchback': '20–30 min',
 	'mimic': '10–15 min',
 	'overtime': '10–25 min',
@@ -663,7 +664,7 @@ const RUN_LENGTH = {
 	'puck-rush': '3–8 min',
 };
 const RUN_NOUN = { studio: 'sessions', mimic: 'matches', switchback: 'climbs' };
-const NEW_TOP = ['switchback', 'mimic', 'overtime', 'studio', 'blockwild'];
+const NEW_TOP = ['clearance', 'switchback', 'mimic', 'overtime', 'studio', 'blockwild'];
 
 const registry = (window.RECESS && Array.isArray(window.RECESS.games)) ? window.RECESS.games : [];
 const games = registry
@@ -1350,7 +1351,7 @@ const NET_ENTRY = {
 	'puck-rush': 'Online match', 'putt-planet': 'Online', 'scrap-derby': 'Online derby', 'scrapfist': 'Online',
 	'sky-circuit': 'Online race', 'snowline': 'Online', 'swarmbreaker': 'Online', 'treadfire': 'Online battle',
 	'trial-burn': 'Online', 'void-lancer': 'Online', 'word-rain': 'Online battle', 'overtime': 'Online',
-	'switchback': 'Climb Online',
+	'switchback': 'Climb Online', 'clearance': 'Play Online',
 };
 function entry(g) {
 	const e = NET_ENTRY[g.id] || 'Online';
